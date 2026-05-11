@@ -8,8 +8,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Quadrô Pizza · Cardápio Digital</title>
-<!-- v15 · cache buster -->
-<meta name="version" content="v15">
+<!-- v16 · cache buster -->
+<meta name="version" content="v16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -117,6 +117,8 @@
   .beb-card .beb-cat{position:absolute;bottom:6px;left:8px;background:rgba(0,0,0,.7);color:var(--yellow);font-family:'Anton',sans-serif;font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:50px;z-index:3}
   @keyframes bb-bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
   .qbox.has-img .qb-shape{display:none}
+  .qbox.has-img .qb-ph-emoji{display:none}
+  .qb-ph-emoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:78px;line-height:1;z-index:2;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5));animation:bb-bob 3s ease-in-out infinite}
   .qbox.has-img .qb-main{background:#fff !important}
   .qbox.has-img.fig .qb-main{padding:6px}
   .qbox.fig.has-img .qb-img{object-fit:contain;padding:6px}
@@ -730,9 +732,9 @@ const MINI_SALG=[
   {id:'pms2',sabor:'Frango c/ Catupiry',img:'images/mini/frango',catupiry:true},
 ];
 const MINI_DOCE=[
-  {id:'pmd1',sabor:'Nutellô',img:'images/mini/nutella'},
+  {id:'pmd1',sabor:'Nutellô',img:'images/mini/nutella',phEmoji:'🍫',phBg:'linear-gradient(135deg,#5D2A0E 0%,#1C0A04 100%)'},
   {id:'pmd2',sabor:'Ovomaltine',img:'images/mini/ovomaltine'},
-  {id:'pmd3',sabor:'Choc. ao Leite',img:'images/mini/choc-leite'},
+  {id:'pmd3',sabor:'Choc. ao Leite',img:'images/mini/choc-leite',phEmoji:'🍫',phBg:'linear-gradient(135deg,#8B5A3C 0%,#3A1F10 100%)'},
   {id:'pmd4',sabor:'Choc. Branco',img:'images/mini/choc-branco'},
 ];
 
@@ -877,13 +879,15 @@ const App=(function(){
               else if(this.dataset.tried==='png'){this.dataset.tried='webp';this.src='${base}.webp';}
               else if(this.dataset.tried==='webp'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
               else{this.remove();}">`:'';
+    const phStyle=item.phBg?`style="background:${item.phBg}"`:'';
+    const phContent=item.phEmoji?`<div class="qb-ph-emoji" ${phStyle}>${item.phEmoji}</div>`:`<div class="qb-shape"></div>`;
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
       ${catupiry?`<span class="badge-cat" title="Catupiry Original"><span class="b-main">Catupiry<br>Original</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
-        <div class="qb-shape"></div>
+        ${phContent}
       </div>
       <div class="qb-bottom"><span>${cat}</span></div>
     </div>`;
