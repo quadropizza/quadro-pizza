@@ -50,7 +50,7 @@
 
   /* COPA HERO BANNER */
   .copa-hero{position:relative;background:linear-gradient(135deg,#7A000F 0%,var(--red) 50%,#7A000F 100%);color:#fff;padding:0;overflow:hidden;border-bottom:4px solid var(--yellow)}
-  .copa-hero img.banner{width:100%;display:block;max-height:280px;object-fit:cover}
+  .copa-hero img.banner{width:100%;display:block;max-height:180px;object-fit:cover}
   .copa-hero .copa-fall{padding:18px 16px;text-align:center;background:linear-gradient(180deg,rgba(122,0,15,.95) 0%, var(--red-deep) 100%)}
   .copa-hero .copa-fall h2{font-family:'Anton',sans-serif;font-size:30px;letter-spacing:1px;line-height:1;margin-bottom:6px}
   .copa-hero .copa-fall h2 span{color:var(--yellow)}
@@ -124,10 +124,12 @@
   .card-tag.gold{background:linear-gradient(135deg,#FFCC00,#D4A017);color:var(--black)}
   @keyframes pulse-tag{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-  /* Selo Catupiry */
-  .badge-cat{position:absolute;top:8px;right:8px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#fff 30%,#cc0000 31%,#cc0000 70%,#fff 71%);display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:900;text-align:center;font-size:8px;line-height:1;color:#cc0000;border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.3);transform:rotate(12deg);z-index:6;font-family:'Anton',sans-serif;letter-spacing:.3px}
-  .badge-cat::before{content:'CATUPIRY';font-size:9px;color:#fff;background:#cc0000;padding:1px 4px;border-radius:3px;margin-bottom:1px}
-  .badge-cat .ori{color:#cc0000;font-size:8px;background:#fff;padding:1px 3px;border-radius:2px;letter-spacing:.5px}
+  /* Selo Catupiry Original */
+  .badge-cat{position:absolute;top:8px;right:8px;width:56px;height:56px;border-radius:50%;background:#cc0000;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.4);transform:rotate(12deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:3px}
+  .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px dashed #fff;pointer-events:none}
+  .badge-cat .b-top{font-size:7.5px;letter-spacing:1px;line-height:1;color:#fff;font-weight:900;margin-bottom:1px}
+  .badge-cat .b-main{font-size:13px;letter-spacing:.3px;line-height:1;color:#fff;font-weight:900;background:#fff;color:#cc0000;padding:1px 4px;border-radius:3px;width:100%}
+  .badge-cat .b-bot{font-size:6.5px;letter-spacing:1.5px;line-height:1;color:#fff;font-weight:900;margin-top:2px}
 
   .card-body{padding:12px 13px 13px;flex:1;display:flex;flex-direction:column}
   .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:6px;color:var(--black)}
@@ -193,6 +195,32 @@
   .pick-counter.ok{background:#e6f6e9;border-color:var(--success);color:var(--success)}
   .fig-quick{flex:1;padding:10px 4px;background:var(--cream-2);border:2px solid var(--border);border-radius:10px;font-weight:900;font-size:13px;color:var(--black);transition:.15s;font-family:'Anton',sans-serif;letter-spacing:.5px}
   .fig-quick:hover{background:var(--yellow);border-color:var(--black);transform:translateY(-2px)}
+
+  /* COPA modal figurinha — estilo v4 */
+  .copa-modal{background:linear-gradient(135deg,#0d0d1f 0%,#0f3460 100%);color:#fff;padding:20px;border-radius:20px 20px 0 0;margin:-22px -20px -22px -20px;padding:22px 20px}
+  .copa-modal .modal-head{border-bottom-color:rgba(245,200,0,.3)}
+  .copa-modal h2{color:#fff !important;font-family:'Anton',sans-serif;letter-spacing:1px}
+  .copa-modal .modal-close{background:rgba(255,255,255,.15);color:#fff}
+  .fig-album{text-align:center;margin-bottom:14px}
+  .fig-album img{height:110px;margin:0 auto;filter:drop-shadow(0 6px 16px rgba(0,0,0,.5))}
+  .fig-album p{font-family:'Anton',sans-serif;color:var(--yellow);font-size:13px;letter-spacing:2px;margin-top:6px}
+  .fig-table-title{font-family:'Anton',sans-serif;font-size:14px;color:var(--yellow);letter-spacing:1.5px;margin-bottom:8px}
+  .fig-tier{background:rgba(255,255,255,.06);border:1.5px solid rgba(245,200,0,.25);border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .fig-tier .fig-t-lbl{font-weight:900;font-size:13px;color:#fff;line-height:1.2}
+  .fig-tier .fig-t-sub{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;font-weight:600}
+  .fig-tier .fig-t-price{font-family:'Anton',sans-serif;font-size:22px;color:var(--yellow);letter-spacing:.5px}
+  .fig-tier .fig-t-add{background:var(--yellow);color:var(--black);border:2px solid var(--black);border-radius:8px;padding:7px 14px;font-family:'Anton',sans-serif;font-size:13px;letter-spacing:.8px;box-shadow:2px 2px 0 rgba(0,0,0,.4);cursor:pointer;font-weight:900}
+  .fig-tier .fig-t-add:hover{background:#fff}
+  .fig-pix-note{background:rgba(245,200,0,.1);border:1.5px solid rgba(245,200,0,.3);border-radius:10px;padding:11px;margin-top:10px;font-size:11px;color:rgba(255,255,255,.85);font-weight:600;text-align:center;line-height:1.5}
+  .fig-pix-note strong{color:var(--yellow)}
+  .fig-qty-section{margin-top:16px;padding-top:14px;border-top:1.5px dashed rgba(255,255,255,.15)}
+  .fig-qty-lbl{font-family:'Anton',sans-serif;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:1px;margin-bottom:8px;text-align:center}
+  .fig-qty-row{display:flex;align-items:center;justify-content:center;gap:14px}
+  .fqbtn{width:42px;height:42px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);color:#fff;border-radius:10px;font-size:22px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .fqbtn:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow)}
+  .fqnum{font-family:'Anton',sans-serif;font-size:32px;color:var(--yellow);min-width:54px;text-align:center;line-height:1}
+  .fig-confirm{width:100%;background:var(--yellow);color:var(--black);padding:15px;border-radius:14px;font-family:'Anton',sans-serif;font-size:18px;letter-spacing:1px;border:3px solid var(--black);box-shadow:0 4px 0 var(--black);margin-top:14px;transition:.15s}
+  .fig-confirm:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black)}
 
   .btn-primary{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:14px;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;border:3px solid var(--black);box-shadow:0 4px 0 var(--black);transition:.2s}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);background:var(--red-d)}
@@ -421,14 +449,15 @@
 <main>
   <!-- COMBOS -->
   <section id="tab-combos" class="tab-content">
-    <div style="border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);border:3px solid var(--yellow)">
-      <img src="images/combos/slogan.png" alt="A Univali é muito Quadrô" style="width:100%;display:block" onerror="this.style.display='none'">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);padding:10px 14px;border-radius:14px;border:2px solid var(--yellow);box-shadow:var(--shadow)">
+      <img src="images/combos/slogan.png" alt="" style="height:60px;width:60px;object-fit:cover;border-radius:8px;flex-shrink:0" onerror="this.style.display='none'">
+      <div style="color:#fff;font-family:'Anton',sans-serif;line-height:1.1">
+        <div style="font-size:13px;color:var(--yellow);letter-spacing:.5px">A UNIVALI É MUITO</div>
+        <div style="font-size:22px;letter-spacing:.5px">QUADRÔ! 🍕</div>
+      </div>
     </div>
     <div class="section-head"><span class="seal">🔥 IMPERDÍVEL</span><h2 class="section-title">Combos<small>Mais sabor, menos preço · escolha os sabores ao adicionar</small></h2></div>
     <div class="grid" id="grid-combos"></div>
-    <div style="border-radius:18px;overflow:hidden;margin-top:20px;box-shadow:var(--shadow);border:3px solid var(--yellow)">
-      <img src="images/combos/banner-saudade.png" alt="2026 começou, a gente já tava com saudade" style="width:100%;display:block" onerror="this.style.display='none'">
-    </div>
   </section>
 
   <!-- COPA -->
@@ -484,9 +513,6 @@
   <!-- FIGURINHAS -->
   <section id="tab-figurinhas" class="tab-content" hidden>
     <div class="section-head"><img src="images/emoji-fifa.png" alt="" style="height:54px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))"><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
-    <div class="fig-pricing">
-      <img src="images/combos/valores-figurinha.jpeg" alt="Tabela de preços" onerror="this.style.display='none'">
-    </div>
     <div class="grid" id="grid-figurinhas"></div>
   </section>
 </main>
@@ -538,6 +564,50 @@
     <div class="modal-head"><h2 id="addTitle">Item</h2><button class="modal-close" onclick="App.closeModal('addModal')">×</button></div>
     <div id="addBody"></div>
     <button class="btn-primary" id="btnConfirmAdd" onclick="App.confirmAdd()">🛒 Adicionar ao carrinho</button>
+  </div>
+</div>
+
+<!-- FIG MODAL (estilo v4 escuro) -->
+<div class="modal-overlay" id="figModal">
+  <div class="modal copa-modal">
+    <div class="modal-head">
+      <h2>⚽ FIGURINHAS COPA 2026</h2>
+      <button class="modal-close" onclick="App.closeModal('figModal')">×</button>
+    </div>
+    <div class="fig-album">
+      <img src="figurinhas.webp" alt="Pacote Panini FIFA">
+      <p>PANINI · FIFA WORLD CUP 2026</p>
+    </div>
+    <div class="fig-table-title">TABELA DE PREÇOS</div>
+    <div class="fig-tier">
+      <div><div class="fig-t-lbl">Até 10 pacotes</div><div class="fig-t-sub">por pacote · PIX ou Dinheiro</div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div class="fig-t-price">R$ 6,90</div><button class="fig-t-add" onclick="App.addFig(10,6.90,'PIX')">+ 10</button></div>
+    </div>
+    <div class="fig-tier">
+      <div><div class="fig-t-lbl">Acima de 10 pacotes</div><div class="fig-t-sub">por pacote · PIX ou Dinheiro</div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div class="fig-t-price">R$ 6,80</div><button class="fig-t-add" onclick="App.addFig(11,6.80,'PIX')">+ 11</button></div>
+    </div>
+    <div class="fig-tier">
+      <div><div class="fig-t-lbl">Acima de 50 pacotes</div><div class="fig-t-sub">por pacote · PIX ou Dinheiro</div></div>
+      <div style="display:flex;align-items:center;gap:10px"><div class="fig-t-price">R$ 6,50</div><button class="fig-t-add" onclick="App.addFig(51,6.50,'PIX')">+ 51</button></div>
+    </div>
+    <div class="fig-tier">
+      <div><div class="fig-t-lbl">Débito / Crédito</div><div class="fig-t-sub">por pacote · valor original</div></div>
+      <div class="fig-t-price">R$ 7,00</div>
+    </div>
+    <div class="fig-pix-note">
+      ⚠️ <strong>Pacotes de figurinha</strong> têm desconto progressivo apenas no <strong>PIX</strong> ou <strong>Dinheiro</strong>.<br>
+      Chave PIX: <strong>60.723.998/0001-84</strong>
+    </div>
+    <div class="fig-qty-section">
+      <div class="fig-qty-lbl">QUANTIDADE AVULSA</div>
+      <div class="fig-qty-row">
+        <button class="fqbtn" onclick="App.figQtyChange(-1)">−</button>
+        <span class="fqnum" id="figQtyNum">1</span>
+        <button class="fqbtn" onclick="App.figQtyChange(1)">+</button>
+      </div>
+      <button class="fig-confirm" onclick="App.addFigCustom()">🛒 Adicionar ao Carrinho</button>
+    </div>
   </div>
 </div>
 
@@ -689,7 +759,7 @@ const COMBOS=[
   {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Saudosismo da infância.',preco:14.90,pessoas:1,img:'images/combos/mini-kapo',
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Sabor do Kapo',type:'one',opts:KAPO_SAB}]},
 ];
-function perPersonLabel(c){return c.pessoas>1?`R$ ${(c.preco/c.pessoas).toFixed(2).replace('.',',')}/pessoa`:'Combo individual';}
+function servesLabel(c){return c.pessoas>1?`Serve ${c.pessoas} pessoas`:'Serve 1 pessoa';}
 
 const BEBIDAS={
   lata:[
@@ -766,7 +836,7 @@ const App=(function(){
               else{this.remove();}">`:'';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
-      ${catupiry?`<span class="badge-cat"><span class="ori">ORIGINAL</span></span>`:''}
+      ${catupiry?`<span class="badge-cat"><span class="b-top">SABOR</span><span class="b-main">CATUPIRY</span><span class="b-bot">ORIGINAL</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
@@ -792,8 +862,8 @@ const App=(function(){
   }
 
   function renderAll(){
-    $('grid-combos').innerHTML=COMBOS.map(c=>cardHtml({...c,economia:perPersonLabel(c),cat:'🔥 COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
-    $('grid-copa').innerHTML=COMBOS.filter(c=>c.copa).map(c=>cardHtml({...c,economia:perPersonLabel(c),cat:'⚽ COPA'},'combo',{text:'⚽ FIFA',cls:'gold'})).join('');
+    $('grid-combos').innerHTML=COMBOS.map(c=>cardHtml({...c,economia:servesLabel(c),cat:'🔥 COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
+    $('grid-copa').innerHTML=COMBOS.filter(c=>c.copa).map(c=>cardHtml({...c,economia:servesLabel(c),cat:'⚽ COPA'},'combo',{text:'⚽ FIFA',cls:'gold'})).join('');
     $('grid-pizza-salg').innerHTML=PIZZA25.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',null,{hideDesc:true})).join('');
     $('grid-pizza-doce').innerHTML=PIZZA25.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',null,{hideDesc:true})).join('');
     $('grid-mini-salg').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'},{hideDesc:true})).join('');
@@ -815,7 +885,35 @@ const App=(function(){
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function openFifa(){switchTab('figurinhas');setTimeout(()=>openAdd('fig'),400);}
+  function openFifa(){openFigModal();}
+
+  let figAvulsaQty=1;
+  function openFigModal(){figAvulsaQty=1;$('figQtyNum').textContent='1';$('figModal').classList.add('open');}
+  function figQtyChange(d){figAvulsaQty=Math.max(1,figAvulsaQty+d);$('figQtyNum').textContent=figAvulsaQty;}
+  function addFig(qty,pixPrice){
+    cart.push({
+      id:'fig_'+Date.now(),nome:`Figurinhas FIFA (${qty} pct)`,qty:1,
+      fig:true,figQty:qty,
+      priceByPay:{PIX:+(pixPrice*qty).toFixed(2),Dinheiro:+(pixPrice*qty).toFixed(2),'Débito':+(7.00*qty).toFixed(2),'Crédito':+(7.00*qty).toFixed(2)},
+      detalhes:[`${qty} pacote(s) · preço varia por pagamento`]
+    });
+    save();renderCart();closeModal('figModal');
+    toast(`🛒 ${qty} pacote(s) adicionado(s)!`);
+    $('fabCart').classList.add('pulse');setTimeout(()=>$('fabCart').classList.remove('pulse'),500);
+  }
+  function addFigCustom(){
+    const q=figAvulsaQty;
+    const pp=q>50?6.50:q>10?6.80:6.90;
+    cart.push({
+      id:'fig_'+Date.now(),nome:`Figurinhas FIFA (${q} pct)`,qty:1,
+      fig:true,figQty:q,
+      priceByPay:{PIX:+(pp*q).toFixed(2),Dinheiro:+(pp*q).toFixed(2),'Débito':+(7.00*q).toFixed(2),'Crédito':+(7.00*q).toFixed(2)},
+      detalhes:[`${q} pacote(s) · preço varia por pagamento`]
+    });
+    save();renderCart();closeModal('figModal');
+    toast(`🛒 ${q} pacote(s) adicionado(s)!`);
+    $('fabCart').classList.add('pulse');setTimeout(()=>$('fabCart').classList.remove('pulse'),500);
+  }
   function goToCombo(id){switchTab('combos');setTimeout(()=>openAdd(id),300);}
 
   function findItem(id){
@@ -826,30 +924,14 @@ const App=(function(){
   function openAdd(id){
     const item=findItem(id);if(!item)return;
     pending={item:JSON.parse(JSON.stringify(item)),choices:{},multiChoices:{},qty:1};
+
+    if(item.id==='fig'){openFigModal();return;}
+
     $('addTitle').textContent=item.nome;
     const body=$('addBody');
     let html=`<p class="card-desc" style="margin-bottom:16px;font-size:13px;line-height:1.5">${item.desc||''}</p>`;
 
-    if(item.id==='fig'){
-      html+=`<div class="modal-section">
-        <h3>Quantidade de pacotes</h3>
-        <div style="display:flex;gap:8px;margin-bottom:10px">
-          <button class="fig-quick" data-q="1" type="button">+1</button>
-          <button class="fig-quick" data-q="5" type="button">+5</button>
-          <button class="fig-quick" data-q="10" type="button">10</button>
-          <button class="fig-quick" data-q="50" type="button">50</button>
-          <button class="fig-quick" data-q="100" type="button">100</button>
-        </div>
-        <input type="number" id="figQty" class="field" min="1" value="1">
-        <div style="background:var(--cream-2);padding:14px;border-radius:10px;font-size:12px;line-height:1.7">
-          💸 <strong>PIX ou Dinheiro:</strong><br>
-          &nbsp;&nbsp;Até 10 pct → <strong>R$ 6,90</strong> cada<br>
-          &nbsp;&nbsp;11–50 pct → <strong>R$ 6,80</strong> cada<br>
-          &nbsp;&nbsp;51+ pct → <strong>R$ 6,50</strong> cada<br>
-          💳 <strong>Débito / Crédito:</strong><br>
-          &nbsp;&nbsp;<strong>R$ 7,00</strong> cada (valor original)
-        </div></div>`;
-    } else if(item.picks){
+    if(item.picks){
       item.picks.forEach((pk,idx)=>{
         if(pk.type==='one'){
           html+=`<div class="modal-section"><h3>${pk.label}</h3><div class="options">`;
@@ -880,10 +962,6 @@ const App=(function(){
       </div></div>`;
 
     body.innerHTML=html;
-
-    body.querySelectorAll('.fig-quick').forEach(b=>{
-      b.addEventListener('click',()=>{$('figQty').value=b.dataset.q;});
-    });
 
     body.querySelectorAll('.opt[data-pick]').forEach(b=>{
       b.addEventListener('click',()=>{
@@ -1016,7 +1094,7 @@ const App=(function(){
     suggestedCombo=sug;
     $('cartUpsell').innerHTML=`<div style="background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:14px 16px;border-radius:14px;margin:14px 0 6px;border:3px solid var(--yellow)">
       <div style="font-family:'Anton',sans-serif;font-size:16px;margin-bottom:4px">💡 QUE TAL TROCAR POR UM COMBO?</div>
-      <p style="font-size:12px;margin-bottom:10px">${sug.nome} por <strong>${fmt(sug.preco)}</strong> · ${perPersonLabel(sug)}.</p>
+      <p style="font-size:12px;margin-bottom:10px">${sug.nome} por <strong>${fmt(sug.preco)}</strong> · ${servesLabel(sug)}.</p>
       <button onclick="App.openComboSuggested()" style="background:var(--yellow);color:var(--black);padding:8px 16px;border-radius:50px;font-weight:900;font-size:11px;text-transform:uppercase;border:2px solid var(--black)">Ver combo</button></div>`;
   }
   function itemQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);save();renderCart();}
@@ -1034,7 +1112,7 @@ const App=(function(){
     const last=cart[cart.length-1];let push=null;
     if(last.type==='pizza25'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[0];$('comboPushText').innerHTML=`Adicione refri + figurinha e vira combo por <strong>${fmt(push.preco)}</strong>!`;}
     else if(last.type==='mini'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[4];$('comboPushText').innerHTML=`Mini sozinha? Com Coca 200ml vira combo por <strong>${fmt(push.preco)}</strong>!`;}
-    else if(cart.filter(i=>i.type==='pizza25').length>=2&&!cart.some(i=>i.type==='bebida')){push=COMBOS[3];$('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong> (${perPersonLabel(push)}).`;}
+    else if(cart.filter(i=>i.type==='pizza25').length>=2&&!cart.some(i=>i.type==='bebida')){push=COMBOS[3];$('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong> (${servesLabel(push)}).`;}
     if(!push)return;
     suggestedCombo=push;
     $('comboPushTitle').textContent='💡 ECONOMIZE COM COMBO!';
@@ -1305,7 +1383,7 @@ const App=(function(){
     $('customerName').addEventListener('keypress',e=>{if(e.key==='Enter')saveName();});
   }
 
-  return {init,saveName,changeName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,itemQty,clearCart,closeModal,openOwner,closeOwner,logoutOwner,exportData,dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById,openDrawer,closeDrawer,goToCombo};
+  return {init,saveName,changeName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,itemQty,clearCart,closeModal,openOwner,closeOwner,logoutOwner,exportData,dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById,openDrawer,closeDrawer,goToCombo,addFig,addFigCustom,figQtyChange,openFigModal};
 })();
 document.addEventListener('DOMContentLoaded',App.init);
 </script>
