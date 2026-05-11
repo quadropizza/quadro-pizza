@@ -106,6 +106,8 @@
   .qbox.fig .qb-main{background:linear-gradient(135deg,#1E4FBF 0%,#089d4b 100%)}
   .qbox.fig .qb-shape{background:linear-gradient(135deg,#FFCC00,#FF8800);width:52%;height:64%;border-radius:4px}
   .qbox .qb-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:3}
+  .qbox .qb-bebemoji{font-size:72px;line-height:1;z-index:2;position:relative;filter:drop-shadow(0 6px 12px rgba(0,0,0,.45));animation:bb-bob 3s ease-in-out infinite}
+  @keyframes bb-bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4px) rotate(2deg)}}
   .qbox.has-img .qb-shape{display:none}
   .qbox.has-img .qb-main{background:#fff !important}
   .qbox.has-img.fig .qb-main{padding:6px}
@@ -709,6 +711,7 @@ const PIZZA25_SALG=[
   {id:'p25s1',sabor:'Calabresa',img:'images/pizzas/calabresa'},
   {id:'p25s2',sabor:'Frango c/ Catupiry',img:'images/pizzas/frango-catupiry',catupiry:true},
   {id:'p25s3',sabor:'Portuguesa',img:'images/pizzas/portuguesa'},
+  {id:'p25s4',sabor:'Marguerita',img:'images/pizzas/marguerita'},
   {id:'p25s5',sabor:'Quatro Queijos',img:'images/pizzas/quatro-queijos'},
   {id:'p25s6',sabor:'Milho c/ Bacon',img:'images/pizzas/milho-bacon'},
 ];
@@ -764,6 +767,7 @@ const SABOR_IMG={
   'Calabresa':'images/pizzas/calabresa.jpg',
   'Frango c/ Catupiry':'images/pizzas/frango-catupiry.jpg',
   'Portuguesa':'images/pizzas/portuguesa.jpg',
+  'Marguerita':'images/pizzas/marguerita.jpg',
   'Quatro Queijos':'images/pizzas/quatro-queijos.jpg',
   'Milho c/ Bacon':'images/pizzas/milho-bacon.jpg',
   'Nutellô':'images/pizzas/nutella.jpg',
@@ -786,27 +790,27 @@ function imgForFlavor(label,sabor){
 
 const BEBIDAS={
   lata:[
-    {id:'b1',nome:'Coca-Cola Lata 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
-    {id:'b2',nome:'Guaraná Antarctica 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
-    {id:'b3',nome:'Fanta Laranja 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
-    {id:'b4',nome:'Sprite 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
+    {id:'b1',nome:'Coca-Cola Lata 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b2',nome:'Guaraná Antarctica 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b3',nome:'Fanta Laranja 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🍊'},
+    {id:'b4',nome:'Sprite 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🍋'},
   ],
   refri200:[
-    {id:'b5',nome:'Coca-Cola 200ml',preco:5.00,cls:'bebida',cat:'200ML'},
-    {id:'b6',nome:'Guaraná 200ml',preco:5.00,cls:'bebida',cat:'200ML'},
+    {id:'b5',nome:'Coca-Cola 200ml',preco:5.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
+    {id:'b6',nome:'Guaraná 200ml',preco:5.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
   ],
   agua:[
-    {id:'b7',nome:'Água sem gás 500ml',preco:4.00,cls:'agua',cat:'ÁGUA'},
-    {id:'b8',nome:'Água com gás 500ml',preco:5.00,cls:'agua',cat:'ÁGUA'},
+    {id:'b7',nome:'Água sem gás 500ml',preco:4.00,cls:'agua',cat:'ÁGUA',emoji:'💧'},
+    {id:'b8',nome:'Água com gás 500ml',preco:5.00,cls:'agua',cat:'ÁGUA',emoji:'💧'},
   ],
   kapo:[
-    {id:'b9',nome:'Kapo Uva 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
-    {id:'b10',nome:'Kapo Maracujá 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
-    {id:'b11',nome:'Kapo Morango 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
+    {id:'b9',nome:'Kapo Uva 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🍇'},
+    {id:'b10',nome:'Kapo Maracujá 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🥭'},
+    {id:'b11',nome:'Kapo Morango 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🍓'},
   ],
   delvalle:[
-    {id:'b12',nome:'Del Valle Uva Lata',preco:6.00,cls:'suco',cat:'DEL VALLE'},
-    {id:'b13',nome:'Del Valle Pêssego Lata',preco:6.00,cls:'suco',cat:'DEL VALLE'},
+    {id:'b12',nome:'Del Valle Uva Lata',preco:6.00,cls:'suco',cat:'DEL VALLE',emoji:'🍇'},
+    {id:'b13',nome:'Del Valle Pêssego Lata',preco:6.00,cls:'suco',cat:'DEL VALLE',emoji:'🍑'},
   ],
 };
 
@@ -851,19 +855,21 @@ const App=(function(){
   function qBoxHtml(item,klass,tag,catupiry){
     const base=item.img||'';
     const cat=item.cat||(item.id?.startsWith('c')?'COMBO':'QUADRÔ');
+    const isBeb=(klass||'').match(/bebida|agua|suco/);
     const imgHtml=base?`<img class="qb-img" src="${base}.jpg" alt=""
       onload="this.closest('.qbox').classList.add('has-img')"
       onerror="if(!this.dataset.tried){this.dataset.tried='png';this.src='${base}.png';}
               else if(this.dataset.tried==='png'){this.dataset.tried='webp';this.src='${base}.webp';}
               else if(this.dataset.tried==='webp'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
               else{this.remove();}">`:'';
+    const center=isBeb&&item.emoji?`<div class="qb-bebemoji">${item.emoji}</div>`:`<div class="qb-shape"></div>`;
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
       ${catupiry?`<span class="badge-cat"><span class="b-top">SABOR</span><span class="b-main">CATUPIRY</span><span class="b-bot">ORIGINAL</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
-        <div class="qb-shape"></div>
+        ${center}
       </div>
       <div class="qb-bottom"><span>${cat}</span></div>
     </div>`;
