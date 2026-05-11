@@ -7,49 +7,55 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>Quadrô Pizza — Cardápio Digital</title>
+<title>Quadrô Pizza · Cardápio Digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   :root{
-    --red:#E50019;--red-dark:#B30015;--red-deep:#7A000F;
-    --yellow:#FFCC00;--yellow-br:#FFE94B;--orange:#FF8800;
+    --red:#E50019;--red-d:#B30015;--red-deep:#7A000F;
+    --yellow:#FFCC00;--yellow-br:#FFE94B;--orange:#FF8800;--gold:#D4A017;
     --black:#0A0A0A;--gray:#2a2a2a;
-    --cream:#FDF6E3;--cream-2:#F4E9CD;--cream-3:#EEDDB3;
+    --cream:#FDF6E3;--cream-2:#F4E9CD;
     --text:#1a1a1a;--muted:#777;--success:#1aa84a;--border:#E5E5E5;
-    --shadow:0 6px 24px rgba(0,0,0,.12);
-    --shadow-strong:0 10px 32px rgba(229,0,25,.25);
+    --shadow:0 6px 24px rgba(0,0,0,.12);--shadow-st:0 10px 32px rgba(229,0,25,.25);
   }
   html,body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
-  body{min-height:100vh;padding-bottom:100px;background-image:
-    radial-gradient(circle at 10% 5%, rgba(229,0,25,.06) 0%, transparent 30%),
-    radial-gradient(circle at 90% 95%, rgba(255,204,0,.08) 0%, transparent 30%)}
+  body{min-height:100vh;padding-bottom:100px}
   img{max-width:100%;display:block}
   button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  .display{font-family:'Anton',Impact,sans-serif;letter-spacing:.5px;font-weight:400}
+  .display{font-family:'Anton',Impact,sans-serif;letter-spacing:.5px}
 
   /* CHECKERBOARD */
   .checker{height:18px;background:
     linear-gradient(45deg,var(--red) 25%,transparent 25%,transparent 75%,var(--red) 75%) 0 0/24px 24px,
     linear-gradient(45deg,var(--red) 25%,#fff 25%,#fff 75%,var(--red) 75%) 12px 12px/24px 24px,
-    #fff;
-    border-bottom:2px solid var(--red);
-  }
+    #fff;border-bottom:2px solid var(--red)}
   .checker.bottom{border-bottom:none;border-top:2px solid var(--red)}
 
   /* HEADER */
   header{background:var(--red);color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 4px 16px rgba(229,0,25,.3)}
   .hero{padding:14px 16px 10px;position:relative;overflow:hidden;text-align:center}
   .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 80%, rgba(255,204,0,.18) 0%, transparent 50%);pointer-events:none}
-  .hero-logo{height:64px;margin:0 auto 4px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));position:relative;z-index:1;animation:pop 0.6s cubic-bezier(.34,1.56,.64,1)}
-  .hero-tagline{font-size:11px;letter-spacing:2.5px;color:var(--yellow);font-weight:800;margin-top:2px;position:relative;z-index:1}
+  .hero-logo{height:64px;margin:0 auto 4px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));position:relative;z-index:1;animation:pop .6s cubic-bezier(.34,1.56,.64,1)}
+  .hero-tag{font-size:11px;letter-spacing:2.5px;color:var(--yellow);font-weight:800;margin-top:2px;position:relative;z-index:1}
   .hero-loc{font-size:10px;opacity:.85;margin-top:2px;letter-spacing:.8px;position:relative;z-index:1}
   @keyframes pop{0%{transform:scale(.6) rotate(-8deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+  .menu-btn{position:absolute;top:18px;left:14px;z-index:2;width:38px;height:38px;background:rgba(0,0,0,.25);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;backdrop-filter:blur(4px)}
+  .menu-btn:hover{background:var(--black)}
 
   .greeting{background:var(--yellow);color:var(--black);text-align:center;padding:9px 12px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;border-top:2px solid var(--black)}
   .greeting .mm{width:24px;height:24px;background:var(--red);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+
+  /* COPA HERO BANNER */
+  .copa-hero{position:relative;background:linear-gradient(135deg,#7A000F 0%,var(--red) 50%,#7A000F 100%);color:#fff;padding:0;overflow:hidden;border-bottom:4px solid var(--yellow)}
+  .copa-hero img.banner{width:100%;display:block;max-height:280px;object-fit:cover}
+  .copa-hero .copa-fall{padding:18px 16px;text-align:center;background:linear-gradient(180deg,rgba(122,0,15,.95) 0%, var(--red-deep) 100%)}
+  .copa-hero .copa-fall h2{font-family:'Anton',sans-serif;font-size:30px;letter-spacing:1px;line-height:1;margin-bottom:6px}
+  .copa-hero .copa-fall h2 span{color:var(--yellow)}
+  .copa-hero .copa-fall p{font-size:13px;opacity:.92;line-height:1.4}
+  .copa-hero .copa-cta{display:inline-block;margin-top:12px;background:var(--yellow);color:var(--black);padding:11px 22px;border-radius:50px;font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:1px;border:3px solid var(--black);box-shadow:0 4px 0 var(--black)}
 
   /* TABS */
   nav.tabs{display:flex;background:var(--black);position:sticky;top:0;z-index:40;box-shadow:0 4px 12px rgba(0,0,0,.3);overflow-x:auto;scrollbar-width:none}
@@ -59,13 +65,11 @@
   .tab.active::after{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;width:30px;height:2px;background:var(--yellow);border-radius:0 0 4px 4px}
   .tab-emoji{font-size:22px;display:block;margin-bottom:3px}
 
-  /* MAIN */
   main{padding:18px 14px;max-width:760px;margin:0 auto}
   .section-head{margin:6px 0 14px;display:flex;align-items:center;gap:10px}
   .section-head .seal{background:var(--yellow);color:var(--black);padding:5px 12px;border-radius:6px;font-weight:900;font-size:11px;letter-spacing:1px;text-transform:uppercase;transform:rotate(-2deg);box-shadow:0 3px 0 rgba(0,0,0,.85);border:2px solid var(--black)}
   .section-title{font-size:26px;font-weight:900;color:var(--black);line-height:1;letter-spacing:-.5px}
   .section-title small{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-top:4px;letter-spacing:.3px;font-family:Inter}
-
   .subgroup{margin:18px 0 10px;display:flex;align-items:center;gap:10px}
   .subgroup h3{font-size:15px;font-weight:900;color:var(--red);letter-spacing:.5px;text-transform:uppercase;background:var(--cream-2);padding:4px 12px;border-radius:20px;border:1.5px dashed var(--red)}
 
@@ -75,44 +79,57 @@
   .card:active{transform:scale(.97)}
   .card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.15);border-color:var(--yellow)}
 
-  /* QUADRÔ BOX IMG (CSS-styled) */
-  .qbox{height:155px;position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff}
-  .qbox .qb-top{background:var(--red);color:#fff;padding:5px 8px;display:flex;align-items:center;justify-content:space-between;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1px;position:relative;border-bottom:2px solid var(--black)}
+  /* QUADRÔ BOX */
+  .qbox{height:165px;position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+  .qbox .qb-top{background:var(--red);color:#fff;padding:5px 8px;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1px;position:relative;border-bottom:2px solid var(--black);height:24px;z-index:4}
   .qbox .qb-top::before,.qbox .qb-top::after{content:'';width:38px;height:100%;position:absolute;top:0;background:
     linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%) 0 0/10px 10px,
     linear-gradient(45deg,#fff 25%,var(--red) 25%,var(--red) 75%,#fff 75%) 5px 5px/10px 10px}
   .qbox .qb-top::before{left:0}
   .qbox .qb-top::after{right:0}
   .qbox .qb-logo{position:relative;z-index:1;font-weight:900;color:var(--yellow);text-shadow:1px 1px 0 var(--black);font-size:13px}
-  .qbox .qb-main{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-  .qbox .qb-emoji{font-size:62px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));z-index:2;position:relative}
-  .qbox .qb-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:3}
-  .qbox.salg .qb-main{background:linear-gradient(135deg,#FFD96A 0%,#FF8800 100%)}
-  .qbox.doce .qb-main{background:linear-gradient(135deg,#8B5A3C 0%,#3A1F10 100%)}
+  .qbox .qb-main{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#fff}
+  .qbox .qb-shape{width:78%;height:46%;border-radius:6px;position:relative;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.35);background:linear-gradient(135deg,#f0c674 0%,#c8842e 100%);border:3px solid #fff}
+  .qbox.doce .qb-shape{background:linear-gradient(135deg,#8B5A3C 0%,#3A1F10 100%)}
+  .qbox.salg .qb-main{background:linear-gradient(135deg,#FF6B00 0%,#E50019 100%)}
+  .qbox.doce .qb-main{background:linear-gradient(135deg,#5D2A0E 0%,#1C0A04 100%)}
+  .qbox.bebida .qb-shape{background:linear-gradient(135deg,#3a3a3a 0%,#111 100%);width:42%;height:78%;border-radius:18px}
   .qbox.bebida .qb-main{background:linear-gradient(135deg,#1E4FBF 0%,#0D2659 100%)}
-  .qbox.suco .qb-main{background:linear-gradient(135deg,#A347E5 0%,#5A1B8C 100%)}
-  .qbox.agua .qb-main{background:linear-gradient(135deg,#5BC8E5 0%,#1E6F8C 100%)}
+  .qbox.suco .qb-shape{background:linear-gradient(135deg,#A347E5 0%,#5A1B8C 100%);width:42%;height:78%;border-radius:18px}
+  .qbox.suco .qb-main{background:linear-gradient(135deg,#7A2BB8 0%,#3A0E5C 100%)}
+  .qbox.agua .qb-shape{background:linear-gradient(135deg,#9AE0F0 0%,#5BC8E5 100%);width:42%;height:78%;border-radius:18px}
+  .qbox.agua .qb-main{background:linear-gradient(135deg,#3CA7C8 0%,#1E6F8C 100%)}
   .qbox.combo .qb-main{background:linear-gradient(135deg,#E50019 0%,#7A000F 100%)}
-  .qbox.combo .qb-main::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%, rgba(255,204,0,.3) 0%, transparent 40%),radial-gradient(circle at 80% 20%, rgba(255,255,255,.15) 0%, transparent 40%)}
+  .qbox.combo .qb-shape{background:linear-gradient(135deg,#FFCC00,#FF8800);width:62%;height:54%}
   .qbox.fig .qb-main{background:linear-gradient(135deg,#1E4FBF 0%,#089d4b 100%)}
-  .qbox .qb-bottom{background:var(--black);color:#fff;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1.5px;text-align:center;padding:5px;position:relative;border-top:2px solid var(--red)}
+  .qbox.fig .qb-shape{background:linear-gradient(135deg,#FFCC00,#FF8800);width:52%;height:64%;border-radius:4px}
+  .qbox .qb-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:3}
+  .qbox.has-img .qb-shape{display:none}
+  .qbox.has-img .qb-main{background:#fff !important}
+  .qbox.has-img.fig .qb-main{padding:6px}
+  .qbox.fig.has-img .qb-img{object-fit:contain;padding:6px}
+
+  .qbox .qb-bottom{background:var(--black);color:#fff;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1.5px;text-align:center;padding:5px;position:relative;border-top:2px solid var(--red);height:22px;z-index:4}
   .qbox .qb-bottom::before,.qbox .qb-bottom::after{content:'';width:30px;height:100%;position:absolute;top:0;background:
     linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%) 0 0/8px 8px,
     linear-gradient(45deg,#fff 25%,var(--red) 25%,var(--red) 75%,#fff 75%) 4px 4px/8px 8px}
   .qbox .qb-bottom::before{left:0}
   .qbox .qb-bottom::after{right:0}
   .qbox .qb-bottom span{position:relative;z-index:1;background:var(--black);padding:0 6px}
-  .qbox .qb-name{position:absolute;bottom:6px;left:6px;right:6px;background:rgba(0,0,0,.7);color:#fff;padding:3px 6px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;text-align:center;z-index:2;backdrop-filter:blur(2px)}
-  .qbox.has-img .qb-emoji{display:none}
-  .qbox.has-img .qb-main{background:#fff !important}
 
   .card-tag{position:absolute;top:8px;left:8px;background:var(--yellow);color:var(--black);padding:4px 9px;border-radius:6px;font-size:10px;font-weight:900;letter-spacing:.8px;border:1.5px solid var(--black);box-shadow:0 2px 0 rgba(0,0,0,.85);text-transform:uppercase;z-index:5}
   .card-tag.hot{background:var(--red);color:#fff;animation:pulse-tag 1.6s ease-in-out infinite}
   .card-tag.eco{background:#1aa84a;color:#fff}
+  .card-tag.gold{background:linear-gradient(135deg,#FFCC00,#D4A017);color:var(--black)}
   @keyframes pulse-tag{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
+  /* Selo Catupiry */
+  .badge-cat{position:absolute;top:8px;right:8px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,#fff 30%,#cc0000 31%,#cc0000 70%,#fff 71%);display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:900;text-align:center;font-size:8px;line-height:1;color:#cc0000;border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.3);transform:rotate(12deg);z-index:6;font-family:'Anton',sans-serif;letter-spacing:.3px}
+  .badge-cat::before{content:'CATUPIRY';font-size:9px;color:#fff;background:#cc0000;padding:1px 4px;border-radius:3px;margin-bottom:1px}
+  .badge-cat .ori{color:#cc0000;font-size:8px;background:#fff;padding:1px 3px;border-radius:2px;letter-spacing:.5px}
+
   .card-body{padding:12px 13px 13px;flex:1;display:flex;flex-direction:column}
-  .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:4px;color:var(--black)}
+  .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:6px;color:var(--black)}
   .card-desc{font-size:11.5px;color:#555;line-height:1.4;margin-bottom:10px;flex:1}
   .card-price{font-size:18px;font-weight:900;color:var(--red);margin-bottom:10px;font-family:'Anton',sans-serif;letter-spacing:.5px}
   .card-price .from{font-size:10px;color:var(--muted);font-weight:600;display:block;font-family:Inter}
@@ -120,7 +137,7 @@
   .btn-add:hover{background:var(--red);border-color:var(--red);color:#fff}
   .btn-add.added{background:var(--success);border-color:var(--success);color:#fff}
 
-  /* FAB CART + FIFA */
+  /* FAB CART */
   .fab-cart{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;border-radius:50px;padding:14px 22px;font-weight:900;font-size:13px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 28px rgba(229,0,25,.5);z-index:45;transition:.25s cubic-bezier(.34,1.56,.64,1);border:3px solid var(--yellow);text-transform:uppercase;letter-spacing:.5px}
   .fab-cart:hover{transform:translateX(-50%) translateY(-3px)}
   .fab-cart.hidden{transform:translateX(-50%) translateY(140px);opacity:0;pointer-events:none}
@@ -128,12 +145,14 @@
   @keyframes fab-pulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.1)}}
   .fab-badge{background:var(--yellow);color:var(--black);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;border:2px solid var(--black)}
 
-  /* FIFA FAB */
-  .fab-fifa{position:fixed;right:14px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#FFCC00 0%,#FF8800 100%);color:var(--black);width:64px;height:64px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(255,136,0,.45);z-index:42;border:3px solid var(--black);font-weight:900;animation:fifa-bob 2.4s ease-in-out infinite}
-  .fab-fifa:hover{transform:translateY(-50%) scale(1.08)}
-  .fab-fifa .em{font-size:24px;line-height:1}
-  .fab-fifa .lbl{font-size:8.5px;letter-spacing:.5px;margin-top:2px;text-transform:uppercase}
-  @keyframes fifa-bob{0%,100%{transform:translateY(-50%) rotate(-3deg)}50%{transform:translateY(-50%) rotate(3deg)}}
+  /* FIFA FAB - bolinha lateral */
+  .fab-fifa{position:fixed;right:14px;top:140px;background:linear-gradient(135deg,#FFCC00 0%,#FF8800 100%);color:var(--black);width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(255,136,0,.55);z-index:43;border:3px solid var(--black);font-weight:900;animation:fifa-bob 2.4s ease-in-out infinite;cursor:pointer}
+  .fab-fifa::before{content:'';position:absolute;inset:-4px;border:2px dashed var(--yellow);border-radius:50%;animation:spin 8s linear infinite;opacity:.7}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .fab-fifa:hover{transform:scale(1.08)}
+  .fab-fifa .em{font-size:28px;line-height:1}
+  .fab-fifa .lbl{font-size:9px;letter-spacing:.5px;margin-top:1px;text-transform:uppercase;font-weight:900}
+  @keyframes fifa-bob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
 
   /* MODAL */
   .modal-overlay{position:fixed;inset:0;background:rgba(10,10,10,.65);display:flex;align-items:flex-end;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(2px)}
@@ -150,6 +169,8 @@
   .modal-section h3::before{content:'';width:6px;height:18px;background:var(--red);border-radius:3px}
   .field{display:block;width:100%;padding:13px 15px;border:2px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;margin-bottom:10px;background:#fff;transition:.15s;font-weight:500}
   .field:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(229,0,25,.12)}
+  .field-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:800}
+
   .options{display:grid;gap:8px}
   .opt{padding:13px 15px;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;cursor:pointer;transition:.15s;background:#fff;text-align:left;font-weight:600}
   .opt:hover{border-color:var(--red);background:#fff8f8}
@@ -158,24 +179,22 @@
   .opt-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:900;color:#fff}
   .opt.selected .opt-check{background:var(--red);border-color:var(--red)}
 
-  /* Picker (multi-quantity) */
   .pick-list{display:grid;gap:8px}
-  .pick-item{padding:10px 12px;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;background:#fff;transition:.15s;font-weight:600;gap:10px}
+  .pick-item{padding:10px 12px;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;background:#fff;font-weight:600;gap:10px}
   .pick-item.active{border-color:var(--red);background:#fff0f0}
   .pick-item .pn{flex:1;line-height:1.2}
   .pick-qty{display:flex;align-items:center;gap:8px;background:var(--cream-2);padding:4px;border-radius:50px}
-  .pick-qty button{width:28px;height:28px;border-radius:50%;background:#fff;font-weight:900;font-size:16px;color:var(--black);box-shadow:0 1px 3px rgba(0,0,0,.1);transition:.15s}
+  .pick-qty button{width:28px;height:28px;border-radius:50%;background:#fff;font-weight:900;font-size:16px;color:var(--black);box-shadow:0 1px 3px rgba(0,0,0,.1)}
   .pick-qty button:hover{background:var(--yellow)}
   .pick-qty button:disabled{opacity:.3;cursor:not-allowed}
   .pick-qty .v{min-width:18px;text-align:center;font-weight:900;font-family:'Anton',sans-serif;font-size:17px}
   .pick-counter{background:var(--cream-2);padding:8px 14px;border-radius:10px;text-align:center;font-size:13px;font-weight:700;margin-bottom:10px;border:2px dashed var(--muted)}
   .pick-counter.ok{background:#e6f6e9;border-color:var(--success);color:var(--success)}
 
-  .btn-primary{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:14px;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;transition:.2s;border:3px solid var(--black);box-shadow:0 4px 0 var(--black)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);background:var(--red-dark)}
+  .btn-primary{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:14px;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;border:3px solid var(--black);box-shadow:0 4px 0 var(--black);transition:.2s}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);background:var(--red-d)}
   .btn-primary:disabled{background:#ccc;cursor:not-allowed;box-shadow:0 4px 0 #888;border-color:#888}
   .btn-secondary{width:100%;background:#fff;color:var(--black);padding:13px;border-radius:12px;font-weight:700;font-size:14px;border:2px solid var(--border);margin-top:8px}
-  .btn-secondary:hover{background:var(--cream)}
   .btn-whatsapp{width:100%;background:#25d366;color:#fff;padding:17px;border-radius:14px;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;border:3px solid #128c4f;box-shadow:0 5px 0 #128c4f;text-transform:uppercase;letter-spacing:.5px}
   .btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 7px 0 #128c4f}
 
@@ -187,7 +206,7 @@
   .cart-item-detail{font-size:12px;color:#666;line-height:1.45}
   .cart-item-price{font-weight:900;color:var(--red);font-size:15px;margin-top:6px;font-family:'Anton',sans-serif}
   .qty{display:flex;align-items:center;gap:6px}
-  .qty button{width:30px;height:30px;border-radius:50%;background:var(--cream-2);font-weight:900;font-size:16px;color:var(--black);transition:.15s}
+  .qty button{width:30px;height:30px;border-radius:50%;background:var(--cream-2);font-weight:900;font-size:16px;color:var(--black)}
   .qty button:hover{background:var(--yellow)}
   .qty button.minus{background:#ffe5e5;color:var(--red)}
   .qty button.minus:hover{background:var(--red);color:#fff}
@@ -197,7 +216,7 @@
 
   /* WELCOME */
   .welcome-logo{text-align:center;margin-bottom:14px;position:relative}
-  .welcome-logo img{height:120px;margin:0 auto 10px;animation:pop 0.6s cubic-bezier(.34,1.56,.64,1)}
+  .welcome-logo img{height:120px;margin:0 auto 10px;animation:pop .6s cubic-bezier(.34,1.56,.64,1)}
   .welcome-logo h2{font-family:'Anton',sans-serif;font-size:30px;color:var(--red);letter-spacing:.5px;line-height:1}
   .welcome-logo p{font-size:14px;color:var(--muted);margin-top:6px;font-weight:500}
   .welcome-bg{background:
@@ -206,20 +225,18 @@
     #fff;height:14px;margin:-22px -20px 14px;border-radius:20px 20px 0 0}
 
   /* PIX BOX */
-  .pix-box{background:linear-gradient(135deg,#fff8d6 0%,#ffeb99 100%);border:2px dashed var(--orange);border-radius:14px;padding:16px;margin-bottom:12px;text-align:center;position:relative}
-  .pix-box::before{content:'💸';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#fff;border-radius:50%;padding:4px 8px;font-size:18px;border:2px dashed var(--orange)}
-  .pix-box label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:800}
+  .pix-box{background:linear-gradient(135deg,#fff8d6 0%,#ffeb99 100%);border:2px dashed var(--orange);border-radius:14px;padding:16px;margin:14px 0 12px;text-align:center;position:relative;display:none}
+  .pix-box.show{display:block}
+  .pix-box::before{content:'PIX';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#fff;border-radius:6px;padding:2px 10px;font-size:11px;font-weight:900;border:2px dashed var(--orange);letter-spacing:1px}
+  .pix-box .field-label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:800}
   .pix-value{font-family:'Anton','Courier New',monospace;font-size:20px;font-weight:900;color:var(--black);word-break:break-all;letter-spacing:1px}
   .btn-copy{margin-top:10px;background:var(--black);color:var(--yellow);padding:9px 18px;border-radius:8px;font-size:12px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
   .btn-copy.copied{background:var(--success);color:#fff}
 
-  /* STARS */
   .stars{display:flex;justify-content:center;gap:8px;margin:18px 0}
   .star{font-size:42px;color:#ddd;cursor:pointer;transition:.15s}
   .star.active{color:var(--yellow);transform:scale(1.1)}
-  .star:hover{transform:scale(1.15)}
 
-  /* FOOTER */
   footer{text-align:center;padding:34px 16px 24px;color:#555;font-size:12px;background:linear-gradient(180deg,transparent 0%,rgba(229,0,25,.05) 100%);margin-top:30px}
   footer img.foot-logo{height:50px;margin:0 auto 14px;opacity:.85}
   footer .foot-info{margin-bottom:14px;line-height:1.8}
@@ -239,28 +256,44 @@
   .stat-card:nth-child(4){border-color:var(--orange)}
   .stat-card .icon{font-size:24px;margin-bottom:6px}
   .stat-card .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;font-weight:700}
-  .stat-card .value{font-size:24px;font-weight:900;color:var(--black);margin-top:4px;font-family:'Anton',sans-serif;letter-spacing:.3px}
+  .stat-card .value{font-size:24px;font-weight:900;color:var(--black);margin-top:4px;font-family:'Anton',sans-serif}
   .chart-card{background:#fff;padding:18px;border-radius:14px;box-shadow:var(--shadow);margin-bottom:14px}
   .chart-card h3{font-size:14px;font-weight:900;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
   .chart-card canvas{width:100% !important;height:auto !important;max-height:220px}
   .ranking-list{list-style:none}
   .ranking-list li{padding:12px 0;border-bottom:1px dashed var(--cream-2);display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600}
-  .ranking-list li:last-child{border-bottom:none}
   .ranking-list .rank{width:26px;height:26px;background:var(--red);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;margin-right:10px}
   .ranking-list li:first-child .rank{background:var(--yellow);color:var(--black)}
   .review{padding:12px 0;border-bottom:1px dashed var(--cream-2)}
-  .review:last-child{border-bottom:none}
   .review-head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:4px;font-weight:600}
   .review-stars{color:var(--yellow);font-size:16px}
-  .review-comment{font-size:13px;color:var(--text);margin-top:2px;font-style:italic}
   .filter-tabs{display:flex;gap:4px;margin-bottom:14px;background:#fff;padding:5px;border-radius:12px;box-shadow:var(--shadow)}
   .filter-tab{flex:1;padding:9px;font-size:12px;font-weight:800;border-radius:9px;color:var(--muted);text-align:center;text-transform:uppercase}
   .filter-tab.active{background:var(--black);color:var(--yellow)}
   .empty{text-align:center;padding:34px 20px;color:var(--muted);font-size:13px;font-weight:500}
   .empty .em{font-size:54px;margin-bottom:10px;opacity:.5}
 
-  /* HISTORY ITEM */
-  .history-item{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow);font-size:13px;border-left:4px solid var(--red)}
+  /* DRAWER (Histórico lateral) */
+  .drawer{position:fixed;top:0;left:0;bottom:0;width:88%;max-width:380px;background:var(--cream);z-index:150;transform:translateX(-100%);transition:transform .3s cubic-bezier(.34,1.4,.64,1);box-shadow:8px 0 30px rgba(0,0,0,.25);overflow-y:auto;display:flex;flex-direction:column}
+  .drawer.open{transform:translateX(0)}
+  .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:149;opacity:0;pointer-events:none;transition:opacity .25s}
+  .drawer-backdrop.open{opacity:1;pointer-events:auto}
+  .drawer-head{background:var(--red);color:#fff;padding:18px 16px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--yellow)}
+  .drawer-head h2{font-family:'Anton',sans-serif;font-size:22px;flex:1}
+  .drawer-head .close-x{font-size:24px;width:34px;height:34px;background:rgba(0,0,0,.25);border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .drawer-body{padding:16px;flex:1;overflow-y:auto}
+  .drawer-section{margin-bottom:20px}
+  .drawer-section h3{font-size:12px;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;border-bottom:2px dashed var(--cream-2);padding-bottom:6px}
+  .drawer-link{display:flex;align-items:center;gap:10px;padding:11px 12px;background:#fff;border-radius:10px;margin-bottom:6px;font-weight:700;font-size:14px;color:var(--black);box-shadow:0 2px 6px rgba(0,0,0,.06);transition:.15s;width:100%;text-align:left}
+  .drawer-link:hover{background:var(--yellow);transform:translateX(3px)}
+  .drawer-link .em{font-size:20px}
+  .drawer-link .arrow{margin-left:auto;color:var(--muted);font-weight:900}
+  .drawer-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  .drawer-stat{background:#fff;padding:10px;border-radius:10px;text-align:center;box-shadow:var(--shadow)}
+  .drawer-stat .v{font-family:'Anton',sans-serif;font-size:20px;color:var(--red)}
+  .drawer-stat .l{font-size:10px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-top:2px}
+
+  .history-item{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow);font-size:13px;border-left:4px solid var(--red);position:relative}
   .history-item .top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:700;text-transform:uppercase}
   .history-item .tot{font-weight:900;color:var(--red);margin-top:8px;font-family:'Anton',sans-serif;font-size:17px}
   .history-item .reord{margin-top:8px;background:var(--black);color:var(--yellow);padding:8px 14px;border-radius:8px;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
@@ -274,7 +307,7 @@
   .combo-push{position:fixed;bottom:90px;right:14px;left:14px;max-width:380px;margin:0 auto;background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:14px;border-radius:16px;box-shadow:0 14px 36px rgba(229,0,25,.45);z-index:90;border:3px solid var(--yellow);opacity:0;transform:translateY(20px);pointer-events:none;transition:.3s}
   .combo-push.show{opacity:1;transform:translateY(0);pointer-events:auto}
   .combo-push-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-  .combo-push-head .em{font-size:28px;flex-shrink:0;animation:wobble 1.4s ease-in-out infinite}
+  .combo-push-head .em{font-size:28px;animation:wobble 1.4s ease-in-out infinite}
   @keyframes wobble{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
   .combo-push-head strong{font-family:'Anton',sans-serif;font-size:16px;flex:1}
   .combo-push-head .close{font-size:18px;color:var(--yellow);opacity:.85}
@@ -283,31 +316,29 @@
   .combo-push .btn-mini{flex:1;padding:9px;border-radius:8px;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
   .combo-push .btn-mini.ok{background:var(--yellow);color:var(--black);border:2px solid var(--black)}
   .combo-push .btn-mini.no{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
-
-  /* REORDER PUSH */
   .reorder-push{background:linear-gradient(135deg,#FFCC00 0%,#FF8800 100%);color:var(--black)}
   .reorder-push .close{color:var(--black) !important;opacity:.7}
   .reorder-push .btn-mini.ok{background:var(--black);color:var(--yellow);border-color:var(--black)}
   .reorder-push .btn-mini.no{color:var(--black);border-color:rgba(0,0,0,.3)}
 
-  /* SAVINGS */
-  .savings{display:inline-block;background:var(--success);color:#fff;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900;letter-spacing:.4px;margin-left:4px}
+  .savings{display:inline-block;background:var(--success);color:#fff;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900;margin-left:4px}
 
-  /* PROMO BANNER */
-  .promo-banner{background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:18px;border-radius:18px;display:flex;align-items:center;gap:14px;margin-bottom:18px;position:relative;overflow:hidden;border:3px solid var(--yellow);box-shadow:var(--shadow-strong)}
-  .promo-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 80% 50%, rgba(255,204,0,.15) 0%, transparent 40%);pointer-events:none}
-  .promo-banner img{height:80px;flex-shrink:0;filter:drop-shadow(0 4px 12px rgba(0,0,0,.4));animation:bob 3s ease-in-out infinite}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-  .promo-banner .txt{flex:1;position:relative;z-index:1}
-  .promo-banner .txt h4{font-family:'Anton',sans-serif;font-size:20px;line-height:1.05;margin-bottom:4px}
-  .promo-banner .txt p{font-size:12px;opacity:.95;line-height:1.35}
+  /* PROMO STRIP — urgência / chamada upsell */
+  .promo-strip{background:linear-gradient(90deg,var(--black) 0%,var(--gray) 50%,var(--black) 100%);color:var(--yellow);padding:9px 14px;text-align:center;font-size:12px;font-weight:800;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;gap:8px;border-bottom:2px solid var(--yellow);overflow:hidden;white-space:nowrap}
+  .promo-strip .pulse-dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block;animation:pulse-dot 1.2s infinite;box-shadow:0 0 0 0 rgba(229,0,25,.6)}
+  @keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(229,0,25,.6)}70%{box-shadow:0 0 0 8px rgba(229,0,25,0)}100%{box-shadow:0 0 0 0 rgba(229,0,25,0)}}
+
+  /* FIG VALORES IMG */
+  .fig-pricing{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;border:3px solid var(--yellow)}
+  .fig-pricing img{width:100%;display:block}
 
   /* Sala fields */
-  .sala-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .sala-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px}
   .sala-grid .field{margin-bottom:0}
+  .sala-info{background:var(--cream-2);padding:10px 12px;border-radius:8px;font-size:11px;color:var(--text);margin:8px 0;line-height:1.4}
 
   @media(min-width:600px){
-    .grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(195px,1fr))}
     .cards-grid{grid-template-columns:repeat(4,1fr)}
   }
 </style>
@@ -331,54 +362,102 @@
   </div>
 </div>
 
+<!-- DRAWER (lateral) -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="App.closeDrawer()"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <img src="logo.png" alt="" style="height:40px">
+    <h2>QUADRÔ</h2>
+    <button class="close-x" onclick="App.closeDrawer()">×</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <h3>👤 Você</h3>
+      <div id="drawerProfile" style="background:#fff;padding:14px;border-radius:12px;font-size:14px;box-shadow:var(--shadow)"></div>
+    </div>
+    <div class="drawer-section">
+      <h3>📊 Seus números</h3>
+      <div class="drawer-stats" id="drawerStats"></div>
+    </div>
+    <div class="drawer-section">
+      <h3>📜 Histórico de pedidos</h3>
+      <div id="drawerHistory"></div>
+    </div>
+    <div class="drawer-section">
+      <h3>⚙️ Mais</h3>
+      <button class="drawer-link" onclick="App.openOwner();App.closeDrawer()"><span class="em">🔐</span>Área do Proprietário<span class="arrow">›</span></button>
+      <button class="drawer-link" onclick="App.changeName()"><span class="em">✏️</span>Trocar meu nome<span class="arrow">›</span></button>
+    </div>
+  </div>
+</aside>
+
 <!-- HEADER -->
 <header>
   <div class="checker"></div>
   <div class="hero">
+    <button class="menu-btn" onclick="App.openDrawer()" title="Histórico e mais">☰</button>
     <img src="logo.png" alt="Quadrô Pizza" class="hero-logo">
-    <div class="hero-tagline">RETANGULAR · ARTESANAL · INSANA</div>
+    <div class="hero-tag">RETANGULAR · ARTESANAL · INSANA</div>
     <div class="hero-loc">📍 UNIVALI ITAJAÍ · BLOCO C2 · AO LADO DO TEATRO</div>
   </div>
   <div class="checker bottom"></div>
 </header>
 <div class="greeting" id="greetingBar"></div>
+<div class="promo-strip"><span class="pulse-dot"></span> COMBO COPA 2026 · DESCONTO ATIVO · ATÉ R$ 8 OFF <span class="pulse-dot"></span></div>
 
 <!-- TABS -->
 <nav class="tabs" id="tabs">
   <button class="tab active" data-tab="combos"><span class="tab-emoji">🔥</span>Combos</button>
-  <button class="tab" data-tab="pizza"><span class="tab-emoji">🍕</span>Pizza 25cm</button>
-  <button class="tab" data-tab="mini"><span class="tab-emoji">🍕</span>Mini</button>
+  <button class="tab" data-tab="copa"><span class="tab-emoji">⚽</span>Copa 2026</button>
+  <button class="tab" data-tab="pizza"><span class="tab-emoji">▭</span>Pizza 25cm</button>
+  <button class="tab" data-tab="mini"><span class="tab-emoji">▫</span>Mini</button>
   <button class="tab" data-tab="bebidas"><span class="tab-emoji">🥤</span>Bebidas</button>
-  <button class="tab" data-tab="figurinhas"><span class="tab-emoji">⚽</span>Figurinhas</button>
+  <button class="tab" data-tab="figurinhas"><span class="tab-emoji">🃏</span>Figurinhas</button>
 </nav>
 
-<!-- MAIN -->
 <main>
+  <!-- COMBOS -->
   <section id="tab-combos" class="tab-content">
-    <div class="promo-banner">
-      <img src="logo.png" alt="">
-      <div class="txt"><h4>ECONOMIZE COM COMBOS!</h4><p>Pizza + refri (+ figurinha) por menos. Bora aproveitar?</p></div>
-    </div>
-    <div class="section-head"><span class="seal">🔥 IMPERDÍVEL</span><h2 class="section-title">Combos<small>Escolha os sabores ao adicionar</small></h2></div>
+    <div class="section-head"><span class="seal">🔥 IMPERDÍVEL</span><h2 class="section-title">Combos<small>Mais sabor, menos preço · escolha os sabores ao adicionar</small></h2></div>
     <div class="grid" id="grid-combos"></div>
   </section>
 
+  <!-- COPA -->
+  <section id="tab-copa" class="tab-content" hidden>
+    <div class="copa-hero" style="border-radius:18px;overflow:hidden;margin-bottom:18px">
+      <img class="banner" src="images/combos/banner-copa.png" alt="Copa do Mundo na Quadrô"
+        onerror="this.style.display='none'">
+      <div class="copa-fall">
+        <h2>COPA DO MUNDO <span>NA QUADRÔ!</span></h2>
+        <p>Pizza retangular, refri gelado e figurinhas FIFA — o combo oficial do torcedor.</p>
+        <button class="copa-cta" onclick="App.goToCombo('c1')">⚽ COMBO INDIVIDUAL R$ 26,90</button>
+        <br>
+        <button class="copa-cta" style="margin-top:10px" onclick="App.goToCombo('c2')">⚽ COMBO DUPLO R$ 49,90</button>
+      </div>
+    </div>
+    <div class="section-head"><span class="seal">⚽ FIFA 2026</span><h2 class="section-title">Combos da Copa<small>Edição especial · enquanto a Copa rola</small></h2></div>
+    <div class="grid" id="grid-copa"></div>
+  </section>
+
+  <!-- PIZZA 25 -->
   <section id="tab-pizza" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">🍕 25CM</span><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · A retangular clássica</small></h2></div>
+    <div class="section-head"><span class="seal">▭ 25CM</span><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · Retangular, artesanal, na medida certa</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-pizza-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
     <div class="grid" id="grid-pizza-doce"></div>
   </section>
 
+  <!-- MINI -->
   <section id="tab-mini" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">🍕 MINI</span><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal</small></h2></div>
+    <div class="section-head"><span class="seal">▫ MINI</span><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal pra você não dividir</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-mini-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
     <div class="grid" id="grid-mini-doce"></div>
   </section>
 
+  <!-- BEBIDAS -->
   <section id="tab-bebidas" class="tab-content" hidden>
     <div class="section-head"><span class="seal">🥤 BEBIDAS</span><h2 class="section-title">Geladinhas<small>Pra acompanhar a pizza</small></h2></div>
     <div class="subgroup"><h3>🥫 Refrigerante Lata 350ml</h3></div>
@@ -393,8 +472,12 @@
     <div class="grid" id="grid-beb-del"></div>
   </section>
 
+  <!-- FIGURINHAS -->
   <section id="tab-figurinhas" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">⚽ FIFA 2026</span><h2 class="section-title">Figurinhas Panini<small>Pacote oficial com 7 cromos</small></h2></div>
+    <div class="section-head"><span class="seal">⚽ FIFA 2026</span><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
+    <div class="fig-pricing">
+      <img src="images/combos/valores-figurinha.jpeg" alt="Tabela de preços" onerror="this.style.display='none'">
+    </div>
     <div class="grid" id="grid-figurinhas"></div>
   </section>
 </main>
@@ -408,13 +491,12 @@
     💸 PIX (CNPJ) 60.723.998/0001-84
   </div>
   <p>
-    <a href="#" onclick="App.showHistory();return false">📜 Meus pedidos</a> ·
+    <a href="#" onclick="App.openDrawer();return false">📜 Histórico</a> ·
     <a href="#" onclick="App.openOwner();return false">🔐 Área do Proprietário</a>
   </p>
   <p style="margin-top:14px;font-size:10px;color:#999">Quadrô Pizza · Maio 2026</p>
 </footer>
 
-<!-- FABs -->
 <button class="fab-cart hidden" id="fabCart" onclick="App.openCart()">
   🛒 <span id="cartLabel">Ver carrinho</span>
   <span class="fab-badge" id="cartBadge">0</span>
@@ -423,7 +505,6 @@
   <span class="em">⚽</span><span class="lbl">FIFA</span>
 </button>
 
-<!-- COMBO PUSH -->
 <div class="combo-push" id="comboPush">
   <div class="combo-push-head"><span class="em">🔥</span><strong id="comboPushTitle">DICA QUADRÔ</strong><button class="close" onclick="App.dismissCombo()">×</button></div>
   <p id="comboPushText"></p>
@@ -433,7 +514,6 @@
   </div>
 </div>
 
-<!-- REORDER PUSH -->
 <div class="combo-push reorder-push" id="reorderPush">
   <div class="combo-push-head"><span class="em">😋</span><strong>PEDIR DE NOVO?</strong><button class="close" onclick="App.dismissReorder()">×</button></div>
   <p id="reorderText"></p>
@@ -464,7 +544,7 @@
   </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
+<!-- CHECKOUT -->
 <div class="modal-overlay" id="checkoutModal">
   <div class="modal">
     <div class="modal-head"><h2>✅ Finalizar pedido</h2><button class="modal-close" onclick="App.closeModal('checkoutModal')">×</button></div>
@@ -478,17 +558,28 @@
           <span><strong>🎒 Entrega na Sala (CAU)</strong><small>Exclusivo CAU 1°–5° · 08h50 ou 15h00</small></span><span class="opt-check"></span>
         </button>
       </div>
-      <div id="scheduleBox" style="margin-top:12px">
-        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Quando?</label>
+      <div id="scheduleBox" style="margin-top:14px">
+        <label class="field-label">Quando?</label>
         <select id="scheduleSelect" class="field"></select>
+
         <div id="salaFields" style="display:none">
-          <label style="font-size:11px;color:var(--muted);display:block;margin:8px 0 4px;text-transform:uppercase;letter-spacing:.5px;font-weight:700">Ano / Bloco / Sala</label>
+          <div class="sala-info">📍 <strong>Preencha exatamente onde a gente entrega:</strong> Ano, Bloco e Sala</div>
           <div class="sala-grid">
-            <input type="text" id="salaAno" class="field" placeholder="Ano (ex: 3°)" maxlength="4">
-            <input type="text" id="salaBloco" class="field" placeholder="Bloco (ex: D6)" maxlength="6">
-            <input type="text" id="salaSala" class="field" placeholder="Sala (ex: 203)" maxlength="8">
+            <div>
+              <label class="field-label">Ano</label>
+              <input type="text" id="salaAno" class="field" placeholder="3°" maxlength="4">
+            </div>
+            <div>
+              <label class="field-label">Bloco</label>
+              <input type="text" id="salaBloco" class="field" placeholder="D6" maxlength="6">
+            </div>
+            <div>
+              <label class="field-label">Sala</label>
+              <input type="text" id="salaSala" class="field" placeholder="203" maxlength="8">
+            </div>
           </div>
-          <input type="text" id="salaCurso" class="field" placeholder="Curso (opcional, ex: Arquitetura)" style="margin-top:6px">
+          <label class="field-label">Curso (opcional)</label>
+          <input type="text" id="salaCurso" class="field" placeholder="Ex: Arquitetura, Direito, Eng Civil…">
         </div>
       </div>
     </div>
@@ -500,8 +591,8 @@
         <button class="opt" data-pay="Débito"><span><strong>💳 Débito</strong><small>Figurinhas R$ 7,00 cada</small></span><span class="opt-check"></span></button>
         <button class="opt" data-pay="Crédito"><span><strong>💳 Crédito</strong><small>Figurinhas R$ 7,00 cada</small></span><span class="opt-check"></span></button>
       </div>
-      <div id="pixBox" class="pix-box" style="margin-top:14px">
-        <label>Chave PIX (CNPJ)</label>
+      <div id="pixBox" class="pix-box show">
+        <span class="field-label">Chave PIX (CNPJ)</span>
         <div class="pix-value">60.723.998/0001-84</div>
         <button class="btn-copy" onclick="App.copyPix()">📋 Copiar chave</button>
       </div>
@@ -524,19 +615,11 @@
   </div>
 </div>
 
-<!-- HISTORY -->
-<div class="modal-overlay" id="historyModal">
-  <div class="modal">
-    <div class="modal-head"><h2>📜 Meus pedidos</h2><button class="modal-close" onclick="App.closeModal('historyModal')">×</button></div>
-    <div id="historyList"></div>
-  </div>
-</div>
-
 <!-- OWNER -->
 <div class="owner-panel" id="ownerPanel">
   <div class="owner-header">
     <h2>QUADRÔ<span> · Painel</span></h2>
-    <button onclick="App.closeOwner()" style="color:#fff;font-size:26px;font-weight:700">×</button>
+    <button onclick="App.closeOwner()" style="color:#fff;font-size:26px">×</button>
   </div>
   <div class="owner-content" id="ownerContent"></div>
 </div>
@@ -544,63 +627,62 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const STORE = { whatsapp:'5547997661485', pix:'60.723.998/0001-84' };
+const STORE={whatsapp:'5547997661485',pix:'60.723.998/0001-84'};
 
-const PIZZA25_SALG = [
-  {id:'p25s1',sabor:'Calabresa',desc:'Calabresa selecionada, cebola roxa fininha e azeitona preta. Clássico que nunca falha.',emoji:'🍕',img:'images/pizzas/calabresa.webp'},
-  {id:'p25s2',sabor:'Frango c/ Catupiry',desc:'Frango desfiado bem temperado e Catupiry original cremoso por cima.',emoji:'🐔',img:'images/pizzas/frango-catupiry.webp'},
-  {id:'p25s3',sabor:'Portuguesa',desc:'Presunto, ovo, ervilha, cebola e azeitona. A favorita dos puristas.',emoji:'🍕',img:'images/pizzas/portuguesa.webp'},
-  {id:'p25s4',sabor:'Marguerita',desc:'Molho de tomate fresco, mussarela, rodelas de tomate e manjericão.',emoji:'🍅',img:'images/pizzas/marguerita.webp'},
-  {id:'p25s5',sabor:'Quatro Queijos',desc:'Mussarela, parmesão, provolone e catupiry. Derretência absoluta.',emoji:'🧀',img:'images/pizzas/quatro-queijos.webp'},
-  {id:'p25s6',sabor:'Milho c/ Bacon',desc:'Milho doce, bacon crocante e mussarela puxa-puxa. Combinação insana.',emoji:'🥓',img:'images/pizzas/milho-bacon.webp'},
+const PIZZA25_SALG=[
+  {id:'p25s1',sabor:'Calabresa',emoji:'🥩',img:'images/pizzas/calabresa'},
+  {id:'p25s2',sabor:'Frango c/ Catupiry',emoji:'🐔',img:'images/pizzas/frango-catupiry',catupiry:true},
+  {id:'p25s3',sabor:'Portuguesa',emoji:'🥚',img:'images/pizzas/portuguesa'},
+  {id:'p25s4',sabor:'Marguerita',emoji:'🍅',img:'images/pizzas/marguerita'},
+  {id:'p25s5',sabor:'Quatro Queijos',emoji:'🧀',img:'images/pizzas/quatro-queijos'},
+  {id:'p25s6',sabor:'Milho c/ Bacon',emoji:'🥓',img:'images/pizzas/milho-bacon'},
 ];
-const PIZZA25_DOCE = [
-  {id:'p25d1',sabor:'Nutellô',desc:'Camada generosa de Nutella sobre massa quentinha. Pura felicidade.',emoji:'🍫',img:'images/pizzas/nutella.webp'},
-  {id:'p25d2',sabor:'Ovomaltine',desc:'Chocolate ao leite com a crocância icônica do Ovomaltine por cima.',emoji:'🍫',img:'images/pizzas/ovomaltine.webp'},
-  {id:'p25d3',sabor:'Choc. ao Leite',desc:'Chocolate ao leite derretido na medida certa. Doce na alma.',emoji:'🍫',img:'images/pizzas/choc-leite.webp'},
-  {id:'p25d4',sabor:'Choc. Branco',desc:'Chocolate branco cremoso, levemente caramelizado nas bordas.',emoji:'🍦',img:'images/pizzas/choc-branco.webp'},
+const PIZZA25_DOCE=[
+  {id:'p25d1',sabor:'Nutellô',emoji:'🍫',img:'images/pizzas/nutella'},
+  {id:'p25d2',sabor:'Ovomaltine',emoji:'🍪',img:'images/pizzas/ovomaltine'},
+  {id:'p25d3',sabor:'Choc. ao Leite',emoji:'🍫',img:'images/pizzas/choc-leite'},
+  {id:'p25d4',sabor:'Choc. Branco',emoji:'🍦',img:'images/pizzas/choc-branco'},
 ];
-const MINI_SALG = [
-  {id:'pms1',sabor:'Calabresa',desc:'Mini retangular com calabresa, cebola e azeitona. Pra matar a fome rapidinho.',emoji:'🍕',img:'images/mini/calabresa.webp'},
-  {id:'pms2',sabor:'Frango',desc:'Mini retangular de frango com queijo derretido em formato individual.',emoji:'🐔',img:'images/mini/frango.webp'},
+const MINI_SALG=[
+  {id:'pms1',sabor:'Calabresa',emoji:'🥩',img:'images/mini/calabresa'},
+  {id:'pms2',sabor:'Frango c/ Catupiry',emoji:'🐔',img:'images/mini/frango',catupiry:true},
 ];
-const MINI_DOCE = [
-  {id:'pmd1',sabor:'Nutellô',desc:'Mini coberta de Nutella. Sobremesa pra você não dividir.',emoji:'🍫',img:'images/mini/nutella.webp'},
-  {id:'pmd2',sabor:'Ovomaltine',desc:'Chocolate + crocância de Ovomaltine em versão pessoal.',emoji:'🍫',img:'images/mini/ovomaltine.webp'},
-  {id:'pmd3',sabor:'Choc. ao Leite',desc:'Mini com chocolate ao leite quentinho derretendo.',emoji:'🍫',img:'images/mini/choc-leite.webp'},
-  {id:'pmd4',sabor:'Choc. Branco',desc:'Versão pessoal com chocolate branco bem cremoso.',emoji:'🍦',img:'images/mini/choc-branco.webp'},
+const MINI_DOCE=[
+  {id:'pmd1',sabor:'Nutellô',emoji:'🍫',img:'images/mini/nutella'},
+  {id:'pmd2',sabor:'Ovomaltine',emoji:'🍪',img:'images/mini/ovomaltine'},
+  {id:'pmd3',sabor:'Choc. ao Leite',emoji:'🍫',img:'images/mini/choc-leite'},
+  {id:'pmd4',sabor:'Choc. Branco',emoji:'🍦',img:'images/mini/choc-branco'},
 ];
 
-const PIZZA25 = [...PIZZA25_SALG.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'salg',cat:'25CM'})),
-                 ...PIZZA25_DOCE.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'doce',cat:'25CM'}))];
-const PIZZA_MINI = [...MINI_SALG.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'salg',cat:'MINI',id:p.id})),
-                    ...MINI_DOCE.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'doce',cat:'MINI',id:p.id}))];
+const PIZZA25=[...PIZZA25_SALG.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'salg',cat:'25CM'})),
+               ...PIZZA25_DOCE.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'doce',cat:'25CM'}))];
+const PIZZA_MINI=[...MINI_SALG.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'salg',cat:'MINI'})),
+                  ...MINI_DOCE.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'doce',cat:'MINI'}))];
 
-const PIZZA_SAB = PIZZA25.map(p=>p.sabor);
-const MINI_SAB = PIZZA_MINI.map(p=>p.sabor);
-const REFRI_LATA = ['Coca-Cola','Guaraná Antarctica','Fanta Laranja','Sprite'];
-const REFRI_MINI = ['Coca-Cola 200ml','Guaraná 200ml'];
-const KAPO_SAB = ['Uva','Maracujá','Morango'];
+const PIZZA_SAB=PIZZA25.map(p=>p.sabor);
+const MINI_SAB=PIZZA_MINI.map(p=>p.sabor);
+const REFRI_LATA=['Coca-Cola','Guaraná Antarctica','Fanta Laranja','Sprite'];
+const REFRI_MINI=['Coca-Cola 200ml','Guaraná 200ml'];
+const KAPO_SAB=['Uva','Maracujá','Morango'];
 
-// Combos with "picks": multi-quantity selection
-const COMBOS = [
-  {id:'c1',nome:'⚽ Individual Copa 2026',desc:'Pizza 25cm + Refri Lata + 1 Figurinha FIFA. Combo oficial do torcedor.',preco:26.90,economia:'~R$ 5',emoji:'⚽',img:'images/combos/individual.webp',
+const COMBOS=[
+  {id:'c1',nome:'⚽ Individual Copa 2026',desc:'Pizza 25cm + Refri Lata + 1 Figurinha FIFA. Combo oficial do torcedor.',preco:26.90,economia:'~R$ 5',img:'images/combos/individual',copa:true,
     picks:[{label:'Sabor da Pizza 25cm',type:'one',opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c2',nome:'⚽ Dupla Copa 2026',desc:'2 Pizzas 25cm + Refri Lata + 2 Figurinhas. Dividir, comer e colecionar.',preco:49.90,economia:'~R$ 8',emoji:'⚽',img:'images/combos/dupla.webp',
+  {id:'c2',nome:'⚽ Dupla Copa 2026',desc:'2 Pizzas 25cm + Refri Lata + 2 Figurinhas. Dividir, comer e colecionar.',preco:49.90,economia:'~R$ 8',img:'images/combos/dupla',copa:true,
     picks:[{label:'Pizzas 25cm — escolha 2',type:'multi',max:2,opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c3',nome:'🔥 25cm + Mini + Refri',desc:'Salgada + doce de sobremesa + refri 200ml. Perfeito pra fechar a refeição.',preco:26.90,economia:'~R$ 4',emoji:'🔥',img:'images/combos/25-mini-refri.webp',
+  {id:'c3',nome:'🔥 25cm + Mini + Refri',desc:'Salgada + doce de sobremesa + refri 200ml. Refeição completa.',preco:26.90,economia:'~R$ 4',img:'images/combos/25-mini-refri',
     picks:[{label:'Sabor da Pizza 25cm',type:'one',opts:PIZZA_SAB},{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Refrigerante 200ml',type:'one',opts:REFRI_MINI}]},
-  {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'Dois sabores diferentes pra dividir + refri lata gelada.',preco:36.90,economia:'~R$ 5',emoji:'👫',img:'images/combos/2-pizzas-lata.webp',
+  {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'Dois sabores pra dividir + refri lata gelada.',preco:36.90,economia:'~R$ 5',img:'images/combos/2-pizzas-lata',
     picks:[{label:'Pizzas 25cm — escolha 2',type:'multi',max:2,opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini pizza + Coca-Cola 200ml. Lanche rapidinho entre aulas.',preco:14.90,economia:'~R$ 3',emoji:'💥',img:'images/combos/mini-coca.webp',
+  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini pizza + Coca-Cola 200ml. Lanche rápido entre aulas.',preco:14.90,economia:'~R$ 3',img:'images/combos/mini-coca',
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB}]},
-  {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'Duas mini à sua escolha. Pra dividir ou só pra você mesmo.',preco:22.90,economia:'~R$ 3',emoji:'✌️',img:'images/combos/2-minis.webp',
+  {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'Duas mini à sua escolha. Pra dividir ou só pra você.',preco:22.90,economia:'~R$ 3',img:'images/combos/2-minis',
     picks:[{label:'Minis — escolha 2',type:'multi',max:2,opts:MINI_SAB}]},
-  {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Aquele saudosismo da infância.',preco:14.90,economia:'~R$ 3',emoji:'🥤',img:'images/combos/mini-kapo.webp',
+  {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Saudosismo da infância.',preco:14.90,economia:'~R$ 3',img:'images/combos/mini-kapo',
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Sabor do Kapo',type:'one',opts:KAPO_SAB}]},
 ];
 
-const BEBIDAS = {
+const BEBIDAS={
   lata:[
     {id:'b1',nome:'Coca-Cola Lata 350ml',desc:'Geladinha, do jeito que tem que ser. O clássico que combina com tudo.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
     {id:'b2',nome:'Guaraná Antarctica 350ml',desc:'Sabor brasileiro original, gelado e cremoso. Adoça sem pesar.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
@@ -609,7 +691,7 @@ const BEBIDAS = {
   ],
   refri200:[
     {id:'b5',nome:'Coca-Cola 200ml',desc:'Mini Coca pra acompanhar a Mini pizza. Combinação certinha.',preco:5.00,emoji:'🥤',cls:'bebida',cat:'200ML'},
-    {id:'b6',nome:'Guaraná 200ml',desc:'Versão mini do guaraná clássico. Doce na medida certa.',preco:5.00,emoji:'🥤',cls:'bebida',cat:'200ML'},
+    {id:'b6',nome:'Guaraná 200ml',desc:'Versão mini do guaraná clássico. Doce na medida.',preco:5.00,emoji:'🥤',cls:'bebida',cat:'200ML'},
   ],
   agua:[
     {id:'b7',nome:'Água sem gás 500ml',desc:'Pura cristal, no ponto certo de hidratação após a pizza.',preco:4.00,emoji:'💧',cls:'agua',cat:'ÁGUA'},
@@ -617,8 +699,8 @@ const BEBIDAS = {
   ],
   kapo:[
     {id:'b9',nome:'Kapo Uva 200ml',desc:'Suco de uva infantil — molequinho saudoso da nossa infância.',preco:4.50,emoji:'🍇',cls:'suco',cat:'KAPO'},
-    {id:'b10',nome:'Kapo Maracujá 200ml',desc:'Azedinho na medida certa, refrescante e cheio de sabor tropical.',preco:4.50,emoji:'🥭',cls:'suco',cat:'KAPO'},
-    {id:'b11',nome:'Kapo Morango 200ml',desc:'Doce e cremoso, o favorito da molecada. Fofo demais.',preco:4.50,emoji:'🍓',cls:'suco',cat:'KAPO'},
+    {id:'b10',nome:'Kapo Maracujá 200ml',desc:'Azedinho na medida, refrescante e cheio de sabor tropical.',preco:4.50,emoji:'🥭',cls:'suco',cat:'KAPO'},
+    {id:'b11',nome:'Kapo Morango 200ml',desc:'Doce e cremoso, favorito da molecada. Fofo demais.',preco:4.50,emoji:'🍓',cls:'suco',cat:'KAPO'},
   ],
   delvalle:[
     {id:'b12',nome:'Del Valle Uva Lata',desc:'Néctar de uva concentrado, super refrescante. Mata a sede.',preco:6.00,emoji:'🍇',cls:'suco',cat:'DEL VALLE'},
@@ -626,21 +708,20 @@ const BEBIDAS = {
   ],
 };
 
-const FIGURINHAS = {id:'fig',nome:'Figurinhas FIFA 2026',desc:'Pacote oficial Panini com 7 cromos da Copa do Mundo 2026. Bora completar o álbum?',cat:'⚽ FIFA'};
+const FIGURINHAS={id:'fig',nome:'Figurinhas FIFA 2026',desc:'Pacote oficial Panini com 7 cromos. Bora completar o álbum?',cat:'⚽ FIFA',img:'figurinhas'};
 
-/* ============== APP ============== */
-const App = (function(){
-  let cart = JSON.parse(localStorage.getItem('qp_cart')||'[]');
-  let name = localStorage.getItem('qp_name')||'';
-  let pending = null;
-  let delivery='balcao', payment='PIX', scheduleVal='now';
+const App=(function(){
+  let cart=JSON.parse(localStorage.getItem('qp_cart')||'[]');
+  let name=localStorage.getItem('qp_name')||'';
+  let pending=null;
+  let delivery='balcao',payment='PIX',scheduleVal='now';
   let salaData={ano:'',bloco:'',sala:'',curso:''};
   let ratingVal=0; let lastOrderId=null;
-  let suggestedCombo=null, comboPushTimer=null, reorderPushTimer=null;
+  let suggestedCombo=null,comboPushTimer=null,reorderPushTimer=null;
 
-  const $ = id=>document.getElementById(id);
-  const fmt = v=>'R$ '+v.toFixed(2).replace('.',',');
-  function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
+  const $=id=>document.getElementById(id);
+  const fmt=v=>'R$ '+v.toFixed(2).replace('.',',');
+  function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2200);}
   function save(){localStorage.setItem('qp_cart',JSON.stringify(cart));}
 
   function saveName(){
@@ -650,9 +731,12 @@ const App = (function(){
     $('welcomeModal').classList.remove('open');
     renderGreeting();
     setTimeout(()=>maybeShowReorder(),2500);
-    setTimeout(()=>{ if(!$('reorderPush').classList.contains('show')) showInitialComboPush(); },5500);
+    setTimeout(()=>{if(!$('reorderPush').classList.contains('show'))showInitialComboPush();},5500);
   }
-
+  function changeName(){
+    closeDrawer();
+    setTimeout(()=>{$('welcomeModal').classList.add('open');$('customerName').value=name;$('customerName').focus();},250);
+  }
   function renderGreeting(){
     const bar=$('greetingBar');
     if(!name){bar.style.display='none';return;}
@@ -662,46 +746,36 @@ const App = (function(){
     localStorage.setItem('qp_visited','1');
   }
 
-  /* ====== CARD HTML (Quadrô Box style) ====== */
-  function qBoxHtml(item, klass, tag){
-    const imgSrc = item.img||'';
-    const cat = item.cat || (item.id?.startsWith('c')?'COMBO':'QUADRÔ');
-    const base = imgSrc ? imgSrc.replace(/\.(webp|jpg|jpeg|png)$/,'') : '';
-    // Try .jpg first (most photos are jpg), then .webp, .png, .jpeg
-    const imgHtml = imgSrc ? `<img class="qb-img" src="${base}.jpg" alt=""
+  function qBoxHtml(item,klass,tag,catupiry){
+    const base=item.img||'';
+    const cat=item.cat||(item.id?.startsWith('c')?'COMBO':'QUADRÔ');
+    const imgHtml=base?`<img class="qb-img" src="${base}.jpg" alt=""
       onload="this.closest('.qbox').classList.add('has-img')"
-      onerror="if(!this.dataset.tried){this.dataset.tried='webp';this.src='${base}.webp';}
-              else if(this.dataset.tried==='webp'){this.dataset.tried='png';this.src='${base}.png';}
-              else if(this.dataset.tried==='png'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
-              else{this.remove();}">` : '';
+      onerror="if(!this.dataset.tried){this.dataset.tried='png';this.src='${base}.png';}
+              else if(this.dataset.tried==='png'){this.dataset.tried='webp';this.src='${base}.webp';}
+              else if(this.dataset.tried==='webp'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
+              else{this.remove();}">`:'';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
+      ${catupiry?`<span class="badge-cat"><span class="ori">ORIGINAL</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
-        <span class="qb-emoji">${item.emoji||(item.id==='fig'?'⚽':'🍕')}</span>
+        <div class="qb-shape"></div>
       </div>
       <div class="qb-bottom"><span>${cat}</span></div>
     </div>`;
   }
 
-  function figBoxHtml(){
-    return `<div class="qbox fig">
-      <span class="card-tag eco">⚽ FIFA</span>
-      <div class="qb-top"><span class="qb-logo">FIFA 2026</span></div>
-      <div class="qb-main" style="padding:6px"><img class="qb-img" src="figurinhas.webp" alt="" style="object-fit:contain;padding:8px"></div>
-      <div class="qb-bottom"><span>PANINI · 7 CROMOS</span></div>
-    </div>`;
-  }
-
-  function cardHtml(item, klass, tag, isFig){
-    const priceLabel = item.priceLabel || fmt(item.preco);
-    const fromLabel = item.fromLabel ? `<span class="from">${item.fromLabel}</span>` : '';
+  function cardHtml(item,klass,tag,opts={}){
+    const priceLabel=item.priceLabel||fmt(item.preco);
+    const fromLabel=item.fromLabel?`<span class="from">${item.fromLabel}</span>`:'';
+    const descHtml=opts.hideDesc?'':(item.desc?`<p class="card-desc">${item.desc}</p>`:'');
     return `<div class="card">
-      ${isFig?figBoxHtml():qBoxHtml(item,klass,tag)}
+      ${qBoxHtml(item,klass,tag,item.catupiry)}
       <div class="card-body">
         <h3>${item.nome}</h3>
-        <p class="card-desc">${item.desc||''}</p>
+        ${descHtml}
         <div class="card-price">${fromLabel}${priceLabel}${item.economia?` <span class="savings">${item.economia}</span>`:''}</div>
         <button class="btn-add" data-id="${item.id}">+ Adicionar</button>
       </div>
@@ -709,17 +783,18 @@ const App = (function(){
   }
 
   function renderAll(){
-    $('grid-combos').innerHTML = COMBOS.map(c=>cardHtml({...c,economia:'Economiza '+c.economia,cat:'COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
-    $('grid-pizza-salg').innerHTML = PIZZA25.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg')).join('');
-    $('grid-pizza-doce').innerHTML = PIZZA25.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce')).join('');
-    $('grid-mini-salg').innerHTML  = PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'})).join('');
-    $('grid-mini-doce').innerHTML  = PIZZA_MINI.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',{text:'MINI'})).join('');
-    $('grid-beb-lata').innerHTML = BEBIDAS.lata.map(b=>cardHtml(b,'bebida')).join('');
-    $('grid-beb-200').innerHTML  = BEBIDAS.refri200.map(b=>cardHtml(b,'bebida')).join('');
-    $('grid-beb-agua').innerHTML = BEBIDAS.agua.map(b=>cardHtml(b,b.cls)).join('');
-    $('grid-beb-kapo').innerHTML = BEBIDAS.kapo.map(b=>cardHtml(b,b.cls)).join('');
-    $('grid-beb-del').innerHTML  = BEBIDAS.delvalle.map(b=>cardHtml(b,b.cls)).join('');
-    $('grid-figurinhas').innerHTML = cardHtml({...FIGURINHAS,priceLabel:'R$ 6,50',fromLabel:'PIX/Dinheiro a partir de',cat:'⚽ FIFA'},'fig',{text:'⚽ FIFA',cls:'eco'},true);
+    $('grid-combos').innerHTML=COMBOS.map(c=>cardHtml({...c,economia:'Economiza '+c.economia,cat:'COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
+    $('grid-copa').innerHTML=COMBOS.filter(c=>c.copa).map(c=>cardHtml({...c,economia:'Economiza '+c.economia,cat:'⚽ COPA'},'combo',{text:'⚽ FIFA',cls:'gold'})).join('');
+    $('grid-pizza-salg').innerHTML=PIZZA25.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',null,{hideDesc:true})).join('');
+    $('grid-pizza-doce').innerHTML=PIZZA25.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',null,{hideDesc:true})).join('');
+    $('grid-mini-salg').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'},{hideDesc:true})).join('');
+    $('grid-mini-doce').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',{text:'MINI'},{hideDesc:true})).join('');
+    $('grid-beb-lata').innerHTML=BEBIDAS.lata.map(b=>cardHtml(b,'bebida')).join('');
+    $('grid-beb-200').innerHTML=BEBIDAS.refri200.map(b=>cardHtml(b,'bebida')).join('');
+    $('grid-beb-agua').innerHTML=BEBIDAS.agua.map(b=>cardHtml(b,b.cls)).join('');
+    $('grid-beb-kapo').innerHTML=BEBIDAS.kapo.map(b=>cardHtml(b,b.cls)).join('');
+    $('grid-beb-del').innerHTML=BEBIDAS.delvalle.map(b=>cardHtml(b,b.cls)).join('');
+    $('grid-figurinhas').innerHTML=cardHtml({...FIGURINHAS,priceLabel:'R$ 6,50',fromLabel:'PIX/Dinheiro a partir de',cat:'⚽ FIFA'},'fig',{text:'⚽ FIFA',cls:'eco'});
 
     document.querySelectorAll('.btn-add').forEach(b=>b.addEventListener('click',()=>openAdd(b.dataset.id)));
     document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchTab(t.dataset.tab)));
@@ -731,23 +806,23 @@ const App = (function(){
     window.scrollTo({top:0,behavior:'smooth'});
   }
 
-  function openFifa(){ switchTab('figurinhas'); setTimeout(()=>openAdd('fig'),400); }
+  function openFifa(){switchTab('figurinhas');setTimeout(()=>openAdd('fig'),400);}
+  function goToCombo(id){switchTab('combos');setTimeout(()=>openAdd(id),300);}
 
-  /* ====== ADD FLOW ====== */
   function findItem(id){
-    return COMBOS.find(c=>c.id===id) || PIZZA25.find(p=>p.id===id) || PIZZA_MINI.find(p=>p.id===id) ||
-           Object.values(BEBIDAS).flat().find(b=>b.id===id) || (id==='fig'?FIGURINHAS:null);
+    return COMBOS.find(c=>c.id===id)||PIZZA25.find(p=>p.id===id)||PIZZA_MINI.find(p=>p.id===id)||
+           Object.values(BEBIDAS).flat().find(b=>b.id===id)||(id==='fig'?FIGURINHAS:null);
   }
 
   function openAdd(id){
-    const item = findItem(id); if(!item) return;
-    pending = { item:JSON.parse(JSON.stringify(item)), choices:{}, multiChoices:{}, qty:1 };
-    $('addTitle').textContent = item.nome;
+    const item=findItem(id);if(!item)return;
+    pending={item:JSON.parse(JSON.stringify(item)),choices:{},multiChoices:{},qty:1};
+    $('addTitle').textContent=item.nome;
     const body=$('addBody');
-    let html = `<p class="card-desc" style="margin-bottom:16px;font-size:13px;line-height:1.5">${item.desc||''}</p>`;
+    let html=`<p class="card-desc" style="margin-bottom:16px;font-size:13px;line-height:1.5">${item.desc||''}</p>`;
 
     if(item.id==='fig'){
-      html += `<div class="modal-section">
+      html+=`<div class="modal-section">
         <h3>Quantidade de pacotes</h3>
         <input type="number" id="figQty" class="field" min="1" value="1">
         <div style="background:var(--cream-2);padding:14px;border-radius:10px;font-size:12px;line-height:1.7">
@@ -761,29 +836,26 @@ const App = (function(){
     } else if(item.picks){
       item.picks.forEach((pk,idx)=>{
         if(pk.type==='one'){
-          html += `<div class="modal-section"><h3>${pk.label}</h3><div class="options">`;
-          pk.opts.forEach(o=>html += `<button class="opt" data-pick="${idx}" data-val="${o}"><span>${o}</span><span class="opt-check"></span></button>`);
-          html += `</div></div>`;
+          html+=`<div class="modal-section"><h3>${pk.label}</h3><div class="options">`;
+          pk.opts.forEach(o=>html+=`<button class="opt" data-pick="${idx}" data-val="${o}"><span>${o}</span><span class="opt-check"></span></button>`);
+          html+=`</div></div>`;
         } else {
-          html += `<div class="modal-section"><h3>${pk.label}</h3>
+          html+=`<div class="modal-section"><h3>${pk.label}</h3>
             <div class="pick-counter" data-counter="${idx}" data-max="${pk.max}">Escolhidos: 0 / ${pk.max}</div>
             <div class="pick-list">`;
           pk.opts.forEach(o=>{
-            html += `<div class="pick-item" data-pick="${idx}" data-val="${o}">
+            html+=`<div class="pick-item" data-pick="${idx}" data-val="${o}">
               <span class="pn">${o}</span>
               <div class="pick-qty">
-                <button class="pq-minus" disabled>−</button>
-                <span class="v">0</span>
-                <button class="pq-plus">+</button>
-              </div>
-            </div>`;
+                <button class="pq-minus" disabled>−</button><span class="v">0</span><button class="pq-plus">+</button>
+              </div></div>`;
           });
-          html += `</div></div>`;
+          html+=`</div></div>`;
         }
       });
     }
 
-    html += `<div class="modal-section">
+    html+=`<div class="modal-section">
       <h3>Quantidade</h3>
       <div class="qty" style="justify-content:center;gap:22px">
         <button class="minus" onclick="App.changeQty(-1)" style="width:42px;height:42px;font-size:22px">−</button>
@@ -791,133 +863,111 @@ const App = (function(){
         <button onclick="App.changeQty(1)" style="width:42px;height:42px;font-size:22px;background:var(--yellow)">+</button>
       </div></div>`;
 
-    body.innerHTML = html;
+    body.innerHTML=html;
 
-    // single-choice handlers
     body.querySelectorAll('.opt[data-pick]').forEach(b=>{
       b.addEventListener('click',()=>{
         const idx=b.dataset.pick;
         body.querySelectorAll(`.opt[data-pick="${idx}"]`).forEach(x=>{x.classList.remove('selected');x.querySelector('.opt-check').textContent='';});
-        b.classList.add('selected'); b.querySelector('.opt-check').textContent='✓';
+        b.classList.add('selected');b.querySelector('.opt-check').textContent='✓';
         pending.choices[idx]=b.dataset.val;
       });
     });
-    // multi-choice handlers
     body.querySelectorAll('.pick-item').forEach(row=>{
-      const pickIdx = row.dataset.pick;
-      pending.multiChoices[pickIdx] = pending.multiChoices[pickIdx] || {};
-      const vEl = row.querySelector('.v');
-      const plus = row.querySelector('.pq-plus');
-      const minus = row.querySelector('.pq-minus');
+      const idx=row.dataset.pick;
+      pending.multiChoices[idx]=pending.multiChoices[idx]||{};
+      const vEl=row.querySelector('.v');
+      const plus=row.querySelector('.pq-plus');
+      const minus=row.querySelector('.pq-minus');
       function update(){
-        const all = pending.multiChoices[pickIdx]||{};
-        const sum = Object.values(all).reduce((s,v)=>s+v,0);
-        const max = +body.querySelector(`.pick-counter[data-counter="${pickIdx}"]`).dataset.max;
-        const counter = body.querySelector(`.pick-counter[data-counter="${pickIdx}"]`);
-        counter.textContent = `Escolhidos: ${sum} / ${max}`;
-        counter.classList.toggle('ok', sum===max);
-        // disable +s when full
-        body.querySelectorAll(`.pick-item[data-pick="${pickIdx}"]`).forEach(r=>{
-          const cur = pending.multiChoices[pickIdx][r.dataset.val]||0;
-          r.querySelector('.pq-plus').disabled = sum>=max;
-          r.querySelector('.pq-minus').disabled = cur<=0;
-          r.classList.toggle('active', cur>0);
+        const all=pending.multiChoices[idx]||{};
+        const sum=Object.values(all).reduce((s,v)=>s+v,0);
+        const max=+body.querySelector(`.pick-counter[data-counter="${idx}"]`).dataset.max;
+        const counter=body.querySelector(`.pick-counter[data-counter="${idx}"]`);
+        counter.textContent=`Escolhidos: ${sum} / ${max}`;
+        counter.classList.toggle('ok',sum===max);
+        body.querySelectorAll(`.pick-item[data-pick="${idx}"]`).forEach(r=>{
+          const cur=pending.multiChoices[idx][r.dataset.val]||0;
+          r.querySelector('.pq-plus').disabled=sum>=max;
+          r.querySelector('.pq-minus').disabled=cur<=0;
+          r.classList.toggle('active',cur>0);
         });
       }
-      plus.addEventListener('click',()=>{
-        pending.multiChoices[pickIdx][row.dataset.val] = (pending.multiChoices[pickIdx][row.dataset.val]||0)+1;
-        vEl.textContent = pending.multiChoices[pickIdx][row.dataset.val];
-        update();
-      });
-      minus.addEventListener('click',()=>{
-        const cur=pending.multiChoices[pickIdx][row.dataset.val]||0;
-        if(cur>0){
-          pending.multiChoices[pickIdx][row.dataset.val]=cur-1;
-          vEl.textContent = pending.multiChoices[pickIdx][row.dataset.val];
-          update();
-        }
-      });
+      plus.addEventListener('click',()=>{pending.multiChoices[idx][row.dataset.val]=(pending.multiChoices[idx][row.dataset.val]||0)+1;vEl.textContent=pending.multiChoices[idx][row.dataset.val];update();});
+      minus.addEventListener('click',()=>{const cur=pending.multiChoices[idx][row.dataset.val]||0;if(cur>0){pending.multiChoices[idx][row.dataset.val]=cur-1;vEl.textContent=pending.multiChoices[idx][row.dataset.val];update();}});
     });
 
     $('addModal').classList.add('open');
   }
 
-  function changeQty(d){if(!pending) return; pending.qty=Math.max(1,pending.qty+d); $('qtyValue').textContent=pending.qty;}
+  function changeQty(d){if(!pending)return;pending.qty=Math.max(1,pending.qty+d);$('qtyValue').textContent=pending.qty;}
 
   function confirmAdd(){
-    if(!pending) return;
+    if(!pending)return;
     const it=pending.item;
-
     if(it.id==='fig'){
-      const q = parseInt($('figQty').value,10)||1;
-      const pixPrice = q>50?6.50:q>10?6.80:6.90;
+      const q=parseInt($('figQty').value,10)||1;
+      const pp=q>50?6.50:q>10?6.80:6.90;
       cart.push({
-        id:'fig_'+Date.now(), nome:`Figurinhas FIFA (${q} pct)`, qty:1,
-        fig:true, figQty:q,
-        priceByPay:{ PIX:+(pixPrice*q).toFixed(2), Dinheiro:+(pixPrice*q).toFixed(2), 'Débito':+(7.00*q).toFixed(2), 'Crédito':+(7.00*q).toFixed(2) },
+        id:'fig_'+Date.now(),nome:`Figurinhas FIFA (${q} pct)`,qty:1,
+        fig:true,figQty:q,
+        priceByPay:{PIX:+(pp*q).toFixed(2),Dinheiro:+(pp*q).toFixed(2),'Débito':+(7.00*q).toFixed(2),'Crédito':+(7.00*q).toFixed(2)},
         detalhes:[`${q} pacote(s) · preço varia por pagamento`]
       });
     } else {
-      const detalhes = [];
+      const detalhes=[];
       if(it.picks){
         for(let i=0;i<it.picks.length;i++){
-          const pk = it.picks[i];
+          const pk=it.picks[i];
           if(pk.type==='one'){
-            if(!pending.choices[i]){ toast('Falta: '+pk.label); return; }
+            if(!pending.choices[i]){toast('Falta: '+pk.label);return;}
             detalhes.push(`${pk.label}: ${pending.choices[i]}`);
           } else {
-            const mc = pending.multiChoices[i]||{};
-            const sum = Object.values(mc).reduce((s,v)=>s+v,0);
-            if(sum!==pk.max){ toast(`Escolha ${pk.max} em: ${pk.label}`); return; }
-            const lines = Object.entries(mc).filter(([k,v])=>v>0).map(([k,v])=>v>1?`${v}× ${k}`:k);
+            const mc=pending.multiChoices[i]||{};
+            const sum=Object.values(mc).reduce((s,v)=>s+v,0);
+            if(sum!==pk.max){toast(`Escolha ${pk.max} em: ${pk.label}`);return;}
+            const lines=Object.entries(mc).filter(([k,v])=>v>0).map(([k,v])=>v>1?`${v}× ${k}`:k);
             detalhes.push(`${pk.label.replace(/ — escolha \d+/,'')}: ${lines.join(', ')}`);
           }
         }
       }
       cart.push({
-        id:it.id+'_'+Date.now(), nome:it.nome, preco:it.preco, qty:pending.qty, detalhes,
-        type: it.id.startsWith('c')?'combo':(it.id.startsWith('p25')?'pizza25':(it.id.startsWith('pm')?'mini':'bebida'))
+        id:it.id+'_'+Date.now(),nome:it.nome,preco:it.preco,qty:pending.qty,detalhes,
+        type:it.id.startsWith('c')?'combo':(it.id.startsWith('p25')?'pizza25':(it.id.startsWith('pm')?'mini':'bebida'))
       });
     }
-
-    save(); renderCart(); closeModal('addModal');
-    toast('🛒 Adicionado!');
-    flashAddedBtn(it.id);
-    $('fabCart').classList.add('pulse'); setTimeout(()=>$('fabCart').classList.remove('pulse'),500);
+    save();renderCart();closeModal('addModal');
+    toast('🛒 Adicionado!');flashAddedBtn(it.id);
+    $('fabCart').classList.add('pulse');setTimeout(()=>$('fabCart').classList.remove('pulse'),500);
     maybeShowComboPush();
   }
-
   function flashAddedBtn(id){
     document.querySelectorAll(`.btn-add[data-id="${id}"]`).forEach(b=>{
-      b.classList.add('added'); b.textContent='✓ Adicionado';
+      b.classList.add('added');b.textContent='✓ Adicionado';
       setTimeout(()=>{b.classList.remove('added');b.textContent='+ Adicionar';},1200);
     });
   }
 
-  /* ====== CART ====== */
-  function priceOf(item,pay){ if(item.fig) return item.priceByPay[pay]||item.priceByPay.PIX; return item.preco*item.qty; }
+  function priceOf(it,pay){if(it.fig)return it.priceByPay[pay]||it.priceByPay.PIX;return it.preco*it.qty;}
   function cartTotal(){return cart.reduce((s,i)=>s+priceOf(i,payment),0);}
   function cartCount(){return cart.reduce((s,i)=>s+(i.fig?i.figQty:i.qty),0);}
 
   function renderCart(){
-    const fab=$('fabCart'); const n=cartCount();
+    const fab=$('fabCart');const n=cartCount();
     if(n>0){fab.classList.remove('hidden');$('cartBadge').textContent=n;$('cartLabel').textContent=`Ver pedido · ${fmt(cartTotal())}`;}
     else fab.classList.add('hidden');
-
     const items=$('cartItems');
     if(cart.length===0){
       items.innerHTML='<div class="empty"><div class="em">🛒</div>Seu carrinho está vazio<br><small>Que tal um combo? 🔥</small></div>';
-      $('btnCheckout').disabled=true; $('cartUpsell').innerHTML='';
+      $('btnCheckout').disabled=true;$('cartUpsell').innerHTML='';
     } else {
-      items.innerHTML = cart.map((it,idx)=>{
-        const linePrice = it.fig
-          ? `${fmt(priceOf(it,'PIX'))} no PIX/Dinheiro · ${fmt(priceOf(it,'Débito'))} cartão`
-          : fmt(it.preco*it.qty);
+      items.innerHTML=cart.map((it,idx)=>{
+        const lp=it.fig?`${fmt(priceOf(it,'PIX'))} no PIX/Dinheiro · ${fmt(priceOf(it,'Débito'))} cartão`:fmt(it.preco*it.qty);
         return `<div class="cart-item">
           <div class="cart-item-info">
             <div class="cart-item-name">${it.nome}</div>
             ${(it.detalhes||[]).map(d=>`<div class="cart-item-detail">→ ${d}</div>`).join('')}
-            <div class="cart-item-price">${linePrice}</div>
+            <div class="cart-item-price">${lp}</div>
           </div>
           ${it.fig?'<div></div>':`<div class="qty">
             <button class="minus" onclick="App.itemQty(${idx},-1)">−</button>
@@ -932,132 +982,109 @@ const App = (function(){
     $('cartTotal').textContent=fmt(cartTotal());
     $('checkoutTotal').textContent=fmt(cartTotal());
   }
-
   function renderUpsell(){
-    const hasCombo = cart.some(i=>i.type==='combo');
+    const hasCombo=cart.some(i=>i.type==='combo');
     if(hasCombo){$('cartUpsell').innerHTML='';return;}
-    const hasPizza25 = cart.some(i=>i.type==='pizza25');
-    const hasMini = cart.some(i=>i.type==='mini');
-    const hasBebida = cart.some(i=>i.type==='bebida');
-    let suggestion=null;
-    if(hasPizza25 && !hasBebida) suggestion=COMBOS[0];
-    else if(hasMini && !hasBebida) suggestion=COMBOS[4];
-    else if(hasPizza25 && hasMini) suggestion=COMBOS[2];
-    if(!suggestion){$('cartUpsell').innerHTML='';return;}
-    suggestedCombo=suggestion;
-    $('cartUpsell').innerHTML = `
-      <div style="background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:14px 16px;border-radius:14px;margin:14px 0 6px;border:3px solid var(--yellow)">
-        <div style="font-family:'Anton',sans-serif;font-size:16px;margin-bottom:4px">💡 QUE TAL TROCAR POR UM COMBO?</div>
-        <p style="font-size:12px;margin-bottom:10px">${suggestion.nome} por <strong>${fmt(suggestion.preco)}</strong> · economiza ${suggestion.economia}.</p>
-        <button onclick="App.openComboSuggested()" style="background:var(--yellow);color:var(--black);padding:8px 16px;border-radius:50px;font-weight:900;font-size:11px;text-transform:uppercase;border:2px solid var(--black)">Ver combo</button>
-      </div>`;
+    const hasP25=cart.some(i=>i.type==='pizza25');
+    const hasMini=cart.some(i=>i.type==='mini');
+    const hasBeb=cart.some(i=>i.type==='bebida');
+    let sug=null;
+    if(hasP25&&!hasBeb)sug=COMBOS[0];
+    else if(hasMini&&!hasBeb)sug=COMBOS[4];
+    else if(hasP25&&hasMini)sug=COMBOS[2];
+    if(!sug){$('cartUpsell').innerHTML='';return;}
+    suggestedCombo=sug;
+    $('cartUpsell').innerHTML=`<div style="background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:14px 16px;border-radius:14px;margin:14px 0 6px;border:3px solid var(--yellow)">
+      <div style="font-family:'Anton',sans-serif;font-size:16px;margin-bottom:4px">💡 QUE TAL TROCAR POR UM COMBO?</div>
+      <p style="font-size:12px;margin-bottom:10px">${sug.nome} por <strong>${fmt(sug.preco)}</strong> · economiza ${sug.economia}.</p>
+      <button onclick="App.openComboSuggested()" style="background:var(--yellow);color:var(--black);padding:8px 16px;border-radius:50px;font-weight:900;font-size:11px;text-transform:uppercase;border:2px solid var(--black)">Ver combo</button></div>`;
   }
+  function itemQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);save();renderCart();}
+  function clearCart(){if(cart.length===0)return;if(confirm('Limpar carrinho?')){cart=[];save();renderCart();}}
 
-  function itemQty(idx,d){cart[idx].qty+=d; if(cart[idx].qty<=0) cart.splice(idx,1); save();renderCart();}
-  function clearCart(){if(cart.length===0)return; if(confirm('Limpar carrinho?')){cart=[];save();renderCart();}}
-
-  /* ====== PUSHES ====== */
   function showInitialComboPush(){
     suggestedCombo=COMBOS[0];
     $('comboPushTitle').textContent='🔥 DICA QUADRÔ!';
     $('comboPushText').innerHTML=`Bora começar com o <strong>${COMBOS[0].nome}</strong>? Pizza + refri + figurinha por <strong>${fmt(COMBOS[0].preco)}</strong>!`;
     $('comboPush').classList.add('show');
-    clearTimeout(comboPushTimer); comboPushTimer=setTimeout(()=>dismissCombo(),12000);
+    clearTimeout(comboPushTimer);comboPushTimer=setTimeout(()=>dismissCombo(),12000);
   }
-
   function maybeShowComboPush(){
-    if(cart.length===0 || cart.some(i=>i.type==='combo')) return;
-    const last=cart[cart.length-1];
-    let push=null;
-    if(last.type==='pizza25' && !cart.some(i=>i.type==='bebida')){
-      push=COMBOS[0];
-      $('comboPushText').innerHTML=`Você adicionou uma 25cm 🍕. Adicione refri + figurinha e vira combo por ${fmt(push.preco)} (economiza ${push.economia})!`;
-    } else if(last.type==='mini' && !cart.some(i=>i.type==='bebida')){
-      push=COMBOS[4];
-      $('comboPushText').innerHTML=`Mini sozinha? 🤔 Com Coca 200ml vira combo por <strong>${fmt(push.preco)}</strong>!`;
-    } else if(cart.filter(i=>i.type==='pizza25').length>=2 && !cart.some(i=>i.type==='bebida')){
-      push=COMBOS[3];
-      $('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong> (economiza ${push.economia}).`;
-    }
-    if(!push) return;
+    if(cart.length===0||cart.some(i=>i.type==='combo'))return;
+    const last=cart[cart.length-1];let push=null;
+    if(last.type==='pizza25'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[0];$('comboPushText').innerHTML=`Adicione refri + figurinha e vira combo por ${fmt(push.preco)} (economiza ${push.economia})!`;}
+    else if(last.type==='mini'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[4];$('comboPushText').innerHTML=`Mini sozinha? 🤔 Com Coca 200ml vira combo por <strong>${fmt(push.preco)}</strong>!`;}
+    else if(cart.filter(i=>i.type==='pizza25').length>=2&&!cart.some(i=>i.type==='bebida')){push=COMBOS[3];$('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong>.`;}
+    if(!push)return;
     suggestedCombo=push;
     $('comboPushTitle').textContent='💡 ECONOMIZE COM COMBO!';
     $('comboPush').classList.add('show');
-    clearTimeout(comboPushTimer); comboPushTimer=setTimeout(()=>dismissCombo(),10000);
+    clearTimeout(comboPushTimer);comboPushTimer=setTimeout(()=>dismissCombo(),10000);
   }
-
   function dismissCombo(){$('comboPush').classList.remove('show');}
-  function openComboSuggested(){
-    dismissCombo(); closeModal('cartModal');
-    if(suggestedCombo){switchTab('combos'); setTimeout(()=>openAdd(suggestedCombo.id),300);}
-  }
+  function openComboSuggested(){dismissCombo();closeModal('cartModal');if(suggestedCombo){switchTab('combos');setTimeout(()=>openAdd(suggestedCombo.id),300);}}
 
-  /* ====== REORDER ====== */
   function maybeShowReorder(){
-    const orders = JSON.parse(localStorage.getItem('qp_orders')||'[]');
-    if(orders.length===0) return;
-    if(sessionStorage.getItem('seenReorder')) return;
-    const last = orders[orders.length-1];
-    const summary = last.itens.map(i=>`${i.fig?i.figQty:i.qty}× ${i.nome.replace('Quadrô ','').replace(' ',' ')}`).slice(0,2).join(', ');
-    $('reorderText').innerHTML = `Seu último pedido foi <strong>${fmt(last.total)}</strong>: ${summary}${last.itens.length>2?'…':''}. <br>Repete?`;
+    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    if(orders.length===0)return;
+    if(sessionStorage.getItem('seenReorder'))return;
+    const last=orders[orders.length-1];
+    const summary=last.itens.map(i=>`${i.fig?i.figQty:i.qty}× ${i.nome.replace('Quadrô ','')}`).slice(0,2).join(', ');
+    $('reorderText').innerHTML=`Seu último pedido foi <strong>${fmt(last.total)}</strong>: ${summary}${last.itens.length>2?'…':''}.<br>Repete?`;
     $('reorderPush').classList.add('show');
     sessionStorage.setItem('seenReorder','1');
-    clearTimeout(reorderPushTimer); reorderPushTimer=setTimeout(()=>dismissReorder(),15000);
+    clearTimeout(reorderPushTimer);reorderPushTimer=setTimeout(()=>dismissReorder(),15000);
   }
   function dismissReorder(){$('reorderPush').classList.remove('show');}
   function reorder(){
-    const orders = JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
     if(orders.length===0){dismissReorder();return;}
-    const last = orders[orders.length-1];
-    // Clone items into cart (excluding fig priceByPay refs — keep them; for normal items reset id)
-    cart = last.itens.map(i=>({...i,id:i.id.split('_')[0]+'_'+Date.now()+Math.random()}));
-    save(); renderCart(); dismissReorder();
+    const last=orders[orders.length-1];
+    cart=last.itens.map(i=>({...i,id:i.id.split('_')[0]+'_'+Date.now()+Math.random()}));
+    save();renderCart();dismissReorder();
     toast('🍕 Pedido carregado!');
     $('cartModal').classList.add('open');
   }
-
-  /* ====== CHECKOUT ====== */
-  function openCart(){$('cartModal').classList.add('open'); dismissCombo(); dismissReorder();}
-
-  function openCheckout(){
-    if(cart.length===0) return;
-    closeModal('cartModal');
-    setTimeout(()=>$('checkoutModal').classList.add('open'),200);
-    setupCheckout();
+  function reorderById(id){
+    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    const o=orders.find(x=>x.id===id);if(!o)return;
+    cart=o.itens.map(i=>({...i,id:i.id.split('_')[0]+'_'+Date.now()+Math.random()}));
+    save();renderCart();closeDrawer();
+    setTimeout(()=>$('cartModal').classList.add('open'),200);
+    toast('🍕 Pedido carregado!');
   }
+
+  function openCart(){$('cartModal').classList.add('open');dismissCombo();dismissReorder();}
+  function openCheckout(){if(cart.length===0)return;closeModal('cartModal');setTimeout(()=>$('checkoutModal').classList.add('open'),200);setupCheckout();}
 
   function setupCheckout(){
     document.querySelectorAll('#deliveryOpts .opt').forEach(b=>{
       b.onclick=()=>{
         document.querySelectorAll('#deliveryOpts .opt').forEach(x=>{x.classList.remove('selected');x.querySelector('.opt-check').textContent='';});
-        b.classList.add('selected'); b.querySelector('.opt-check').textContent='✓';
-        delivery=b.dataset.delivery; updateScheduleBox();
+        b.classList.add('selected');b.querySelector('.opt-check').textContent='✓';
+        delivery=b.dataset.delivery;updateScheduleBox();
       };
     });
     document.querySelectorAll('#payOpts .opt').forEach(b=>{
       b.onclick=()=>{
         document.querySelectorAll('#payOpts .opt').forEach(x=>{x.classList.remove('selected');x.querySelector('.opt-check').textContent='';});
-        b.classList.add('selected'); b.querySelector('.opt-check').textContent='✓';
+        b.classList.add('selected');b.querySelector('.opt-check').textContent='✓';
         payment=b.dataset.pay;
-        $('pixBox').style.display=payment==='PIX'?'block':'none';
+        $('pixBox').classList.toggle('show',payment==='PIX');
         renderCart();
       };
     });
     ['salaAno','salaBloco','salaSala','salaCurso'].forEach(id=>{
-      $(id).oninput=e=>{salaData[id.replace('sala','').toLowerCase()]=e.target.value;};
+      $(id).oninput=e=>{const key=id.replace('sala','').toLowerCase();salaData[key]=e.target.value;};
     });
     updateScheduleBox();
   }
-
   function updateScheduleBox(){
-    const sel=$('scheduleSelect'); const salaFs=$('salaFields'); sel.innerHTML='';
+    const sel=$('scheduleSelect');const salaFs=$('salaFields');sel.innerHTML='';
     if(delivery==='balcao'){
       salaFs.style.display='none';
       const opts=['<option value="now">Agora (~5 min)</option>'];
-      for(let h=8;h<22;h++) for(let m=0;m<60;m+=30){
-        const lbl=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
-        opts.push(`<option value="${lbl}">${lbl}</option>`);
-      }
+      for(let h=8;h<22;h++)for(let m=0;m<60;m+=30){const lbl=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');opts.push(`<option value="${lbl}">${lbl}</option>`);}
       sel.innerHTML=opts.join('');
     } else {
       salaFs.style.display='block';
@@ -1066,17 +1093,15 @@ const App = (function(){
     scheduleVal=sel.value;
     sel.onchange=()=>scheduleVal=sel.value;
   }
-
   function copyPix(){
     navigator.clipboard.writeText(STORE.pix).then(()=>{
-      toast('✅ Chave PIX copiada!');
+      toast('✅ PIX copiado!');
       const b=document.querySelector('.btn-copy');
-      b.classList.add('copied'); b.textContent='✓ Copiado';
-      setTimeout(()=>{b.classList.remove('copied'); b.textContent='📋 Copiar chave';},1500);
+      b.classList.add('copied');b.textContent='✓ Copiado';
+      setTimeout(()=>{b.classList.remove('copied');b.textContent='📋 Copiar chave';},1500);
     });
   }
 
-  /* ====== WHATSAPP ====== */
   function sendWhatsApp(){
     if(delivery==='sala'){
       if(!salaData.ano||!salaData.bloco||!salaData.sala){toast('Preencha Ano, Bloco e Sala 😊');return;}
@@ -1087,14 +1112,14 @@ const App = (function(){
     const data=now.toLocaleDateString('pt-BR');
     const hora=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
 
-    let msg=`🍕 *NOVO PEDIDO - QUADRÔ PIZZA* 🎉\n`;
+    let msg=`🍕 *NOVO PEDIDO QUADRÔ PIZZA* 🎉\n`;
     msg+=`-------------------------------------\n`;
-    msg+=`😀 *Olá, ${name||'Cliente'}!* Recebemos seu pedido com muito carinho! 💛\n\n`;
+    msg+=`😀 *Olá, ${name||'Cliente'}!* Recebemos seu pedido! 💛\n\n`;
     msg+=`📝 *Pedido #${orderId}* | ${data} às ${hora}\n\n`;
     msg+=`🛒 *ITENS:*\n----------------------\n`;
     cart.forEach((it,i)=>{
-      const lp = it.fig ? priceOf(it,payment) : it.preco*it.qty;
-      const qtyTxt = it.fig ? '' : (it.qty>1?` (x${it.qty})`:'');
+      const lp=it.fig?priceOf(it,payment):it.preco*it.qty;
+      const qtyTxt=it.fig?'':(it.qty>1?` (x${it.qty})`:'');
       msg+=`${i+1}. ✅ *${it.nome}*${qtyTxt} -- *${fmt(lp)}*\n`;
       (it.detalhes||[]).forEach(d=>msg+=`   -> ${d}\n`);
     });
@@ -1102,43 +1127,31 @@ const App = (function(){
 
     if(delivery==='balcao'){
       msg+=`🏪 *ENTREGA:* Retirar no Balcão (Bloco C2)\n`;
-      msg+=`⏰ *QUANDO:* ${scheduleVal==='now'?'Agora (~5 minutos) ⚡':'Às '+scheduleVal}\n`;
+      msg+=`⏰ *QUANDO:* ${scheduleVal==='now'?'Agora (~5 min) ⚡':'Às '+scheduleVal}\n`;
     } else {
       msg+=`🎒 *ENTREGA:* Na Sala\n`;
-      msg+=`📍 *ONDE:* ${salaData.ano} ${salaData.curso?'- '+salaData.curso:''} - Bloco ${salaData.bloco} - Sala ${salaData.sala}\n`;
+      msg+=`📍 *ONDE:* ${salaData.ano}${salaData.curso?' '+salaData.curso:''} - Bloco ${salaData.bloco} - Sala ${salaData.sala}\n`;
       msg+=`⏰ *QUANDO:* Intervalo das ${scheduleVal}\n`;
     }
     msg+=`💳 *PAGAMENTO:* ${payment}\n`;
     if(payment==='PIX'){
-      msg+=`\n💸 *CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante aqui, por favor!_ 🙏\n`;
+      msg+=`\n💸 *CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante aqui!_ 🙏\n`;
     }
-    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! 🍕 Sua pizza estará pronta em ~5 min! 😋💛`;
+    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! 🍕 Sua pizza fica pronta em ~5 min! 😋💛`;
 
     const order={id:orderId,ts:now.toISOString(),cliente:name||'Cliente',itens:cart,total,delivery,schedule:scheduleVal,sala:salaData,payment};
     const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
-    orders.push(order); localStorage.setItem('qp_orders',JSON.stringify(orders));
+    orders.push(order);localStorage.setItem('qp_orders',JSON.stringify(orders));
     lastOrderId=orderId;
 
     window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
-    cart=[]; save(); renderCart();
-    closeModal('checkoutModal');
-    toast('🍕 Pedido enviado!');
-
-    setTimeout(()=>{
-      $('ratingModal').classList.add('open');
-      ratingVal=0;
-      document.querySelectorAll('#starsRow .star').forEach(s=>s.classList.remove('active'));
-      $('ratingComment').value='';
-    },20000);
+    cart=[];save();renderCart();closeModal('checkoutModal');toast('🍕 Pedido enviado!');
+    setTimeout(()=>{$('ratingModal').classList.add('open');ratingVal=0;document.querySelectorAll('#starsRow .star').forEach(s=>s.classList.remove('active'));$('ratingComment').value='';},20000);
   }
 
-  /* ====== RATING ====== */
   function setupStars(){
     document.querySelectorAll('#starsRow .star').forEach(s=>{
-      s.addEventListener('click',()=>{
-        ratingVal=+s.dataset.v;
-        document.querySelectorAll('#starsRow .star').forEach(x=>x.classList.toggle('active',+x.dataset.v<=ratingVal));
-      });
+      s.addEventListener('click',()=>{ratingVal=+s.dataset.v;document.querySelectorAll('#starsRow .star').forEach(x=>x.classList.toggle('active',+x.dataset.v<=ratingVal));});
     });
   }
   function sendRating(){
@@ -1146,61 +1159,60 @@ const App = (function(){
     const comment=$('ratingComment').value.trim();
     const rev={ts:new Date().toISOString(),cliente:name||'Cliente',nota:ratingVal,comentario:comment,orderId:lastOrderId};
     const revs=JSON.parse(localStorage.getItem('qp_reviews')||'[]');
-    revs.push(rev); localStorage.setItem('qp_reviews',JSON.stringify(revs));
-
+    revs.push(rev);localStorage.setItem('qp_reviews',JSON.stringify(revs));
     let msg=`⭐ *AVALIAÇÃO QUADRÔ PIZZA* 💛\n`;
     msg+=`-------------------------------------\n`;
     msg+=`😊 *Cliente:* ${name||'Cliente'}\n`;
     msg+=`✨ *Nota:* ${'⭐'.repeat(ratingVal)} (${ratingVal}/5)\n`;
-    if(comment) msg+=`💬 *Comentário:* ${comment}\n`;
-    if(lastOrderId) msg+=`📝 *Pedido* #${lastOrderId}\n`;
+    if(comment)msg+=`💬 *Comentário:* ${comment}\n`;
+    if(lastOrderId)msg+=`📝 *Pedido* #${lastOrderId}\n`;
     msg+=`\n🙌 Muito obrigado por avaliar! 🤩 Vocês são incríveis! 🍕💛`;
-
     window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
-    closeModal('ratingModal');
-    toast('💛 Obrigado pela avaliação!');
+    closeModal('ratingModal');toast('💛 Obrigado pela avaliação!');
   }
 
-  /* ====== HISTORY ====== */
-  function showHistory(){
-    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]').slice().reverse();
-    const list=$('historyList');
+  /* DRAWER */
+  function openDrawer(){
+    renderDrawer();
+    $('drawer').classList.add('open');$('drawerBackdrop').classList.add('open');
+  }
+  function closeDrawer(){$('drawer').classList.remove('open');$('drawerBackdrop').classList.remove('open');}
+
+  function renderDrawer(){
+    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    const totalGasto=orders.reduce((s,o)=>s+o.total,0);
+    const totalPedidos=orders.length;
+    $('drawerProfile').innerHTML=name
+      ? `<div style="display:flex;align-items:center;gap:10px"><div style="width:42px;height:42px;background:var(--red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px">${name[0].toUpperCase()}</div><div><strong>${name}</strong><br><small style="color:var(--muted);font-size:11px">Cliente Quadrô</small></div></div>`
+      : 'Faça login para começar';
+
+    $('drawerStats').innerHTML=`
+      <div class="drawer-stat"><div class="v">${totalPedidos}</div><div class="l">Pedidos</div></div>
+      <div class="drawer-stat"><div class="v">${fmt(totalGasto)}</div><div class="l">Gasto total</div></div>`;
+
+    const hist=$('drawerHistory');
     if(orders.length===0){
-      list.innerHTML='<div class="empty"><div class="em">📜</div>Você ainda não fez pedidos<br><small>Bora estrear?</small></div>';
+      hist.innerHTML='<div class="empty"><div class="em">📜</div>Sem pedidos ainda<br><small>Bora estrear?</small></div>';
     } else {
-      list.innerHTML=orders.map((o,i)=>{
+      hist.innerHTML=orders.slice().reverse().map((o,i)=>{
         const d=new Date(o.ts);
         return `<div class="history-item">
           <div class="top"><span>#${o.id} · ${d.toLocaleDateString('pt-BR')} ${d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</span><span>${o.payment}</span></div>
-          <div>${o.itens.map(it=>`${it.fig?it.figQty:it.qty}× ${it.nome}`).join(' · ')}</div>
+          <div>${o.itens.map(it=>`${it.fig?it.figQty:it.qty}× ${it.nome.replace('Quadrô ','')}`).join(' · ')}</div>
           <div class="tot">${fmt(o.total)}</div>
-          ${i===0?`<button class="reord" onclick="App.reorderById('${o.id}')">🔁 Pedir de novo</button>`:''}
+          <button class="reord" onclick="App.reorderById('${o.id}')">🔁 Pedir de novo</button>
         </div>`;
       }).join('');
     }
-    $('historyModal').classList.add('open');
   }
 
-  function reorderById(id){
-    const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
-    const o=orders.find(x=>x.id===id); if(!o) return;
-    cart=o.itens.map(i=>({...i,id:i.id.split('_')[0]+'_'+Date.now()+Math.random()}));
-    save(); renderCart();
-    closeModal('historyModal');
-    setTimeout(()=>$('cartModal').classList.add('open'),200);
-    toast('🍕 Pedido carregado!');
-  }
-
-  /* ====== OWNER (unchanged from previous) ====== */
-  async function sha256(s){
-    const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
-    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  }
+  /* OWNER */
+  async function sha256(s){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
   async function openOwner(){
     const hash=localStorage.getItem('qp_owner_hash');
     const session=JSON.parse(localStorage.getItem('qp_owner_session')||'null');
     $('ownerPanel').classList.add('open');
-    if(session && session.exp>Date.now()){renderOwner();return;}
+    if(session&&session.exp>Date.now()){renderOwner();return;}
     const c=$('ownerContent');
     if(!hash){
       c.innerHTML=`<div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow);border-top:4px solid var(--red)">
@@ -1210,14 +1222,7 @@ const App = (function(){
         <input type="password" id="ownerPass" class="field" placeholder="Defina uma senha">
         <input type="password" id="ownerPass2" class="field" placeholder="Confirme a senha">
         <button class="btn-primary" id="btnSetPass">Definir senha</button></div>`;
-      $('btnSetPass').onclick=async ()=>{
-        const p1=$('ownerPass').value,p2=$('ownerPass2').value;
-        if(p1.length<4){toast('Mín. 4 caracteres');return;}
-        if(p1!==p2){toast('Senhas não conferem');return;}
-        localStorage.setItem('qp_owner_hash',await sha256(p1));
-        localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));
-        toast('✅ Senha definida');renderOwner();
-      };
+      $('btnSetPass').onclick=async ()=>{const p1=$('ownerPass').value,p2=$('ownerPass2').value;if(p1.length<4){toast('Mín. 4');return;}if(p1!==p2){toast('Senhas não conferem');return;}localStorage.setItem('qp_owner_hash',await sha256(p1));localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));toast('✅ Senha definida');renderOwner();};
     } else {
       c.innerHTML=`<div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow);border-top:4px solid var(--red)">
         <h2 style="margin-bottom:14px;font-family:'Anton',sans-serif;font-size:24px">🔐 Área do Proprietário</h2>
@@ -1225,53 +1230,22 @@ const App = (function(){
         <input type="password" id="ownerPass" class="field" placeholder="Senha">
         <button class="btn-primary" id="btnLogin">Entrar</button>
         <button class="btn-secondary" id="btnReset">Esqueci a senha</button></div>`;
-      $('btnLogin').onclick=async ()=>{
-        const p=$('ownerPass').value;
-        if(await sha256(p)===hash){localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));renderOwner();}
-        else toast('Senha incorreta');
-      };
-      $('btnReset').onclick=()=>{
-        if(confirm('Apagar a senha atual?')){localStorage.removeItem('qp_owner_hash');localStorage.removeItem('qp_owner_session');openOwner();}
-      };
+      $('btnLogin').onclick=async ()=>{const p=$('ownerPass').value;if(await sha256(p)===hash){localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));renderOwner();}else toast('Senha incorreta');};
+      $('btnReset').onclick=()=>{if(confirm('Apagar senha?')){localStorage.removeItem('qp_owner_hash');localStorage.removeItem('qp_owner_session');openOwner();}};
     }
   }
   function closeOwner(){$('ownerPanel').classList.remove('open');}
   function logoutOwner(){localStorage.removeItem('qp_owner_session');closeOwner();toast('Sessão encerrada');}
-  function exportData(){
-    const data={orders:JSON.parse(localStorage.getItem('qp_orders')||'[]'),reviews:JSON.parse(localStorage.getItem('qp_reviews')||'[]'),exportedAt:new Date().toISOString()};
-    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=`quadro-${new Date().toISOString().slice(0,10)}.json`;a.click();
-    URL.revokeObjectURL(url);
-  }
+  function exportData(){const data={orders:JSON.parse(localStorage.getItem('qp_orders')||'[]'),reviews:JSON.parse(localStorage.getItem('qp_reviews')||'[]'),exportedAt:new Date().toISOString()};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`quadro-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);}
 
   function renderOwner(){
     const c=$('ownerContent');
     const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
     const reviews=JSON.parse(localStorage.getItem('qp_reviews')||'[]');
     let filter='week';
-    function inRange(ts,f){
-      const d=new Date(ts),now=new Date();
-      if(f==='week'){const s=new Date(now);s.setDate(now.getDate()-now.getDay());s.setHours(0,0,0,0);return d>=s;}
-      if(f==='lastweek'){const s=new Date(now);s.setDate(now.getDate()-now.getDay());s.setHours(0,0,0,0);const sl=new Date(s);sl.setDate(s.getDate()-7);return d>=sl&&d<s;}
-      if(f==='30d'){const d30=new Date(now);d30.setDate(now.getDate()-30);return d>=d30;}
-      return true;
-    }
-    function compute(f){
-      const fO=orders.filter(o=>inRange(o.ts,f)),fR=reviews.filter(r=>inRange(r.ts,f));
-      const fat=fO.reduce((s,o)=>s+o.total,0),qty=fO.length,tk=qty?fat/qty:0;
-      const avg=fR.length?fR.reduce((s,r)=>s+r.nota,0)/fR.length:0;
-      const byDay={};const now=new Date();
-      for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);byDay[d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})]={qty:0,fat:0};}
-      fO.forEach(o=>{const k=new Date(o.ts).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});if(byDay[k]){byDay[k].qty++;byDay[k].fat+=o.total;}});
-      const byPay={PIX:0,'Débito':0,'Crédito':0,Dinheiro:0};fO.forEach(o=>byPay[o.payment]=(byPay[o.payment]||0)+1);
-      const byItem={};fO.forEach(o=>o.itens.forEach(it=>byItem[it.nome]=(byItem[it.nome]||0)+(it.fig?it.figQty:it.qty)));
-      const totI=Object.values(byItem).reduce((s,v)=>s+v,0);
-      const top=Object.entries(byItem).sort((a,b)=>b[1]-a[1]).slice(0,5);
-      return {fat,qty,tk,avg,byDay,byPay,top,totI,recent:fR.slice().reverse().slice(0,10)};
-    }
-    function paint(){
-      const d=compute(filter);
+    function inRange(ts,f){const d=new Date(ts),now=new Date();if(f==='week'){const s=new Date(now);s.setDate(now.getDate()-now.getDay());s.setHours(0,0,0,0);return d>=s;}if(f==='lastweek'){const s=new Date(now);s.setDate(now.getDate()-now.getDay());s.setHours(0,0,0,0);const sl=new Date(s);sl.setDate(s.getDate()-7);return d>=sl&&d<s;}if(f==='30d'){const d30=new Date(now);d30.setDate(now.getDate()-30);return d>=d30;}return true;}
+    function compute(f){const fO=orders.filter(o=>inRange(o.ts,f)),fR=reviews.filter(r=>inRange(r.ts,f));const fat=fO.reduce((s,o)=>s+o.total,0),qty=fO.length,tk=qty?fat/qty:0;const avg=fR.length?fR.reduce((s,r)=>s+r.nota,0)/fR.length:0;const byDay={};const now=new Date();for(let i=6;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);byDay[d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})]={qty:0,fat:0};}fO.forEach(o=>{const k=new Date(o.ts).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});if(byDay[k]){byDay[k].qty++;byDay[k].fat+=o.total;}});const byPay={PIX:0,'Débito':0,'Crédito':0,Dinheiro:0};fO.forEach(o=>byPay[o.payment]=(byPay[o.payment]||0)+1);const byItem={};fO.forEach(o=>o.itens.forEach(it=>byItem[it.nome]=(byItem[it.nome]||0)+(it.fig?it.figQty:it.qty)));const totI=Object.values(byItem).reduce((s,v)=>s+v,0);const top=Object.entries(byItem).sort((a,b)=>b[1]-a[1]).slice(0,5);return{fat,qty,tk,avg,byDay,byPay,top,totI,recent:fR.slice().reverse().slice(0,10)};}
+    function paint(){const d=compute(filter);
       c.innerHTML=`<div class="filter-tabs">
         <button class="filter-tab ${filter==='week'?'active':''}" data-f="week">Esta semana</button>
         <button class="filter-tab ${filter==='lastweek'?'active':''}" data-f="lastweek">Semana passada</button>
@@ -1285,12 +1259,8 @@ const App = (function(){
         <div class="chart-card"><h3>📊 Pedidos por dia</h3><canvas id="chartQty" width="600" height="200"></canvas></div>
         <div class="chart-card"><h3>📈 Faturamento por dia</h3><canvas id="chartFat" width="600" height="200"></canvas></div>
         <div class="chart-card"><h3>💳 Forma de pagamento</h3><canvas id="chartPay" width="600" height="220"></canvas></div>
-        <div class="chart-card"><h3>🏆 Top 5 itens</h3>
-          ${d.top.length===0?'<div class="empty">Sem dados</div>':'<ul class="ranking-list">'+d.top.map((t,i)=>`<li><span><span class="rank">${i+1}</span>${t[0]}</span><span><strong>${t[1]}</strong> · ${d.totI?((t[1]/d.totI)*100).toFixed(0):0}%</span></li>`).join('')+'</ul>'}
-        </div>
-        <div class="chart-card"><h3>💬 Avaliações recentes</h3>
-          ${d.recent.length===0?'<div class="empty">Sem avaliações</div>':d.recent.map(r=>`<div class="review"><div class="review-head"><span>${r.cliente}</span><span>${new Date(r.ts).toLocaleDateString('pt-BR')}</span></div><div class="review-stars">${'⭐'.repeat(r.nota)}</div>${r.comentario?`<div class="review-comment">"${r.comentario}"</div>`:''}</div>`).join('')}
-        </div>
+        <div class="chart-card"><h3>🏆 Top 5 itens</h3>${d.top.length===0?'<div class="empty">Sem dados</div>':'<ul class="ranking-list">'+d.top.map((t,i)=>`<li><span><span class="rank">${i+1}</span>${t[0]}</span><span><strong>${t[1]}</strong> · ${d.totI?((t[1]/d.totI)*100).toFixed(0):0}%</span></li>`).join('')+'</ul>'}</div>
+        <div class="chart-card"><h3>💬 Avaliações recentes</h3>${d.recent.length===0?'<div class="empty">Sem avaliações</div>':d.recent.map(r=>`<div class="review"><div class="review-head"><span>${r.cliente}</span><span>${new Date(r.ts).toLocaleDateString('pt-BR')}</span></div><div class="review-stars">${'⭐'.repeat(r.nota)}</div>${r.comentario?`<div style="font-size:13px;font-style:italic;margin-top:2px">"${r.comentario}"</div>`:''}</div>`).join('')}</div>
         <div style="text-align:center;margin:20px 0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
           <button class="btn-secondary" onclick="App.exportData()" style="width:auto;padding:10px 18px">📥 Exportar JSON</button>
           <button class="btn-secondary" onclick="App.logoutOwner()" style="width:auto;padding:10px 18px">Sair</button></div>`;
@@ -1301,62 +1271,21 @@ const App = (function(){
     }
     paint();
   }
-
-  function drawBar(id,labels,values,color){
-    const cv=document.getElementById(id);if(!cv)return;
-    const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);
-    const pL=36,pB=30,pT=10,pR=10;const max=Math.max(...values,1);
-    const bw=(W-pL-pR)/values.length*.65;const gap=(W-pL-pR)/values.length;
-    ctx.fillStyle='#999';ctx.font='10px sans-serif';
-    [0,.5,1].forEach(t=>{const y=pT+(H-pT-pB)*(1-t);ctx.fillText(Math.round(max*t),4,y+3);ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();});
-    values.forEach((v,i)=>{const h=(v/max)*(H-pT-pB);const x=pL+gap*i+(gap-bw)/2;const y=H-pB-h;
-      ctx.fillStyle=color;ctx.fillRect(x,y,bw,h);ctx.fillStyle='#333';ctx.fillText(labels[i],x-2,H-pB+14);
-      if(v>0)ctx.fillText(v,x+bw/2-6,y-4);});
-  }
-  function drawLine(id,labels,values,color){
-    const cv=document.getElementById(id);if(!cv)return;
-    const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);
-    const pL=46,pB=30,pT=10,pR=10;const max=Math.max(...values,1);
-    ctx.fillStyle='#999';ctx.font='10px sans-serif';
-    [0,.5,1].forEach(t=>{const y=pT+(H-pT-pB)*(1-t);ctx.fillText('R$'+Math.round(max*t),4,y+3);ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();});
-    const step=(W-pL-pR)/(values.length-1||1);
-    ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();
-    values.forEach((v,i)=>{const x=pL+step*i;const y=pT+(H-pT-pB)*(1-v/max);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});
-    ctx.stroke();
-    values.forEach((v,i)=>{const x=pL+step*i;const y=pT+(H-pT-pB)*(1-v/max);ctx.fillStyle='#E50019';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#333';ctx.fillText(labels[i],x-12,H-pB+14);});
-  }
-  function drawPie(id,data){
-    const cv=document.getElementById(id);if(!cv)return;
-    const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);
-    const total=Object.values(data).reduce((s,v)=>s+v,0);
-    if(total===0){ctx.fillStyle='#999';ctx.font='14px sans-serif';ctx.fillText('Sem dados',W/2-40,H/2);return;}
-    const colors={PIX:'#1aa84a','Débito':'#1E4FBF','Crédito':'#E50019',Dinheiro:'#FFCC00'};
-    const cx=H/2+10,cy=H/2,r=H/2-20;let a0=-Math.PI/2;
-    Object.entries(data).forEach(([k,v])=>{if(v===0)return;const ang=(v/total)*Math.PI*2;ctx.fillStyle=colors[k]||'#999';ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a0+ang);ctx.closePath();ctx.fill();a0+=ang;});
-    ctx.font='12px sans-serif';let ly=20;
-    Object.entries(data).forEach(([k,v])=>{ctx.fillStyle=colors[k]||'#999';ctx.fillRect(cx+r+30,ly-9,14,12);ctx.fillStyle='#333';const pct=total?((v/total)*100).toFixed(0):0;ctx.fillText(`${k}  ${v} (${pct}%)`,cx+r+50,ly);ly+=22;});
-  }
+  function drawBar(id,labels,values,color){const cv=document.getElementById(id);if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);const pL=36,pB=30,pT=10,pR=10;const max=Math.max(...values,1);const bw=(W-pL-pR)/values.length*.65;const gap=(W-pL-pR)/values.length;ctx.fillStyle='#999';ctx.font='10px sans-serif';[0,.5,1].forEach(t=>{const y=pT+(H-pT-pB)*(1-t);ctx.fillText(Math.round(max*t),4,y+3);ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();});values.forEach((v,i)=>{const h=(v/max)*(H-pT-pB);const x=pL+gap*i+(gap-bw)/2;const y=H-pB-h;ctx.fillStyle=color;ctx.fillRect(x,y,bw,h);ctx.fillStyle='#333';ctx.fillText(labels[i],x-2,H-pB+14);if(v>0)ctx.fillText(v,x+bw/2-6,y-4);});}
+  function drawLine(id,labels,values,color){const cv=document.getElementById(id);if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);const pL=46,pB=30,pT=10,pR=10;const max=Math.max(...values,1);ctx.fillStyle='#999';ctx.font='10px sans-serif';[0,.5,1].forEach(t=>{const y=pT+(H-pT-pB)*(1-t);ctx.fillText('R$'+Math.round(max*t),4,y+3);ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();});const step=(W-pL-pR)/(values.length-1||1);ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();values.forEach((v,i)=>{const x=pL+step*i;const y=pT+(H-pT-pB)*(1-v/max);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();values.forEach((v,i)=>{const x=pL+step*i;const y=pT+(H-pT-pB)*(1-v/max);ctx.fillStyle='#E50019';ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#333';ctx.fillText(labels[i],x-12,H-pB+14);});}
+  function drawPie(id,data){const cv=document.getElementById(id);if(!cv)return;const ctx=cv.getContext('2d');const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);const total=Object.values(data).reduce((s,v)=>s+v,0);if(total===0){ctx.fillStyle='#999';ctx.font='14px sans-serif';ctx.fillText('Sem dados',W/2-40,H/2);return;}const colors={PIX:'#1aa84a','Débito':'#1E4FBF','Crédito':'#E50019',Dinheiro:'#FFCC00'};const cx=H/2+10,cy=H/2,r=H/2-20;let a0=-Math.PI/2;Object.entries(data).forEach(([k,v])=>{if(v===0)return;const ang=(v/total)*Math.PI*2;ctx.fillStyle=colors[k]||'#999';ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a0+ang);ctx.closePath();ctx.fill();a0+=ang;});ctx.font='12px sans-serif';let ly=20;Object.entries(data).forEach(([k,v])=>{ctx.fillStyle=colors[k]||'#999';ctx.fillRect(cx+r+30,ly-9,14,12);ctx.fillStyle='#333';const pct=total?((v/total)*100).toFixed(0):0;ctx.fillText(`${k}  ${v} (${pct}%)`,cx+r+50,ly);ly+=22;});}
 
   function closeModal(id){$(id).classList.remove('open');}
 
   function init(){
-    renderAll(); renderCart(); setupStars();
-    if(name){
-      renderGreeting();
-      setTimeout(()=>maybeShowReorder(),1500);
-      setTimeout(()=>{if(!$('reorderPush').classList.contains('show'))showInitialComboPush();},5000);
-    } else {
-      $('welcomeModal').classList.add('open');
-    }
-    document.querySelectorAll('.modal-overlay').forEach(o=>{
-      o.addEventListener('click',(e)=>{if(e.target===o && o.id!=='welcomeModal') o.classList.remove('open');});
-    });
+    renderAll();renderCart();setupStars();
+    if(name){renderGreeting();setTimeout(()=>maybeShowReorder(),1500);setTimeout(()=>{if(!$('reorderPush').classList.contains('show'))showInitialComboPush();},5000);}
+    else $('welcomeModal').classList.add('open');
+    document.querySelectorAll('.modal-overlay').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o&&o.id!=='welcomeModal')o.classList.remove('open');});});
     $('customerName').addEventListener('keypress',e=>{if(e.key==='Enter')saveName();});
   }
 
-  return {init,saveName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,
-    itemQty,clearCart,closeModal,showHistory,openOwner,closeOwner,logoutOwner,exportData,
-    dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById};
+  return {init,saveName,changeName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,itemQty,clearCart,closeModal,openOwner,closeOwner,logoutOwner,exportData,dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById,openDrawer,closeDrawer,goToCombo};
 })();
 document.addEventListener('DOMContentLoaded',App.init);
 </script>
