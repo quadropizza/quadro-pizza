@@ -8,6 +8,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Quadrô Pizza · Cardápio Digital</title>
+<!-- v13.1 · cache buster -->
+<meta name="version" content="v13.1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -756,8 +758,8 @@ const COMBOS=[
     picks:[{label:'Sabor da Pizza 25cm',type:'one',opts:PIZZA_SAB},{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Refrigerante 200ml',type:'one',opts:REFRI_MINI}]},
   {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'Dois sabores pra dividir + refri lata gelada.',preco:36.90,pessoas:2,img:'images/combos/2-pizzas-lata',
     picks:[{label:'Pizzas 25cm — escolha 2',type:'multi',max:2,opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini pizza + Coca-Cola 200ml. Lanche rápido entre aulas.',preco:14.90,pessoas:1,img:'images/combos/mini-coca',
-    picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB}]},
+  {id:'c5',nome:'💥 Mini + Refri Mini',desc:'Mini pizza + Refrigerante 200ml à sua escolha. Lanche rápido entre aulas.',preco:14.90,pessoas:1,img:'images/combos/mini-coca',
+    picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Refrigerante 200ml',type:'one',opts:REFRI_MINI}]},
   {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'Duas mini à sua escolha. Pra dividir ou só pra você.',preco:22.90,pessoas:2,img:'images/combos/2-minis',
     picks:[{label:'Minis — escolha 2',type:'multi',max:2,opts:MINI_SAB}]},
   {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Saudosismo da infância.',preco:14.90,pessoas:1,img:'images/combos/mini-kapo',
