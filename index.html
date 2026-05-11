@@ -64,7 +64,8 @@
   .tab.active{color:var(--yellow);border-color:var(--yellow);background:rgba(255,204,0,.08)}
   .tab.active::after{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;width:30px;height:2px;background:var(--yellow);border-radius:0 0 4px 4px}
   .tab-emoji{font-size:22px;display:block;margin-bottom:3px;line-height:1}
-  .tab-emoji img{height:24px;margin:0 auto 1px;display:block}
+  .tab-emoji img{height:26px;margin:0 auto 1px;display:block;mix-blend-mode:screen}
+  .section-head > img{mix-blend-mode:multiply}
 
   main{padding:18px 14px;max-width:760px;margin:0 auto}
   .section-head{margin:6px 0 14px;display:flex;align-items:center;gap:10px}
@@ -186,6 +187,11 @@
   .opt small{display:block;color:var(--muted);font-size:11px;margin-top:2px;font-weight:500}
   .opt-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:900;color:#fff}
   .opt.selected .opt-check{background:var(--red);border-color:var(--red)}
+  .opt-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;flex-shrink:0;margin-right:10px;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .opt-name{flex:1}
+  .opt.selected .opt-thumb{box-shadow:0 0 0 2px var(--red),0 2px 6px rgba(0,0,0,.2)}
+  .pick-thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0;box-shadow:0 2px 4px rgba(0,0,0,.15)}
+  .pick-item.active .pick-thumb{box-shadow:0 0 0 2px var(--red),0 2px 6px rgba(0,0,0,.2)}
 
   .pick-list{display:grid;gap:8px}
   .pick-item{padding:10px 12px;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:space-between;font-size:14px;background:#fff;font-weight:600;gap:10px}
@@ -421,7 +427,6 @@
     </div>
     <div class="drawer-section">
       <h3>⚙️ Mais</h3>
-      <button class="drawer-link" onclick="App.openOwner();App.closeDrawer()"><span class="em">🔐</span>Área do Proprietário<span class="arrow">›</span></button>
       <button class="drawer-link" onclick="App.changeName()"><span class="em">✏️</span>Trocar meu nome<span class="arrow">›</span></button>
     </div>
   </div>
@@ -454,14 +459,11 @@
 <main>
   <!-- COMBOS -->
   <section id="tab-combos" class="tab-content">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);padding:10px 14px;border-radius:14px;border:2px solid var(--yellow);box-shadow:var(--shadow)">
-      <img src="images/combos/slogan.png" alt="" style="height:60px;width:60px;object-fit:cover;border-radius:8px;flex-shrink:0" onerror="this.style.display='none'">
-      <div style="color:#fff;font-family:'Anton',sans-serif;line-height:1.1">
-        <div style="font-size:13px;color:var(--yellow);letter-spacing:.5px">A UNIVALI É MUITO</div>
-        <div style="font-size:22px;letter-spacing:.5px">QUADRÔ! 🍕</div>
-      </div>
+    <div class="section-head" style="gap:14px">
+      <span class="seal">🔥 IMPERDÍVEL</span>
+      <h2 class="section-title">Combos<small>Mais sabor, menos preço · escolha os sabores ao adicionar</small></h2>
+      <img src="images/combos/slogan.png" alt="" style="height:48px;width:48px;object-fit:cover;border-radius:6px;opacity:.85;margin-left:auto;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.15)" onerror="this.style.display='none'">
     </div>
-    <div class="section-head"><span class="seal">🔥 IMPERDÍVEL</span><h2 class="section-title">Combos<small>Mais sabor, menos preço · escolha os sabores ao adicionar</small></h2></div>
     <div class="grid" id="grid-combos"></div>
   </section>
 
@@ -531,8 +533,7 @@
     💸 PIX (CNPJ) 60.723.998/0001-84
   </div>
   <p>
-    <a href="#" onclick="App.openDrawer();return false">📜 Histórico</a> ·
-    <a href="#" onclick="App.openOwner();return false">🔐 Área do Proprietário</a>
+    <a href="#" onclick="App.openDrawer();return false">📜 Histórico</a>
   </p>
   <p style="margin-top:14px;font-size:10px;color:#999">Quadrô Pizza · Maio 2026</p>
 </footer>
@@ -699,15 +700,6 @@
   </div>
 </div>
 
-<!-- OWNER -->
-<div class="owner-panel" id="ownerPanel">
-  <div class="owner-header">
-    <h2>QUADRÔ<span> · Painel</span></h2>
-    <button onclick="App.closeOwner()" style="color:#fff;font-size:26px">×</button>
-  </div>
-  <div class="owner-content" id="ownerContent"></div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -765,6 +757,32 @@ const COMBOS=[
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Sabor do Kapo',type:'one',opts:KAPO_SAB}]},
 ];
 function servesLabel(c){return c.pessoas>1?`Serve ${c.pessoas} pessoas`:'Serve 1 pessoa';}
+
+// Mapa sabor -> imagem (pra mostrar nos botões de seleção do combo)
+const SABOR_IMG={
+  // 25cm
+  'Calabresa':'images/pizzas/calabresa.jpg',
+  'Frango c/ Catupiry':'images/pizzas/frango-catupiry.jpg',
+  'Portuguesa':'images/pizzas/portuguesa.jpg',
+  'Quatro Queijos':'images/pizzas/quatro-queijos.jpg',
+  'Milho c/ Bacon':'images/pizzas/milho-bacon.jpg',
+  'Nutellô':'images/pizzas/nutella.jpg',
+  'Ovomaltine':'images/pizzas/ovomaltine.jpg',
+  'Choc. ao Leite':'images/pizzas/choc-leite.jpg',
+  'Choc. Branco':'images/pizzas/choc-branco.jpg',
+};
+const SABOR_IMG_MINI={
+  'Calabresa':'images/mini/calabresa.jpg',
+  'Frango c/ Catupiry':'images/mini/frango.jpg',
+  'Nutellô':'images/mini/nutella.jpg',
+  'Ovomaltine':'images/mini/ovomaltine.jpg',
+  'Choc. ao Leite':'images/mini/choc-leite.jpg',
+  'Choc. Branco':'images/mini/choc-branco.jpg',
+};
+function imgForFlavor(label,sabor){
+  if(/Mini/i.test(label)) return SABOR_IMG_MINI[sabor]||'';
+  return SABOR_IMG[sabor]||'';
+}
 
 const BEBIDAS={
   lata:[
@@ -940,15 +958,21 @@ const App=(function(){
       item.picks.forEach((pk,idx)=>{
         if(pk.type==='one'){
           html+=`<div class="modal-section"><h3>${pk.label}</h3><div class="options">`;
-          pk.opts.forEach(o=>html+=`<button class="opt" data-pick="${idx}" data-val="${o}"><span>${o}</span><span class="opt-check"></span></button>`);
+          pk.opts.forEach(o=>{
+            const img=imgForFlavor(pk.label,o);
+            const thumb=img?`<img class="opt-thumb" src="${img}" alt="" onerror="this.style.display='none'">`:'';
+            html+=`<button class="opt" data-pick="${idx}" data-val="${o}">${thumb}<span class="opt-name">${o}</span><span class="opt-check"></span></button>`;
+          });
           html+=`</div></div>`;
         } else {
           html+=`<div class="modal-section"><h3>${pk.label}</h3>
             <div class="pick-counter" data-counter="${idx}" data-max="${pk.max}">Escolhidos: 0 / ${pk.max}</div>
             <div class="pick-list">`;
           pk.opts.forEach(o=>{
+            const img=imgForFlavor(pk.label,o);
+            const thumb=img?`<img class="pick-thumb" src="${img}" alt="" onerror="this.style.display='none'">`:'';
             html+=`<div class="pick-item" data-pick="${idx}" data-val="${o}">
-              <span class="pn">${o}</span>
+              ${thumb}<span class="pn">${o}</span>
               <div class="pick-qty">
                 <button class="pq-minus" disabled>−</button><span class="v">0</span><button class="pq-plus">+</button>
               </div></div>`;
@@ -1309,39 +1333,7 @@ const App=(function(){
     }
   }
 
-  /* OWNER */
-  async function sha256(s){const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');}
-  async function openOwner(){
-    const hash=localStorage.getItem('qp_owner_hash');
-    const session=JSON.parse(localStorage.getItem('qp_owner_session')||'null');
-    $('ownerPanel').classList.add('open');
-    if(session&&session.exp>Date.now()){renderOwner();return;}
-    const c=$('ownerContent');
-    if(!hash){
-      c.innerHTML=`<div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow);border-top:4px solid var(--red)">
-        <h2 style="margin-bottom:14px;font-family:'Anton',sans-serif;font-size:24px">🔐 Primeiro acesso</h2>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Defina sua senha (mín. 4 caracteres).</p>
-        <input type="text" class="field" value="quadro" readonly>
-        <input type="password" id="ownerPass" class="field" placeholder="Defina uma senha">
-        <input type="password" id="ownerPass2" class="field" placeholder="Confirme a senha">
-        <button class="btn-primary" id="btnSetPass">Definir senha</button></div>`;
-      $('btnSetPass').onclick=async ()=>{const p1=$('ownerPass').value,p2=$('ownerPass2').value;if(p1.length<4){toast('Mín. 4');return;}if(p1!==p2){toast('Senhas não conferem');return;}localStorage.setItem('qp_owner_hash',await sha256(p1));localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));toast('✅ Senha definida');renderOwner();};
-    } else {
-      c.innerHTML=`<div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow);border-top:4px solid var(--red)">
-        <h2 style="margin-bottom:14px;font-family:'Anton',sans-serif;font-size:24px">🔐 Área do Proprietário</h2>
-        <input type="text" class="field" value="quadro" readonly>
-        <input type="password" id="ownerPass" class="field" placeholder="Senha">
-        <button class="btn-primary" id="btnLogin">Entrar</button>
-        <button class="btn-secondary" id="btnReset">Esqueci a senha</button></div>`;
-      $('btnLogin').onclick=async ()=>{const p=$('ownerPass').value;if(await sha256(p)===hash){localStorage.setItem('qp_owner_session',JSON.stringify({exp:Date.now()+8*3600*1000}));renderOwner();}else toast('Senha incorreta');};
-      $('btnReset').onclick=()=>{if(confirm('Apagar senha?')){localStorage.removeItem('qp_owner_hash');localStorage.removeItem('qp_owner_session');openOwner();}};
-    }
-  }
-  function closeOwner(){$('ownerPanel').classList.remove('open');}
-  function logoutOwner(){localStorage.removeItem('qp_owner_session');closeOwner();toast('Sessão encerrada');}
-  function exportData(){const data={orders:JSON.parse(localStorage.getItem('qp_orders')||'[]'),reviews:JSON.parse(localStorage.getItem('qp_reviews')||'[]'),exportedAt:new Date().toISOString()};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`quadro-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);}
-
-  function renderOwner(){
+  function _ownerRemoved_renderOwner(){
     const c=$('ownerContent');
     const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
     const reviews=JSON.parse(localStorage.getItem('qp_reviews')||'[]');
@@ -1388,7 +1380,7 @@ const App=(function(){
     $('customerName').addEventListener('keypress',e=>{if(e.key==='Enter')saveName();});
   }
 
-  return {init,saveName,changeName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,itemQty,clearCart,closeModal,openOwner,closeOwner,logoutOwner,exportData,dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById,openDrawer,closeDrawer,goToCombo,addFig,addFigCustom,figQtyChange,openFigModal};
+  return {init,saveName,changeName,changeQty,confirmAdd,openCart,openCheckout,copyPix,sendWhatsApp,sendRating,itemQty,clearCart,closeModal,dismissCombo,openComboSuggested,openFifa,dismissReorder,reorder,reorderById,openDrawer,closeDrawer,goToCombo,addFig,addFigCustom,figQtyChange,openFigModal};
 })();
 document.addEventListener('DOMContentLoaded',App.init);
 </script>
