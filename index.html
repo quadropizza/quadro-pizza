@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadrô Pizza — Cardápio Digital</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  :root{
+    --red:#e10600;--red-dark:#b80500;--yellow:#ffd400;--black:#0a0a0a;--gray:#1a1a1a;
+    --light:#f7f7f7;--text:#1a1a1a;--muted:#777;--success:#1aa84a;--border:#e5e5e5;
+    --shadow:0 4px 20px rgba(0,0,0,.08);
+  }
+  html,body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--light);overflow-x:hidden}
+  body{min-height:100vh;padding-bottom:90px}
+  img{max-width:100%;display:block}
+  button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ---------- HEADER ---------- */
+  header{background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);color:#fff;padding:18px 16px 14px;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+  .brand{display:flex;align-items:center;gap:10px;justify-content:center}
+  .brand-logo{width:42px;height:42px;background:var(--yellow);color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;border-radius:8px;transform:rotate(-3deg);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+  .brand h1{font-size:22px;letter-spacing:.5px;font-weight:800}
+  .brand h1 span{color:var(--yellow)}
+  .subtitle{text-align:center;font-size:12px;opacity:.9;margin-top:4px;letter-spacing:.4px}
+  .greeting{background:var(--yellow);color:var(--black);text-align:center;padding:8px 12px;font-weight:700;font-size:14px}
+
+  /* ---------- TABS ---------- */
+  nav.tabs{display:flex;background:#fff;position:sticky;top:88px;z-index:40;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow-x:auto;scrollbar-width:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  .tab{flex:1;min-width:90px;padding:14px 8px;font-size:13px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;transition:.2s;white-space:nowrap}
+  .tab.active{color:var(--red);border-color:var(--red)}
+  .tab-emoji{font-size:18px;display:block;margin-bottom:2px}
+
+  /* ---------- MAIN / CARDS ---------- */
+  main{padding:16px 14px;max-width:720px;margin:0 auto}
+  .section-title{font-size:20px;font-weight:800;margin:8px 0 14px;color:var(--black)}
+  .section-title small{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-top:2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);transition:transform .15s;display:flex;flex-direction:column}
+  .card:active{transform:scale(.98)}
+  .card-img{height:120px;background:linear-gradient(135deg,#ffe88a,#ffb800);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative}
+  .card-img.combo{background:linear-gradient(135deg,#e10600,#7a0300);color:#fff}
+  .card-img.doce{background:linear-gradient(135deg,#7a4a2a,#3a1f10);color:#fff}
+  .card-img.bebida{background:linear-gradient(135deg,#2a6fdb,#0d3a8c);color:#fff}
+  .card-tag{position:absolute;top:8px;left:8px;background:var(--yellow);color:var(--black);padding:3px 8px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:.5px}
+  .card-body{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column}
+  .card h3{font-size:14px;font-weight:700;line-height:1.25;margin-bottom:4px}
+  .card-desc{font-size:11px;color:var(--muted);line-height:1.35;margin-bottom:8px;flex:1}
+  .card-price{font-size:16px;font-weight:800;color:var(--red);margin-bottom:8px}
+  .btn-add{background:var(--black);color:#fff;border-radius:8px;padding:8px 0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;transition:.2s;width:100%}
+  .btn-add:hover{background:var(--red)}
+  .btn-add.added{background:var(--success)}
+
+  /* ---------- FAB CART ---------- */
+  .fab-cart{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;border-radius:50px;padding:14px 22px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(225,6,0,.35);z-index:45;transition:.2s;border:2px solid var(--yellow)}
+  .fab-cart:hover{transform:translateX(-50%) translateY(-2px)}
+  .fab-cart.hidden{transform:translateX(-50%) translateY(120px);opacity:0;pointer-events:none}
+  .fab-badge{background:var(--yellow);color:var(--black);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .2s;padding:0}
+  .modal-overlay.open{opacity:1;pointer-events:auto}
+  .modal{background:#fff;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;transform:translateY(40px);transition:transform .25s;padding:20px}
+  .modal-overlay.open .modal{transform:translateY(0)}
+  .modal-overlay.center{align-items:center;padding:14px}
+  .modal-overlay.center .modal{border-radius:18px;max-width:440px}
+  .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .modal-head h2{font-size:18px;font-weight:800}
+  .modal-close{font-size:24px;color:var(--muted);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#f0f0f0}
+  .modal-section{margin-bottom:18px}
+  .modal-section h3{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--black)}
+  .field{display:block;width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;margin-bottom:10px;background:#fff}
+  .field:focus{outline:none;border-color:var(--red)}
+  .options{display:grid;gap:8px}
+  .opt{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:space-between;font-size:14px;cursor:pointer;transition:.15s;background:#fff;text-align:left}
+  .opt:hover{border-color:var(--red)}
+  .opt.selected{border-color:var(--red);background:#fff5f4;font-weight:700}
+  .opt small{display:block;color:var(--muted);font-size:11px;margin-top:2px;font-weight:400}
+  .btn-primary{width:100%;background:var(--red);color:#fff;padding:14px;border-radius:12px;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .btn-primary:hover{background:var(--red-dark)}
+  .btn-primary:disabled{background:#ccc;cursor:not-allowed}
+  .btn-secondary{width:100%;background:#fff;color:var(--black);padding:12px;border-radius:12px;font-weight:700;font-size:14px;border:1.5px solid var(--border);margin-top:8px}
+  .btn-whatsapp{width:100%;background:#25d366;color:#fff;padding:16px;border-radius:12px;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px}
+
+  /* CART ITEMS */
+  .cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+  .cart-item:last-child{border-bottom:none}
+  .cart-item-info{flex:1}
+  .cart-item-name{font-weight:700;font-size:14px;margin-bottom:4px}
+  .cart-item-detail{font-size:12px;color:var(--muted);line-height:1.4}
+  .cart-item-price{font-weight:800;color:var(--red);font-size:14px;margin-top:4px}
+  .qty{display:flex;align-items:center;gap:6px}
+  .qty button{width:28px;height:28px;border-radius:50%;background:#f0f0f0;font-weight:800;font-size:16px;color:var(--black)}
+  .qty button.minus{background:#ffe5e5;color:var(--red)}
+  .cart-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:2px solid var(--black);margin-top:8px}
+  .cart-total strong{font-size:20px;color:var(--red)}
+
+  /* WELCOME */
+  .welcome-logo{text-align:center;margin-bottom:14px}
+  .welcome-logo .brand-logo{margin:0 auto 8px;width:64px;height:64px;font-size:32px}
+  .welcome-logo h2{font-size:22px;font-weight:900;color:var(--red)}
+  .welcome-logo p{font-size:13px;color:var(--muted);margin-top:4px}
+
+  /* PIX BOX */
+  .pix-box{background:#fff5d6;border:1.5px dashed var(--yellow);border-radius:10px;padding:14px;margin-bottom:12px}
+  .pix-box label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+  .pix-value{font-family:monospace;font-size:16px;font-weight:800;color:var(--black);word-break:break-all}
+  .btn-copy{margin-top:8px;background:var(--black);color:#fff;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700}
+
+  /* STARS */
+  .stars{display:flex;justify-content:center;gap:6px;margin:14px 0}
+  .star{font-size:36px;color:#ddd;cursor:pointer;transition:.15s}
+  .star.active{color:var(--yellow)}
+
+  /* FOOTER */
+  footer{text-align:center;padding:30px 16px;color:var(--muted);font-size:12px}
+  footer a{color:var(--muted);text-decoration:underline;font-size:11px}
+
+  /* OWNER PANEL */
+  .owner-panel{position:fixed;inset:0;background:var(--light);z-index:200;overflow-y:auto;display:none}
+  .owner-panel.open{display:block}
+  .owner-header{background:var(--black);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+  .owner-header h2{font-size:18px;font-weight:800}
+  .owner-header h2 span{color:var(--yellow)}
+  .owner-content{padding:18px 14px;max-width:900px;margin:0 auto}
+  .cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+  .stat-card{background:#fff;padding:14px;border-radius:12px;box-shadow:var(--shadow)}
+  .stat-card .icon{font-size:22px;margin-bottom:6px}
+  .stat-card .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .stat-card .value{font-size:22px;font-weight:800;color:var(--black);margin-top:4px}
+  .chart-card{background:#fff;padding:16px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:14px}
+  .chart-card h3{font-size:14px;font-weight:700;margin-bottom:12px}
+  .chart-card canvas{width:100% !important;height:auto !important;max-height:200px}
+  .ranking-list{list-style:none}
+  .ranking-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px}
+  .ranking-list li:last-child{border-bottom:none}
+  .ranking-list .rank{width:24px;height:24px;background:var(--red);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-right:8px}
+  .review{padding:10px 0;border-bottom:1px solid var(--border)}
+  .review:last-child{border-bottom:none}
+  .review-head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:4px}
+  .review-stars{color:var(--yellow);font-size:14px}
+  .review-comment{font-size:13px;color:var(--text)}
+  .filter-tabs{display:flex;gap:6px;margin-bottom:14px;background:#fff;padding:4px;border-radius:10px}
+  .filter-tab{flex:1;padding:8px;font-size:12px;font-weight:600;border-radius:8px;color:var(--muted);text-align:center}
+  .filter-tab.active{background:var(--black);color:var(--yellow)}
+
+  .empty{text-align:center;padding:30px 20px;color:var(--muted);font-size:13px}
+  .empty .em{font-size:42px;margin-bottom:10px}
+
+  /* ORDER HISTORY MINI */
+  .history-item{background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;box-shadow:var(--shadow);font-size:13px}
+  .history-item .top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px}
+  .history-item .tot{font-weight:800;color:var(--red);margin-top:6px}
+
+  /* Toast */
+  .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--black);color:#fff;padding:12px 22px;border-radius:50px;font-size:13px;font-weight:600;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.25s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+  @media(min-width:600px){
+    .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+    .cards-grid{grid-template-columns:repeat(4,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== WELCOME MODAL ========== -->
+<div class="modal-overlay center" id="welcomeModal">
+  <div class="modal">
+    <div class="welcome-logo">
+      <div class="brand-logo">Q</div>
+      <h2>Quadrô Pizza</h2>
+      <p>A pizza que nasceu pra ser diferente</p>
+    </div>
+    <div class="modal-section">
+      <h3>Como podemos te chamar?</h3>
+      <input type="text" id="customerName" class="field" placeholder="Seu nome" maxlength="40" autocomplete="given-name">
+      <button class="btn-primary" onclick="App.saveName()">🍕 Vamos pedir!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="brand">
+    <div class="brand-logo">Q</div>
+    <h1>Quadrô<span> Pizza</span></h1>
+  </div>
+  <div class="subtitle">RETANGULAR · ARTESANAL · INSANA · UNIVALI C2</div>
+</header>
+<div class="greeting" id="greetingBar"></div>
+
+<!-- ========== TABS ========== -->
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-tab="combos"><span class="tab-emoji">🔥</span>Combos</button>
+  <button class="tab" data-tab="pizza"><span class="tab-emoji">🍕</span>Pizza 25cm</button>
+  <button class="tab" data-tab="mini"><span class="tab-emoji">🍕</span>Mini</button>
+  <button class="tab" data-tab="bebidas"><span class="tab-emoji">🥤</span>Bebidas</button>
+  <button class="tab" data-tab="figurinhas"><span class="tab-emoji">⚽</span>Figurinhas</button>
+</nav>
+
+<!-- ========== MAIN ========== -->
+<main>
+  <section id="tab-combos" class="tab-content">
+    <h2 class="section-title">Combos em Destaque <small>Escolha seus sabores na hora de adicionar</small></h2>
+    <div class="grid" id="grid-combos"></div>
+  </section>
+  <section id="tab-pizza" class="tab-content" hidden>
+    <h2 class="section-title">Quadrô 25cm — R$ 19,99 <small>A clássica retangular</small></h2>
+    <div class="grid" id="grid-pizza"></div>
+  </section>
+  <section id="tab-mini" class="tab-content" hidden>
+    <h2 class="section-title">Quadrô Mini — R$ 12,90 <small>Versão pessoal</small></h2>
+    <div class="grid" id="grid-mini"></div>
+  </section>
+  <section id="tab-bebidas" class="tab-content" hidden>
+    <h2 class="section-title">Bebidas <small>Geladinhas, do nosso jeito</small></h2>
+    <div class="grid" id="grid-bebidas"></div>
+  </section>
+  <section id="tab-figurinhas" class="tab-content" hidden>
+    <h2 class="section-title">Figurinhas FIFA 2026 <small>⚠️ Pagamento somente em PIX</small></h2>
+    <div class="grid" id="grid-figurinhas"></div>
+  </section>
+</main>
+
+<footer>
+  <p>📍 Univali Itajaí · Bloco C2 · Ao lado do Teatro</p>
+  <p>📱 WhatsApp (47) 99766-1485 · 📷 @quadropizzaa</p>
+  <p style="margin-top:10px">
+    <a href="#" onclick="App.showHistory();return false">Meus pedidos</a> ·
+    <a href="#" onclick="App.openOwner();return false">Área do Proprietário</a>
+  </p>
+</footer>
+
+<!-- ========== FAB CART ========== -->
+<button class="fab-cart hidden" id="fabCart" onclick="App.openCart()">
+  🛒 <span id="cartLabel">Ver carrinho</span>
+  <span class="fab-badge" id="cartBadge">0</span>
+</button>
+
+<!-- ========== ADD ITEM MODAL ========== -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="addTitle">Item</h2>
+      <button class="modal-close" onclick="App.closeModal('addModal')">×</button>
+    </div>
+    <div id="addBody"></div>
+    <button class="btn-primary" id="btnConfirmAdd" onclick="App.confirmAdd()">Adicionar ao carrinho</button>
+  </div>
+</div>
+
+<!-- ========== CART MODAL ========== -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Seu pedido 🛒</h2>
+      <button class="modal-close" onclick="App.closeModal('cartModal')">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cartTotal">R$ 0,00</strong>
+    </div>
+    <button class="btn-primary" id="btnCheckout" onclick="App.openCheckout()">Finalizar Pedido</button>
+    <button class="btn-secondary" onclick="App.clearCart()">Limpar carrinho</button>
+  </div>
+</div>
+
+<!-- ========== CHECKOUT MODAL ========== -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Finalizar pedido</h2>
+      <button class="modal-close" onclick="App.closeModal('checkoutModal')">×</button>
+    </div>
+    <div class="modal-section">
+      <h3>1. Entrega</h3>
+      <div class="options" id="deliveryOpts">
+        <button class="opt selected" data-delivery="balcao">
+          <span>🏪 Retirar no Balcão<small>Bloco C2 · agora ou agendar</small></span>
+          <span>✓</span>
+        </button>
+        <button class="opt" data-delivery="sala">
+          <span>🎒 Entrega na Sala (CAU)<small>Exclusivo CAU 1°–5° · intervalos 08h50 ou 15h00</small></span>
+          <span></span>
+        </button>
+      </div>
+      <div id="scheduleBox" style="margin-top:10px">
+        <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px">Quando?</label>
+        <select id="scheduleSelect" class="field"></select>
+        <input type="text" id="salaInput" class="field" placeholder="Ano / Sala (ex: 3° Arquitetura · sala 203)" style="display:none">
+      </div>
+    </div>
+    <div class="modal-section">
+      <h3>2. Pagamento</h3>
+      <div class="options" id="payOpts">
+        <button class="opt selected" data-pay="PIX"><span>💸 PIX</span><span>✓</span></button>
+        <button class="opt" data-pay="Débito"><span>💳 Débito</span><span></span></button>
+        <button class="opt" data-pay="Crédito"><span>💳 Crédito</span><span></span></button>
+        <button class="opt" data-pay="Dinheiro"><span>💵 Dinheiro</span><span></span></button>
+      </div>
+      <div id="pixBox" class="pix-box" style="margin-top:12px">
+        <label>Chave PIX (CNPJ)</label>
+        <div class="pix-value">60.723.998/0001-84</div>
+        <button class="btn-copy" onclick="App.copyPix()">📋 Copiar chave</button>
+      </div>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="checkoutTotal">R$ 0,00</strong>
+    </div>
+    <button class="btn-whatsapp" onclick="App.sendWhatsApp()">📱 Confirmar via WhatsApp</button>
+  </div>
+</div>
+
+<!-- ========== RATING MODAL ========== -->
+<div class="modal-overlay center" id="ratingModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Como foi sua experiência? ⭐</h2>
+      <button class="modal-close" onclick="App.closeModal('ratingModal')">×</button>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:13px">Sua opinião nos ajuda a melhorar!</p>
+    <div class="stars" id="starsRow">
+      <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span><span class="star" data-v="4">★</span><span class="star" data-v="5">★</span>
+    </div>
+    <textarea id="ratingComment" class="field" rows="3" placeholder="Comentário (opcional)"></textarea>
+    <button class="btn-primary" onclick="App.sendRating()">Enviar avaliação</button>
+  </div>
+</div>
+
+<!-- ========== HISTORY MODAL ========== -->
+<div class="modal-overlay" id="historyModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Meus pedidos 📜</h2>
+      <button class="modal-close" onclick="App.closeModal('historyModal')">×</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+</div>
+
+<!-- ========== OWNER PANEL ========== -->
+<div class="owner-panel" id="ownerPanel">
+  <div class="owner-header">
+    <h2>Quadrô<span> · Painel</span></h2>
+    <button onclick="App.closeOwner()" style="color:#fff;font-size:24px">×</button>
+  </div>
+  <div class="owner-content" id="ownerContent"></div>
+</div>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================================================================
+   QUADRÔ PIZZA — Cardápio Digital
+   ================================================================ */
+
+const STORE = {
+  whatsapp: '5547997661485',
+  pix: '60.723.998/0001-84',
+  ownerUser: 'quadro'
+};
+
+const PIZZA_SAB_SALG = ['Calabresa','Frango c/ Catupiry','Portuguesa','Marguerita','Quatro Queijos','Milho c/ Bacon'];
+const PIZZA_SAB_DOCE = ['Nutellô','Ovomaltine','Choc. ao Leite','Choc. Branco'];
+const PIZZA_SABORES  = [...PIZZA_SAB_SALG, ...PIZZA_SAB_DOCE];
+const MINI_SAB_SALG  = ['Calabresa','Frango'];
+const MINI_SAB_DOCE  = ['Nutellô','Ovomaltine','Choc. ao Leite','Choc. Branco'];
+const MINI_SABORES   = [...MINI_SAB_SALG, ...MINI_SAB_DOCE];
+const REFRI_LATA     = ['Coca-Cola','Guaraná Antarctica','Fanta Laranja','Sprite'];
+const REFRI_MINI     = ['Coca-Cola 200ml','Guaraná 200ml'];
+const KAPO_SAB       = ['Uva','Maracujá','Morango'];
+
+const COMBOS = [
+  {id:'c1',nome:'⚽ Individual Copa 2026',desc:'Pizza 25cm + Refri Lata + 1 Figurinha FIFA',preco:26.90,
+    escolhas:[{label:'Sabor da Pizza 25cm',opts:PIZZA_SABORES},{label:'Refrigerante Lata',opts:REFRI_LATA}]},
+  {id:'c2',nome:'⚽ Dupla Copa 2026',desc:'2 Pizzas 25cm + Refri Lata + 2 Figurinhas',preco:49.90,
+    escolhas:[{label:'1ª Pizza 25cm',opts:PIZZA_SABORES},{label:'2ª Pizza 25cm',opts:PIZZA_SABORES},{label:'Refrigerante Lata',opts:REFRI_LATA}]},
+  {id:'c3',nome:'🔥 25cm + Mini + Refri',desc:'Pizza 25cm + Mini + Refri 200ml',preco:26.90,
+    escolhas:[{label:'Sabor da Pizza 25cm',opts:PIZZA_SABORES},{label:'Sabor da Mini',opts:MINI_SABORES},{label:'Refrigerante 200ml',opts:REFRI_MINI}]},
+  {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'2 Pizzas 25cm + Refrigerante Lata',preco:36.90,
+    escolhas:[{label:'1ª Pizza 25cm',opts:PIZZA_SABORES},{label:'2ª Pizza 25cm',opts:PIZZA_SABORES},{label:'Refrigerante Lata',opts:REFRI_LATA}]},
+  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini + Coca-Cola 200ml',preco:14.90,
+    escolhas:[{label:'Sabor da Mini',opts:MINI_SABORES}]},
+  {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'2 Minis à sua escolha',preco:22.90,
+    escolhas:[{label:'1ª Mini',opts:MINI_SABORES},{label:'2ª Mini',opts:MINI_SABORES}]},
+  {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini + Kapo 200ml',preco:14.90,
+    escolhas:[{label:'Sabor da Mini',opts:MINI_SABORES},{label:'Kapo',opts:KAPO_SAB}]},
+];
+
+const PIZZA25 = PIZZA_SABORES.map((s,i)=>({
+  id:'p25_'+i,nome:'Quadrô 25cm '+s,desc:s,preco:19.99,
+  tipo:PIZZA_SAB_DOCE.includes(s)?'doce':'salg'
+}));
+const PIZZA_MINI = MINI_SABORES.map((s,i)=>({
+  id:'pm_'+i,nome:'Quadrô Mini '+s,desc:s,preco:12.90,
+  tipo:MINI_SAB_DOCE.includes(s)?'doce':'salg'
+}));
+
+const BEBIDAS = [
+  {id:'b1',nome:'Coca-Cola Lata 350ml',preco:6.90,emoji:'🥤'},
+  {id:'b2',nome:'Guaraná Antarctica 350ml',preco:6.90,emoji:'🥤'},
+  {id:'b3',nome:'Fanta Laranja 350ml',preco:6.90,emoji:'🥤'},
+  {id:'b4',nome:'Sprite 350ml',preco:6.90,emoji:'🥤'},
+  {id:'b5',nome:'Coca-Cola 200ml',preco:5.00,emoji:'🧃'},
+  {id:'b6',nome:'Guaraná 200ml',preco:5.00,emoji:'🧃'},
+  {id:'b7',nome:'Água sem gás 500ml',preco:4.00,emoji:'💧'},
+  {id:'b8',nome:'Água com gás 500ml',preco:5.00,emoji:'💧'},
+  {id:'b9',nome:'Kapo 200ml (Uva)',preco:4.50,emoji:'🧃'},
+  {id:'b10',nome:'Kapo 200ml (Maracujá)',preco:4.50,emoji:'🧃'},
+  {id:'b11',nome:'Kapo 200ml (Morango)',preco:4.50,emoji:'🧃'},
+  {id:'b12',nome:'Del Valle Lata Uva',preco:6.00,emoji:'🧃'},
+  {id:'b13',nome:'Del Valle Lata Pêssego',preco:6.00,emoji:'🧃'},
+];
+
+const FIGURINHAS = {id:'fig',nome:'Pacote de Figurinhas FIFA 2026',desc:'⚠️ Pagamento somente em PIX',pixOnly:true};
+
+/* ============== STATE ============== */
+const App = (function(){
+  let cart = JSON.parse(localStorage.getItem('qp_cart')||'[]');
+  let name = localStorage.getItem('qp_name')||'';
+  let pending = null;
+  let delivery = 'balcao';
+  let payment = 'PIX';
+  let scheduleVal = 'now';
+  let salaVal = '';
+  let ratingVal = 0;
+  let lastOrderId = null;
+
+  const $ = id=>document.getElementById(id);
+  const fmt = v=>'R$ '+v.toFixed(2).replace('.',',');
+
+  function toast(msg){
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(()=>t.classList.remove('show'),2200);
+  }
+
+  function save(){ localStorage.setItem('qp_cart',JSON.stringify(cart)); }
+  function saveName(){
+    const v = $('customerName').value.trim();
+    if(!v){ toast('Coloca seu nome aí 😉'); return; }
+    name = v;
+    localStorage.setItem('qp_name',name);
+    $('welcomeModal').classList.remove('open');
+    renderGreeting();
+  }
+
+  function renderGreeting(){
+    const bar = $('greetingBar');
+    if(!name){ bar.style.display='none'; return; }
+    const isReturning = localStorage.getItem('qp_visited');
+    bar.textContent = isReturning ? `Que bom te ver, ${name}! 🔥` : `Olá, ${name}! Prazer te conhecer 🍕`;
+    bar.style.display = 'block';
+    localStorage.setItem('qp_visited','1');
+  }
+
+  /* ====== RENDER GRIDS ====== */
+  function cardHtml(item, klass, emoji, tag){
+    return `
+      <div class="card">
+        <div class="card-img ${klass||''}">
+          ${tag?`<span class="card-tag">${tag}</span>`:''}
+          <span>${emoji||'🍕'}</span>
+        </div>
+        <div class="card-body">
+          <h3>${item.nome}</h3>
+          <p class="card-desc">${item.desc||''}</p>
+          <div class="card-price">${item.priceLabel||fmt(item.preco)}</div>
+          <button class="btn-add" data-id="${item.id}">+ Adicionar</button>
+        </div>
+      </div>`;
+  }
+
+  function renderAll(){
+    $('grid-combos').innerHTML = COMBOS.map(c=>cardHtml(c,'combo','🔥','COMBO')).join('');
+    $('grid-pizza').innerHTML  = PIZZA25.map(p=>cardHtml(p, p.tipo==='doce'?'doce':'', p.tipo==='doce'?'🍫':'🍕')).join('');
+    $('grid-mini').innerHTML   = PIZZA_MINI.map(p=>cardHtml(p, p.tipo==='doce'?'doce':'', p.tipo==='doce'?'🍫':'🍕', 'MINI')).join('');
+    $('grid-bebidas').innerHTML= BEBIDAS.map(b=>cardHtml(b,'bebida',b.emoji)).join('');
+    $('grid-figurinhas').innerHTML = cardHtml({...FIGURINHAS,priceLabel:'A partir de R$ 6,50'},'combo','⚽','PIX');
+
+    document.querySelectorAll('.btn-add').forEach(btn=>{
+      btn.addEventListener('click',()=>openAdd(btn.dataset.id));
+    });
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.addEventListener('click',()=>switchTab(t.dataset.tab));
+    });
+  }
+
+  function switchTab(name){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===name));
+    document.querySelectorAll('.tab-content').forEach(s=>s.hidden = s.id!=='tab-'+name);
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  /* ====== ADD ITEM FLOW ====== */
+  function openAdd(id){
+    let item = COMBOS.find(c=>c.id===id) ||
+               PIZZA25.find(p=>p.id===id) ||
+               PIZZA_MINI.find(p=>p.id===id) ||
+               BEBIDAS.find(b=>b.id===id);
+    if(id==='fig') item = FIGURINHAS;
+    if(!item) return;
+
+    pending = { item: JSON.parse(JSON.stringify(item)), escolhas:{}, qty:1, fig_qty:1 };
+    $('addTitle').textContent = item.nome;
+
+    const body = $('addBody');
+    let html = `<p class="card-desc" style="margin-bottom:14px">${item.desc||''}</p>`;
+
+    if(item.id==='fig'){
+      html += `<div class="modal-section">
+        <h3>Quantidade de pacotes</h3>
+        <input type="number" id="figQty" class="field" min="1" value="1">
+        <p style="font-size:12px;color:var(--muted);line-height:1.5">
+          Até 10 pct: <strong>R$ 6,90</strong>/pacote<br>
+          11–50 pct: <strong>R$ 6,80</strong>/pacote<br>
+          51+ pct: <strong>R$ 6,50</strong>/pacote
+        </p></div>`;
+    } else if(item.escolhas){
+      item.escolhas.forEach((esc,idx)=>{
+        html += `<div class="modal-section"><h3>${esc.label}</h3><div class="options">`;
+        esc.opts.forEach(o=>{
+          html += `<button class="opt" data-esc="${idx}" data-val="${o}"><span>${o}</span><span></span></button>`;
+        });
+        html += `</div></div>`;
+      });
+    }
+
+    html += `<div class="modal-section">
+      <h3>Quantidade</h3>
+      <div class="qty" style="justify-content:center;gap:18px">
+        <button class="minus" onclick="App.changeQty(-1)">−</button>
+        <span id="qtyValue" style="font-size:22px;font-weight:800;min-width:30px;text-align:center">1</span>
+        <button onclick="App.changeQty(1)">+</button>
+      </div></div>`;
+
+    body.innerHTML = html;
+
+    body.querySelectorAll('.opt').forEach(b=>{
+      b.addEventListener('click',()=>{
+        const idx = b.dataset.esc;
+        body.querySelectorAll(`.opt[data-esc="${idx}"]`).forEach(x=>{
+          x.classList.remove('selected');
+          x.querySelector('span:last-child').textContent='';
+        });
+        b.classList.add('selected');
+        b.querySelector('span:last-child').textContent='✓';
+        pending.escolhas[idx] = b.dataset.val;
+      });
+    });
+
+    $('addModal').classList.add('open');
+  }
+
+  function changeQty(delta){
+    if(!pending) return;
+    pending.qty = Math.max(1, pending.qty+delta);
+    $('qtyValue').textContent = pending.qty;
+  }
+
+  function confirmAdd(){
+    if(!pending) return;
+    const it = pending.item;
+
+    if(it.id==='fig'){
+      const q = parseInt($('figQty').value,10)||1;
+      const price = q>50 ? 6.50 : (q>10 ? 6.80 : 6.90);
+      cart.push({
+        id: 'fig_'+Date.now(),
+        nome: `Figurinhas FIFA (${q} pct)`,
+        preco: +(price*q).toFixed(2),
+        qty: 1,
+        pixOnly: true,
+        detalhes: [`${q} pacote(s) · ${price.toFixed(2).replace('.',',')} cada`]
+      });
+    } else {
+      if(it.escolhas){
+        for(let i=0;i<it.escolhas.length;i++){
+          if(!pending.escolhas[i]){
+            toast('Falta escolher: '+it.escolhas[i].label);
+            return;
+          }
+        }
+      }
+      const detalhes = it.escolhas
+        ? it.escolhas.map((e,i)=>`${e.label}: ${pending.escolhas[i]}`)
+        : [];
+      cart.push({
+        id: it.id+'_'+Date.now(),
+        nome: it.nome,
+        preco: it.preco,
+        qty: pending.qty,
+        detalhes
+      });
+    }
+
+    save();
+    renderCart();
+    closeModal('addModal');
+    toast('🛒 Adicionado ao carrinho');
+    flashAddedBtn(it.id);
+  }
+
+  function flashAddedBtn(id){
+    document.querySelectorAll(`.btn-add[data-id="${id}"]`).forEach(b=>{
+      b.classList.add('added');
+      b.textContent='✓ Adicionado';
+      setTimeout(()=>{b.classList.remove('added');b.textContent='+ Adicionar';},1200);
+    });
+  }
+
+  /* ====== CART ====== */
+  function cartTotal(){ return cart.reduce((s,i)=>s + i.preco*i.qty, 0); }
+  function cartCount(){ return cart.reduce((s,i)=>s + i.qty, 0); }
+
+  function renderCart(){
+    const fab = $('fabCart');
+    const n = cartCount();
+    if(n>0){
+      fab.classList.remove('hidden');
+      $('cartBadge').textContent = n;
+      $('cartLabel').textContent = `Ver carrinho · ${fmt(cartTotal())}`;
+    } else {
+      fab.classList.add('hidden');
+    }
+
+    const items = $('cartItems');
+    if(cart.length===0){
+      items.innerHTML = '<div class="empty"><div class="em">🛒</div>Seu carrinho está vazio</div>';
+      $('btnCheckout').disabled = true;
+    } else {
+      items.innerHTML = cart.map((it,idx)=>`
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${it.nome}</div>
+            ${(it.detalhes||[]).map(d=>`<div class="cart-item-detail">→ ${d}</div>`).join('')}
+            <div class="cart-item-price">${fmt(it.preco*it.qty)}</div>
+          </div>
+          <div class="qty">
+            <button class="minus" onclick="App.itemQty(${idx},-1)">−</button>
+            <span style="font-weight:700;min-width:20px;text-align:center">${it.qty}</span>
+            <button onclick="App.itemQty(${idx},1)">+</button>
+          </div>
+        </div>`).join('');
+      $('btnCheckout').disabled = false;
+    }
+    $('cartTotal').textContent = fmt(cartTotal());
+    $('checkoutTotal').textContent = fmt(cartTotal());
+  }
+
+  function itemQty(idx,delta){
+    cart[idx].qty += delta;
+    if(cart[idx].qty<=0) cart.splice(idx,1);
+    save(); renderCart();
+  }
+
+  function clearCart(){
+    if(cart.length===0) return;
+    if(confirm('Limpar carrinho?')){ cart=[]; save(); renderCart(); }
+  }
+
+  /* ====== CHECKOUT ====== */
+  function openCheckout(){
+    if(cart.length===0) return;
+    closeModal('cartModal');
+    setTimeout(()=>$('checkoutModal').classList.add('open'),200);
+    setupCheckout();
+  }
+
+  function setupCheckout(){
+    document.querySelectorAll('#deliveryOpts .opt').forEach(b=>{
+      b.onclick = ()=>{
+        document.querySelectorAll('#deliveryOpts .opt').forEach(x=>{x.classList.remove('selected');x.querySelector('span:last-child').textContent='';});
+        b.classList.add('selected');
+        b.querySelector('span:last-child').textContent='✓';
+        delivery = b.dataset.delivery;
+        updateScheduleBox();
+      };
+    });
+    document.querySelectorAll('#payOpts .opt').forEach(b=>{
+      b.onclick = ()=>{
+        const hasPixOnly = cart.some(i=>i.pixOnly);
+        if(hasPixOnly && b.dataset.pay!=='PIX'){
+          toast('Figurinhas só aceitam PIX');
+          return;
+        }
+        document.querySelectorAll('#payOpts .opt').forEach(x=>{x.classList.remove('selected');x.querySelector('span:last-child').textContent='';});
+        b.classList.add('selected');
+        b.querySelector('span:last-child').textContent='✓';
+        payment = b.dataset.pay;
+        $('pixBox').style.display = payment==='PIX'?'block':'none';
+      };
+    });
+    updateScheduleBox();
+  }
+
+  function updateScheduleBox(){
+    const sel = $('scheduleSelect');
+    const sala = $('salaInput');
+    sel.innerHTML = '';
+    if(delivery==='balcao'){
+      sala.style.display='none';
+      const opts = ['<option value="now">Agora (~5 min)</option>'];
+      for(let h=8;h<22;h++){
+        for(let m=0;m<60;m+=30){
+          const lbl = String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+          opts.push(`<option value="${lbl}">${lbl}</option>`);
+        }
+      }
+      sel.innerHTML = opts.join('');
+    } else {
+      sala.style.display='block';
+      sel.innerHTML = '<option value="08:50">Intervalo das 08h50</option><option value="15:00">Intervalo das 15h00</option>';
+    }
+    scheduleVal = sel.value;
+    sel.onchange = ()=>scheduleVal = sel.value;
+    sala.oninput = ()=>salaVal = sala.value;
+  }
+
+  function copyPix(){
+    navigator.clipboard.writeText(STORE.pix).then(()=>toast('✅ Chave PIX copiada!'));
+  }
+
+  /* ====== WHATSAPP ====== */
+  function sendWhatsApp(){
+    if(delivery==='sala' && !salaVal.trim()){
+      toast('Informe seu ano e sala'); return;
+    }
+
+    const orderId = String(Date.now()).slice(-6);
+    const total = cartTotal();
+    const now = new Date();
+    const data = now.toLocaleDateString('pt-BR');
+    const hora = now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+
+    let msg = `*NOVO PEDIDO - QUADRÔ PIZZA*\n`;
+    msg += `---------------------------------------\n`;
+    msg += `*Olá, ${name||'Cliente'}!* Recebemos seu pedido:\n\n`;
+    msg += `*Pedido #${orderId}*  |  ${data} às ${hora}\n\n`;
+    msg += `*ITENS:*\n----------------------\n`;
+    cart.forEach((it,i)=>{
+      msg += `${i+1}. *${it.nome}*${it.qty>1?` (x${it.qty})`:''} -- *${fmt(it.preco*it.qty)}*\n`;
+      (it.detalhes||[]).forEach(d=>msg += `   -> ${d}\n`);
+    });
+    msg += `----------------------\n`;
+    msg += `*TOTAL: ${fmt(total)}*\n\n`;
+
+    if(delivery==='balcao'){
+      msg += `*ENTREGA:* Retirar no Balcão (Bloco C2)\n`;
+      msg += `*QUANDO:* ${scheduleVal==='now'?'Agora (~5 minutos)':'Às '+scheduleVal}\n`;
+    } else {
+      msg += `*ENTREGA:* Entrega na Sala\n`;
+      msg += `*ONDE:* ${salaVal}\n`;
+      msg += `*QUANDO:* Intervalo das ${scheduleVal}\n`;
+    }
+    msg += `*PAGAMENTO:* ${payment}\n`;
+
+    if(payment==='PIX'){
+      msg += `\n*CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante nesta conversa!_\n`;
+    }
+    msg += `\nObrigado, ${name||'Cliente'}! Pizza pronta em ~5 min! 🔥`;
+
+    const order = {
+      id: orderId,
+      ts: now.toISOString(),
+      cliente: name||'Cliente',
+      itens: cart,
+      total,
+      delivery,
+      schedule: scheduleVal,
+      sala: salaVal,
+      payment
+    };
+    const orders = JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    orders.push(order);
+    localStorage.setItem('qp_orders',JSON.stringify(orders));
+    lastOrderId = orderId;
+
+    const url = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`;
+    window.open(url,'_blank');
+
+    cart = []; save(); renderCart();
+    closeModal('checkoutModal');
+    toast('🍕 Pedido enviado!');
+
+    setTimeout(()=>{
+      $('ratingModal').classList.add('open');
+      ratingVal = 0;
+      document.querySelectorAll('#starsRow .star').forEach(s=>s.classList.remove('active'));
+      $('ratingComment').value='';
+    }, 20000);
+  }
+
+  /* ====== RATING ====== */
+  function setupStars(){
+    document.querySelectorAll('#starsRow .star').forEach(s=>{
+      s.addEventListener('click',()=>{
+        ratingVal = +s.dataset.v;
+        document.querySelectorAll('#starsRow .star').forEach(x=>{
+          x.classList.toggle('active', +x.dataset.v <= ratingVal);
+        });
+      });
+    });
+  }
+
+  function sendRating(){
+    if(ratingVal===0){ toast('Escolha de 1 a 5 estrelas'); return; }
+    const comment = $('ratingComment').value.trim();
+    const rev = { ts: new Date().toISOString(), cliente: name||'Cliente', nota: ratingVal, comentario: comment, orderId: lastOrderId };
+    const revs = JSON.parse(localStorage.getItem('qp_reviews')||'[]');
+    revs.push(rev);
+    localStorage.setItem('qp_reviews',JSON.stringify(revs));
+
+    let msg = `*AVALIAÇÃO - QUADRÔ PIZZA*\n`;
+    msg += `---------------------------------------\n`;
+    msg += `Cliente: ${name||'Cliente'}\n`;
+    msg += `Nota: ${'⭐'.repeat(ratingVal)} (${ratingVal}/5)\n`;
+    if(comment) msg += `Comentário: ${comment}\n`;
+    if(lastOrderId) msg += `Pedido #${lastOrderId}\n`;
+
+    window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
+    closeModal('ratingModal');
+    toast('💛 Obrigado pela avaliação!');
+  }
+
+  /* ====== HISTORY ====== */
+  function showHistory(){
+    const orders = JSON.parse(localStorage.getItem('qp_orders')||'[]').slice().reverse();
+    const list = $('historyList');
+    if(orders.length===0){
+      list.innerHTML = '<div class="empty"><div class="em">📜</div>Você ainda não fez pedidos</div>';
+    } else {
+      list.innerHTML = orders.map(o=>{
+        const d = new Date(o.ts);
+        return `<div class="history-item">
+          <div class="top">
+            <span>#${o.id} · ${d.toLocaleDateString('pt-BR')} ${d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}</span>
+            <span>${o.payment}</span>
+          </div>
+          <div>${o.itens.map(i=>`${i.qty}× ${i.nome}`).join(' · ')}</div>
+          <div class="tot">${fmt(o.total)}</div>
+        </div>`;
+      }).join('');
+    }
+    $('historyModal').classList.add('open');
+  }
+
+  /* ====== OWNER PANEL ====== */
+  async function sha256(s){
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function openOwner(){
+    const hash = localStorage.getItem('qp_owner_hash');
+    const session = JSON.parse(localStorage.getItem('qp_owner_session')||'null');
+    if(session && session.exp > Date.now()){
+      renderOwner();
+      $('ownerPanel').classList.add('open');
+      return;
+    }
+
+    const c = $('ownerContent');
+    $('ownerPanel').classList.add('open');
+
+    if(!hash){
+      c.innerHTML = `
+        <div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow)">
+          <h2 style="margin-bottom:14px">🔐 Primeiro acesso</h2>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Defina sua senha (mín. 4 caracteres). Ela será salva apenas neste dispositivo.</p>
+          <input type="text" id="ownerLogin" class="field" placeholder="Usuário (quadro)" value="quadro" readonly>
+          <input type="password" id="ownerPass" class="field" placeholder="Defina uma senha">
+          <input type="password" id="ownerPass2" class="field" placeholder="Confirme a senha">
+          <button class="btn-primary" id="btnSetPass">Definir senha</button>
+        </div>`;
+      $('btnSetPass').onclick = async ()=>{
+        const p1 = $('ownerPass').value;
+        const p2 = $('ownerPass2').value;
+        if(p1.length<4){ toast('Mín. 4 caracteres'); return; }
+        if(p1!==p2){ toast('Senhas não conferem'); return; }
+        const h = await sha256(p1);
+        localStorage.setItem('qp_owner_hash', h);
+        localStorage.setItem('qp_owner_session', JSON.stringify({exp: Date.now()+8*3600*1000}));
+        toast('✅ Senha definida');
+        renderOwner();
+      };
+    } else {
+      c.innerHTML = `
+        <div style="max-width:380px;margin:40px auto;background:#fff;padding:24px;border-radius:14px;box-shadow:var(--shadow)">
+          <h2 style="margin-bottom:14px">🔐 Área do Proprietário</h2>
+          <input type="text" id="ownerLogin" class="field" placeholder="Usuário" value="quadro" readonly>
+          <input type="password" id="ownerPass" class="field" placeholder="Senha">
+          <button class="btn-primary" id="btnLogin">Entrar</button>
+          <button class="btn-secondary" id="btnReset">Esqueci a senha (apaga e redefine)</button>
+        </div>`;
+      $('btnLogin').onclick = async ()=>{
+        const p = $('ownerPass').value;
+        const h = await sha256(p);
+        if(h===hash){
+          localStorage.setItem('qp_owner_session', JSON.stringify({exp: Date.now()+8*3600*1000}));
+          renderOwner();
+        } else { toast('Senha incorreta'); }
+      };
+      $('btnReset').onclick = ()=>{
+        if(confirm('Apagar a senha atual e definir uma nova?')){
+          localStorage.removeItem('qp_owner_hash');
+          localStorage.removeItem('qp_owner_session');
+          openOwner();
+        }
+      };
+    }
+  }
+
+  function closeOwner(){ $('ownerPanel').classList.remove('open'); }
+
+  function renderOwner(){
+    const c = $('ownerContent');
+    const orders = JSON.parse(localStorage.getItem('qp_orders')||'[]');
+    const reviews = JSON.parse(localStorage.getItem('qp_reviews')||'[]');
+    let filter = 'week';
+
+    function inRange(ts, f){
+      const d = new Date(ts), now = new Date();
+      if(f==='week'){
+        const dow = now.getDay();
+        const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate()-dow); startOfWeek.setHours(0,0,0,0);
+        return d >= startOfWeek;
+      }
+      if(f==='lastweek'){
+        const dow = now.getDay();
+        const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate()-dow); startOfWeek.setHours(0,0,0,0);
+        const startLast = new Date(startOfWeek); startLast.setDate(startOfWeek.getDate()-7);
+        return d >= startLast && d < startOfWeek;
+      }
+      if(f==='30d'){
+        const d30 = new Date(now); d30.setDate(now.getDate()-30);
+        return d >= d30;
+      }
+      return true;
+    }
+
+    function compute(f){
+      const filtered = orders.filter(o=>inRange(o.ts, f));
+      const fRev = reviews.filter(r=>inRange(r.ts, f));
+      const fat = filtered.reduce((s,o)=>s+o.total,0);
+      const qty = filtered.length;
+      const ticket = qty ? fat/qty : 0;
+      const avg = fRev.length ? fRev.reduce((s,r)=>s+r.nota,0)/fRev.length : 0;
+
+      // por dia (últimos 7 dias)
+      const byDay = {};
+      const now = new Date();
+      for(let i=6;i>=0;i--){
+        const d = new Date(now); d.setDate(now.getDate()-i);
+        const key = d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
+        byDay[key] = {qty:0, fat:0};
+      }
+      filtered.forEach(o=>{
+        const d = new Date(o.ts);
+        const key = d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});
+        if(byDay[key]){ byDay[key].qty++; byDay[key].fat+=o.total; }
+      });
+
+      // pagamento
+      const byPay = {PIX:0,'Débito':0,'Crédito':0,Dinheiro:0};
+      filtered.forEach(o=>{ byPay[o.payment] = (byPay[o.payment]||0)+1; });
+
+      // top itens
+      const byItem = {};
+      filtered.forEach(o=>o.itens.forEach(it=>{
+        byItem[it.nome] = (byItem[it.nome]||0) + it.qty;
+      }));
+      const totalItems = Object.values(byItem).reduce((s,v)=>s+v,0);
+      const top = Object.entries(byItem).sort((a,b)=>b[1]-a[1]).slice(0,5);
+
+      return {fat,qty,ticket,avg,byDay,byPay,top,totalItems,recentRev:fRev.slice().reverse().slice(0,10)};
+    }
+
+    function paint(){
+      const d = compute(filter);
+
+      c.innerHTML = `
+        <div class="filter-tabs">
+          <button class="filter-tab ${filter==='week'?'active':''}" data-f="week">Esta semana</button>
+          <button class="filter-tab ${filter==='lastweek'?'active':''}" data-f="lastweek">Semana passada</button>
+          <button class="filter-tab ${filter==='30d'?'active':''}" data-f="30d">Últimos 30 dias</button>
+        </div>
+
+        <div class="cards-grid">
+          <div class="stat-card"><div class="icon">💰</div><div class="label">Faturamento</div><div class="value">${fmt(d.fat)}</div></div>
+          <div class="stat-card"><div class="icon">📦</div><div class="label">Pedidos</div><div class="value">${d.qty}</div></div>
+          <div class="stat-card"><div class="icon">🍕</div><div class="label">Ticket médio</div><div class="value">${fmt(d.ticket)}</div></div>
+          <div class="stat-card"><div class="icon">⭐</div><div class="label">Avaliação</div><div class="value">${d.avg?d.avg.toFixed(1):'—'}</div></div>
+        </div>
+
+        <div class="chart-card"><h3>📊 Pedidos por dia (7 dias)</h3><canvas id="chartQty" width="600" height="200"></canvas></div>
+        <div class="chart-card"><h3>📈 Faturamento por dia (7 dias)</h3><canvas id="chartFat" width="600" height="200"></canvas></div>
+        <div class="chart-card"><h3>💳 Forma de pagamento</h3><canvas id="chartPay" width="600" height="220"></canvas></div>
+
+        <div class="chart-card">
+          <h3>🏆 Top 5 itens da semana</h3>
+          ${d.top.length===0?'<div class="empty">Sem dados</div>':
+            '<ul class="ranking-list">'+d.top.map((t,i)=>`
+              <li><span><span class="rank">${i+1}</span>${t[0]}</span>
+              <span><strong>${t[1]}</strong> · ${d.totalItems?((t[1]/d.totalItems)*100).toFixed(0):0}%</span></li>
+            `).join('')+'</ul>'}
+        </div>
+
+        <div class="chart-card">
+          <h3>💬 Avaliações recentes</h3>
+          ${d.recentRev.length===0?'<div class="empty">Sem avaliações</div>':
+            d.recentRev.map(r=>`
+              <div class="review">
+                <div class="review-head"><span>${r.cliente}</span><span>${new Date(r.ts).toLocaleDateString('pt-BR')}</span></div>
+                <div class="review-stars">${'⭐'.repeat(r.nota)}</div>
+                ${r.comentario?`<div class="review-comment">"${r.comentario}"</div>`:''}
+              </div>
+            `).join('')}
+        </div>
+
+        <div style="text-align:center;margin:20px 0">
+          <button class="btn-secondary" onclick="App.exportData()" style="display:inline-block;width:auto;padding:10px 20px">📥 Exportar dados (JSON)</button>
+          <button class="btn-secondary" onclick="App.logoutOwner()" style="display:inline-block;width:auto;padding:10px 20px;margin-left:8px">Sair</button>
+        </div>
+      `;
+
+      document.querySelectorAll('.filter-tab').forEach(b=>{
+        b.onclick = ()=>{ filter = b.dataset.f; paint(); };
+      });
+
+      drawBar('chartQty', Object.keys(d.byDay), Object.values(d.byDay).map(x=>x.qty), '#e10600');
+      drawLine('chartFat', Object.keys(d.byDay), Object.values(d.byDay).map(x=>x.fat), '#ffd400');
+      drawPie('chartPay', d.byPay);
+    }
+    paint();
+  }
+
+  function logoutOwner(){
+    localStorage.removeItem('qp_owner_session');
+    closeOwner();
+    toast('Sessão encerrada');
+  }
+
+  function exportData(){
+    const data = {
+      orders: JSON.parse(localStorage.getItem('qp_orders')||'[]'),
+      reviews: JSON.parse(localStorage.getItem('qp_reviews')||'[]'),
+      exportedAt: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `quadro-pizza-dados-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  /* ====== CHART HELPERS (canvas) ====== */
+  function drawBar(canvasId, labels, values, color){
+    const cv = document.getElementById(canvasId);
+    if(!cv) return;
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    ctx.clearRect(0,0,W,H);
+    const padL=36,padB=30,padT=10,padR=10;
+    const max = Math.max(...values, 1);
+    const bw = (W-padL-padR)/values.length * .65;
+    const gap = (W-padL-padR)/values.length;
+
+    ctx.fillStyle='#999';ctx.font='10px sans-serif';
+    [0,.5,1].forEach(t=>{
+      const y = padT + (H-padT-padB)*(1-t);
+      ctx.fillText(Math.round(max*t), 4, y+3);
+      ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    });
+
+    values.forEach((v,i)=>{
+      const h = (v/max)*(H-padT-padB);
+      const x = padL + gap*i + (gap-bw)/2;
+      const y = H-padB-h;
+      ctx.fillStyle = color;
+      ctx.fillRect(x,y,bw,h);
+      ctx.fillStyle='#333';
+      ctx.fillText(labels[i], x-2, H-padB+14);
+      if(v>0) ctx.fillText(v, x+bw/2-6, y-4);
+    });
+  }
+
+  function drawLine(canvasId, labels, values, color){
+    const cv = document.getElementById(canvasId);
+    if(!cv) return;
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    ctx.clearRect(0,0,W,H);
+    const padL=46,padB=30,padT=10,padR=10;
+    const max = Math.max(...values, 1);
+
+    ctx.fillStyle='#999';ctx.font='10px sans-serif';
+    [0,.5,1].forEach(t=>{
+      const y = padT + (H-padT-padB)*(1-t);
+      ctx.fillText('R$'+Math.round(max*t), 4, y+3);
+      ctx.strokeStyle='#eee';ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    });
+
+    const step = (W-padL-padR)/(values.length-1 || 1);
+    ctx.strokeStyle = color; ctx.lineWidth=3; ctx.beginPath();
+    values.forEach((v,i)=>{
+      const x = padL + step*i;
+      const y = padT + (H-padT-padB)*(1-v/max);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.stroke();
+
+    values.forEach((v,i)=>{
+      const x = padL + step*i;
+      const y = padT + (H-padT-padB)*(1-v/max);
+      ctx.fillStyle = '#e10600';
+      ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#333';
+      ctx.fillText(labels[i], x-12, H-padB+14);
+    });
+  }
+
+  function drawPie(canvasId, data){
+    const cv = document.getElementById(canvasId);
+    if(!cv) return;
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    ctx.clearRect(0,0,W,H);
+    const total = Object.values(data).reduce((s,v)=>s+v,0);
+    if(total===0){
+      ctx.fillStyle='#999';ctx.font='14px sans-serif';
+      ctx.fillText('Sem dados',W/2-40,H/2);
+      return;
+    }
+    const colors = {PIX:'#1aa84a','Débito':'#2a6fdb','Crédito':'#e10600',Dinheiro:'#ffd400'};
+    const cx = H/2+10, cy = H/2, r = H/2-20;
+    let a0 = -Math.PI/2;
+    Object.entries(data).forEach(([k,v])=>{
+      if(v===0) return;
+      const ang = (v/total)*Math.PI*2;
+      ctx.fillStyle = colors[k]||'#999';
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a0,a0+ang);ctx.closePath();ctx.fill();
+      a0 += ang;
+    });
+
+    // legend
+    ctx.font='12px sans-serif';
+    let ly = 20;
+    Object.entries(data).forEach(([k,v])=>{
+      ctx.fillStyle = colors[k]||'#999';
+      ctx.fillRect(cx+r+30, ly-9, 14, 12);
+      ctx.fillStyle='#333';
+      const pct = total?((v/total)*100).toFixed(0):0;
+      ctx.fillText(`${k}  ${v} (${pct}%)`, cx+r+50, ly);
+      ly += 22;
+    });
+  }
+
+  /* ====== MODALS ====== */
+  function openCart(){ $('cartModal').classList.add('open'); }
+  function closeModal(id){ $(id).classList.remove('open'); }
+
+  /* ====== INIT ====== */
+  function init(){
+    renderAll();
+    renderCart();
+    setupStars();
+    if(name){ renderGreeting(); }
+    else { $('welcomeModal').classList.add('open'); }
+
+    // close on backdrop click
+    document.querySelectorAll('.modal-overlay').forEach(o=>{
+      o.addEventListener('click',(e)=>{
+        if(e.target===o && o.id!=='welcomeModal') o.classList.remove('open');
+      });
+    });
+
+    // Enter key on name field
+    $('customerName').addEventListener('keypress',e=>{
+      if(e.key==='Enter') saveName();
+    });
+  }
+
+  return {
+    init, saveName, changeQty, confirmAdd, openCart, openCheckout, copyPix,
+    sendWhatsApp, sendRating, itemQty, clearCart, closeModal,
+    showHistory, openOwner, closeOwner, logoutOwner, exportData
+  };
+})();
+
+document.addEventListener('DOMContentLoaded', App.init);
+</script>
+</body>
+</html>
