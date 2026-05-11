@@ -133,17 +133,16 @@
   .card-tag.gold{background:linear-gradient(135deg,#FFCC00,#D4A017);color:var(--black)}
   @keyframes pulse-tag{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-  /* Selo Catupiry Original — replica visual do logo real */
-  .badge-cat{position:absolute;top:8px;right:8px;width:64px;height:64px;border-radius:50%;
-    background:radial-gradient(circle,#d50000 0%,#990000 100%);
+  /* Selo CATUPIRY ORIGINAL — replica visual do logo real */
+  .badge-cat{position:absolute;top:8px;right:8px;width:68px;height:68px;border-radius:50%;
+    background:radial-gradient(circle,#d50000 0%,#7a0000 100%);
     display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
-    border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 -3px 8px rgba(0,0,0,.3);
-    transform:rotate(-8deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:4px;cursor:default}
-  .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);pointer-events:none}
-  .badge-cat::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:90%;height:50%;background:radial-gradient(ellipse at top,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none}
-  .badge-cat .b-top{font-size:7px;letter-spacing:1.5px;line-height:1;color:#FFD700;font-weight:900;margin-bottom:2px;text-shadow:0 1px 1px rgba(0,0,0,.5);position:relative;z-index:2}
-  .badge-cat .b-main{font-family:'Brush Script MT','Lucida Handwriting',cursive;font-size:18px;line-height:.9;color:#fff;font-weight:900;font-style:italic;text-shadow:0 2px 3px rgba(0,0,0,.6);position:relative;z-index:2;transform:rotate(-3deg)}
-  .badge-cat .b-bot{font-size:6.5px;letter-spacing:2px;line-height:1;color:#FFD700;font-weight:900;margin-top:2px;text-shadow:0 1px 1px rgba(0,0,0,.5);position:relative;z-index:2}
+    border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 -3px 10px rgba(0,0,0,.4);
+    transform:rotate(-8deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:5px;cursor:default}
+  .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);pointer-events:none}
+  .badge-cat::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:90%;height:50%;background:radial-gradient(ellipse at top,rgba(255,255,255,.28),transparent 70%);border-radius:50%;pointer-events:none}
+  .badge-cat .b-main{font-family:'Brush Script MT','Lucida Handwriting',cursive;font-size:18px;line-height:.85;color:#fff;font-weight:900;font-style:italic;text-shadow:0 2px 3px rgba(0,0,0,.7);position:relative;z-index:2;transform:rotate(-3deg);margin-top:4px}
+  .badge-cat .b-bot{font-size:8px;letter-spacing:2px;line-height:1;color:#FFD700;font-weight:900;margin-top:5px;text-shadow:0 1px 2px rgba(0,0,0,.7);position:relative;z-index:2;background:rgba(0,0,0,.25);padding:2px 5px;border-radius:3px}
 
   .card-body{padding:12px 13px 13px;flex:1;display:flex;flex-direction:column}
   .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:6px;color:var(--black)}
@@ -715,9 +714,9 @@ const STORE={whatsapp:'5547997661485',pix:'60.723.998/0001-84'};
 
 const PIZZA25_SALG=[
   {id:'p25s1',sabor:'Calabresa',img:'images/pizzas/calabresa'},
+  {id:'p25s7',sabor:'Pepperoni',img:'images/pizzas/pepperoni'},
   {id:'p25s2',sabor:'Frango c/ Catupiry',img:'images/pizzas/frango-catupiry',catupiry:true},
   {id:'p25s3',sabor:'Portuguesa',img:'images/pizzas/portuguesa'},
-  {id:'p25s4',sabor:'Marguerita',img:'images/pizzas/marguerita'},
   {id:'p25s5',sabor:'Quatro Queijos',img:'images/pizzas/quatro-queijos'},
   {id:'p25s6',sabor:'Milho c/ Bacon',img:'images/pizzas/milho-bacon'},
 ];
@@ -771,9 +770,9 @@ function servesLabel(c){return c.pessoas>1?`Serve ${c.pessoas} pessoas`:'Serve 1
 const SABOR_IMG={
   // 25cm
   'Calabresa':'images/pizzas/calabresa.jpg',
+  'Pepperoni':'images/pizzas/pepperoni.jpg',
   'Frango c/ Catupiry':'images/pizzas/frango-catupiry.jpg',
   'Portuguesa':'images/pizzas/portuguesa.jpg',
-  'Marguerita':'images/pizzas/marguerita.jpg',
   'Quatro Queijos':'images/pizzas/quatro-queijos.jpg',
   'Milho c/ Bacon':'images/pizzas/milho-bacon.jpg',
   'Nutellô':'images/pizzas/nutella.jpg',
@@ -878,7 +877,7 @@ const App=(function(){
               else{this.remove();}">`:'';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
-      ${catupiry?`<span class="badge-cat"><span class="b-top">SABOR</span><span class="b-main">CATUPIRY</span><span class="b-bot">ORIGINAL</span></span>`:''}
+      ${catupiry?`<span class="badge-cat" title="Catupiry Original"><span class="b-main">Catupiry</span><span class="b-bot">ORIGINAL</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
