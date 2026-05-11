@@ -80,7 +80,7 @@
   .card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.15);border-color:var(--yellow)}
 
   /* QUADRÔ BOX */
-  .qbox{height:165px;position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+  .qbox{height:185px;position:relative;display:flex;flex-direction:column;overflow:hidden;background:#fff}
   .qbox .qb-top{background:var(--red);color:#fff;padding:5px 8px;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:11px;letter-spacing:1px;position:relative;border-bottom:2px solid var(--black);height:24px;z-index:4}
   .qbox .qb-top::before,.qbox .qb-top::after{content:'';width:38px;height:100%;position:absolute;top:0;background:
     linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%) 0 0/10px 10px,
@@ -418,8 +418,14 @@
 <main>
   <!-- COMBOS -->
   <section id="tab-combos" class="tab-content">
+    <div style="border-radius:18px;overflow:hidden;margin-bottom:16px;box-shadow:var(--shadow);border:3px solid var(--yellow)">
+      <img src="images/combos/slogan.png" alt="A Univali é muito Quadrô" style="width:100%;display:block" onerror="this.style.display='none'">
+    </div>
     <div class="section-head"><span class="seal">🔥 IMPERDÍVEL</span><h2 class="section-title">Combos<small>Mais sabor, menos preço · escolha os sabores ao adicionar</small></h2></div>
     <div class="grid" id="grid-combos"></div>
+    <div style="border-radius:18px;overflow:hidden;margin-top:20px;box-shadow:var(--shadow);border:3px solid var(--yellow)">
+      <img src="images/combos/banner-saudade.png" alt="2026 começou, a gente já tava com saudade" style="width:100%;display:block" onerror="this.style.display='none'">
+    </div>
   </section>
 
   <!-- COPA -->
@@ -630,28 +636,27 @@
 const STORE={whatsapp:'5547997661485',pix:'60.723.998/0001-84'};
 
 const PIZZA25_SALG=[
-  {id:'p25s1',sabor:'Calabresa',emoji:'🥩',img:'images/pizzas/calabresa'},
-  {id:'p25s2',sabor:'Frango c/ Catupiry',emoji:'🐔',img:'images/pizzas/frango-catupiry',catupiry:true},
-  {id:'p25s3',sabor:'Portuguesa',emoji:'🥚',img:'images/pizzas/portuguesa'},
-  {id:'p25s4',sabor:'Marguerita',emoji:'🍅',img:'images/pizzas/marguerita'},
-  {id:'p25s5',sabor:'Quatro Queijos',emoji:'🧀',img:'images/pizzas/quatro-queijos'},
-  {id:'p25s6',sabor:'Milho c/ Bacon',emoji:'🥓',img:'images/pizzas/milho-bacon'},
+  {id:'p25s1',sabor:'Calabresa',img:'images/pizzas/calabresa'},
+  {id:'p25s2',sabor:'Frango c/ Catupiry',img:'images/pizzas/frango-catupiry',catupiry:true},
+  {id:'p25s3',sabor:'Portuguesa',img:'images/pizzas/portuguesa'},
+  {id:'p25s5',sabor:'Quatro Queijos',img:'images/pizzas/quatro-queijos'},
+  {id:'p25s6',sabor:'Milho c/ Bacon',img:'images/pizzas/milho-bacon'},
 ];
 const PIZZA25_DOCE=[
-  {id:'p25d1',sabor:'Nutellô',emoji:'🍫',img:'images/pizzas/nutella'},
-  {id:'p25d2',sabor:'Ovomaltine',emoji:'🍪',img:'images/pizzas/ovomaltine'},
-  {id:'p25d3',sabor:'Choc. ao Leite',emoji:'🍫',img:'images/pizzas/choc-leite'},
-  {id:'p25d4',sabor:'Choc. Branco',emoji:'🍦',img:'images/pizzas/choc-branco'},
+  {id:'p25d1',sabor:'Nutellô',img:'images/pizzas/nutella'},
+  {id:'p25d2',sabor:'Ovomaltine',img:'images/pizzas/ovomaltine'},
+  {id:'p25d3',sabor:'Choc. ao Leite',img:'images/pizzas/choc-leite'},
+  {id:'p25d4',sabor:'Choc. Branco',img:'images/pizzas/choc-branco'},
 ];
 const MINI_SALG=[
-  {id:'pms1',sabor:'Calabresa',emoji:'🥩',img:'images/mini/calabresa'},
-  {id:'pms2',sabor:'Frango c/ Catupiry',emoji:'🐔',img:'images/mini/frango',catupiry:true},
+  {id:'pms1',sabor:'Calabresa',img:'images/mini/calabresa'},
+  {id:'pms2',sabor:'Frango c/ Catupiry',img:'images/mini/frango',catupiry:true},
 ];
 const MINI_DOCE=[
-  {id:'pmd1',sabor:'Nutellô',emoji:'🍫',img:'images/mini/nutella'},
-  {id:'pmd2',sabor:'Ovomaltine',emoji:'🍪',img:'images/mini/ovomaltine'},
-  {id:'pmd3',sabor:'Choc. ao Leite',emoji:'🍫',img:'images/mini/choc-leite'},
-  {id:'pmd4',sabor:'Choc. Branco',emoji:'🍦',img:'images/mini/choc-branco'},
+  {id:'pmd1',sabor:'Nutellô',img:'images/mini/nutella'},
+  {id:'pmd2',sabor:'Ovomaltine',img:'images/mini/ovomaltine'},
+  {id:'pmd3',sabor:'Choc. ao Leite',img:'images/mini/choc-leite'},
+  {id:'pmd4',sabor:'Choc. Branco',img:'images/mini/choc-branco'},
 ];
 
 const PIZZA25=[...PIZZA25_SALG.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'salg',cat:'25CM'})),
@@ -684,27 +689,27 @@ const COMBOS=[
 
 const BEBIDAS={
   lata:[
-    {id:'b1',nome:'Coca-Cola Lata 350ml',desc:'Geladinha, do jeito que tem que ser. O clássico que combina com tudo.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
-    {id:'b2',nome:'Guaraná Antarctica 350ml',desc:'Sabor brasileiro original, gelado e cremoso. Adoça sem pesar.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
-    {id:'b3',nome:'Fanta Laranja 350ml',desc:'Refrescante, levinha e bem geladinha. Cítrico na medida.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
-    {id:'b4',nome:'Sprite 350ml',desc:'Limão geladinho que quebra a gordura da pizza. Refresca demais.',preco:6.90,emoji:'🥫',cls:'bebida',cat:'LATA 350'},
+    {id:'b1',nome:'Coca-Cola Lata 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
+    {id:'b2',nome:'Guaraná Antarctica 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
+    {id:'b3',nome:'Fanta Laranja 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
+    {id:'b4',nome:'Sprite 350ml',preco:6.90,cls:'bebida',cat:'LATA 350'},
   ],
   refri200:[
-    {id:'b5',nome:'Coca-Cola 200ml',desc:'Mini Coca pra acompanhar a Mini pizza. Combinação certinha.',preco:5.00,emoji:'🥤',cls:'bebida',cat:'200ML'},
-    {id:'b6',nome:'Guaraná 200ml',desc:'Versão mini do guaraná clássico. Doce na medida.',preco:5.00,emoji:'🥤',cls:'bebida',cat:'200ML'},
+    {id:'b5',nome:'Coca-Cola 200ml',preco:5.00,cls:'bebida',cat:'200ML'},
+    {id:'b6',nome:'Guaraná 200ml',preco:5.00,cls:'bebida',cat:'200ML'},
   ],
   agua:[
-    {id:'b7',nome:'Água sem gás 500ml',desc:'Pura cristal, no ponto certo de hidratação após a pizza.',preco:4.00,emoji:'💧',cls:'agua',cat:'ÁGUA'},
-    {id:'b8',nome:'Água com gás 500ml',desc:'Levemente borbulhante, geladinha. Quebra o salgado no paladar.',preco:5.00,emoji:'🫧',cls:'agua',cat:'ÁGUA'},
+    {id:'b7',nome:'Água sem gás 500ml',preco:4.00,cls:'agua',cat:'ÁGUA'},
+    {id:'b8',nome:'Água com gás 500ml',preco:5.00,cls:'agua',cat:'ÁGUA'},
   ],
   kapo:[
-    {id:'b9',nome:'Kapo Uva 200ml',desc:'Suco de uva infantil — molequinho saudoso da nossa infância.',preco:4.50,emoji:'🍇',cls:'suco',cat:'KAPO'},
-    {id:'b10',nome:'Kapo Maracujá 200ml',desc:'Azedinho na medida, refrescante e cheio de sabor tropical.',preco:4.50,emoji:'🥭',cls:'suco',cat:'KAPO'},
-    {id:'b11',nome:'Kapo Morango 200ml',desc:'Doce e cremoso, favorito da molecada. Fofo demais.',preco:4.50,emoji:'🍓',cls:'suco',cat:'KAPO'},
+    {id:'b9',nome:'Kapo Uva 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
+    {id:'b10',nome:'Kapo Maracujá 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
+    {id:'b11',nome:'Kapo Morango 200ml',preco:4.50,cls:'suco',cat:'KAPO'},
   ],
   delvalle:[
-    {id:'b12',nome:'Del Valle Uva Lata',desc:'Néctar de uva concentrado, super refrescante. Mata a sede.',preco:6.00,emoji:'🍇',cls:'suco',cat:'DEL VALLE'},
-    {id:'b13',nome:'Del Valle Pêssego Lata',desc:'Néctar de pêssego, docinho na medida. Aveludado no paladar.',preco:6.00,emoji:'🍑',cls:'suco',cat:'DEL VALLE'},
+    {id:'b12',nome:'Del Valle Uva Lata',preco:6.00,cls:'suco',cat:'DEL VALLE'},
+    {id:'b13',nome:'Del Valle Pêssego Lata',preco:6.00,cls:'suco',cat:'DEL VALLE'},
   ],
 };
 
@@ -789,11 +794,11 @@ const App=(function(){
     $('grid-pizza-doce').innerHTML=PIZZA25.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',null,{hideDesc:true})).join('');
     $('grid-mini-salg').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'},{hideDesc:true})).join('');
     $('grid-mini-doce').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',{text:'MINI'},{hideDesc:true})).join('');
-    $('grid-beb-lata').innerHTML=BEBIDAS.lata.map(b=>cardHtml(b,'bebida')).join('');
-    $('grid-beb-200').innerHTML=BEBIDAS.refri200.map(b=>cardHtml(b,'bebida')).join('');
-    $('grid-beb-agua').innerHTML=BEBIDAS.agua.map(b=>cardHtml(b,b.cls)).join('');
-    $('grid-beb-kapo').innerHTML=BEBIDAS.kapo.map(b=>cardHtml(b,b.cls)).join('');
-    $('grid-beb-del').innerHTML=BEBIDAS.delvalle.map(b=>cardHtml(b,b.cls)).join('');
+    $('grid-beb-lata').innerHTML=BEBIDAS.lata.map(b=>cardHtml(b,'bebida',null,{hideDesc:true})).join('');
+    $('grid-beb-200').innerHTML=BEBIDAS.refri200.map(b=>cardHtml(b,'bebida',null,{hideDesc:true})).join('');
+    $('grid-beb-agua').innerHTML=BEBIDAS.agua.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
+    $('grid-beb-kapo').innerHTML=BEBIDAS.kapo.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
+    $('grid-beb-del').innerHTML=BEBIDAS.delvalle.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
     $('grid-figurinhas').innerHTML=cardHtml({...FIGURINHAS,priceLabel:'R$ 6,50',fromLabel:'PIX/Dinheiro a partir de',cat:'⚽ FIFA'},'fig',{text:'⚽ FIFA',cls:'eco'});
 
     document.querySelectorAll('.btn-add').forEach(b=>b.addEventListener('click',()=>openAdd(b.dataset.id)));
@@ -1144,7 +1149,7 @@ const App=(function(){
     orders.push(order);localStorage.setItem('qp_orders',JSON.stringify(orders));
     lastOrderId=orderId;
 
-    window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${STORE.whatsapp}&text=${encodeURIComponent(msg)}`,'_blank');
     cart=[];save();renderCart();closeModal('checkoutModal');toast('🍕 Pedido enviado!');
     setTimeout(()=>{$('ratingModal').classList.add('open');ratingVal=0;document.querySelectorAll('#starsRow .star').forEach(s=>s.classList.remove('active'));$('ratingComment').value='';},20000);
   }
@@ -1167,7 +1172,7 @@ const App=(function(){
     if(comment)msg+=`💬 *Comentário:* ${comment}\n`;
     if(lastOrderId)msg+=`📝 *Pedido* #${lastOrderId}\n`;
     msg+=`\n🙌 Muito obrigado por avaliar! 🤩 Vocês são incríveis! 🍕💛`;
-    window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
+    window.open(`https://api.whatsapp.com/send?phone=${STORE.whatsapp}&text=${encodeURIComponent(msg)}`,'_blank');
     closeModal('ratingModal');toast('💛 Obrigado pela avaliação!');
   }
 
