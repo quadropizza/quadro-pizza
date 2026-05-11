@@ -513,15 +513,13 @@
   <!-- BEBIDAS -->
   <section id="tab-bebidas" class="tab-content" hidden>
     <div class="section-head"><span class="seal">🥤 BEBIDAS</span><h2 class="section-title">Geladinhas<small>Pra acompanhar a pizza</small></h2></div>
-    <div class="subgroup"><h3>🥫 Refrigerante Lata 350ml</h3></div>
+    <div class="subgroup"><h3>🥫 Latas 350ml · R$ 7,00</h3></div>
     <div class="grid" id="grid-beb-lata"></div>
-    <div class="subgroup"><h3>🧃 Refrigerante 200ml</h3></div>
-    <div class="grid" id="grid-beb-200"></div>
-    <div class="subgroup"><h3>💧 Águas</h3></div>
+    <div class="subgroup"><h3>💧 Águas · R$ 5,00</h3></div>
     <div class="grid" id="grid-beb-agua"></div>
-    <div class="subgroup"><h3>🧃 Sucos Kapo 200ml</h3></div>
-    <div class="grid" id="grid-beb-kapo"></div>
-    <div class="subgroup"><h3>🥤 Del Valle Lata</h3></div>
+    <div class="subgroup"><h3>🧃 Pequenas 200ml · R$ 4,00</h3></div>
+    <div class="grid" id="grid-beb-200"></div>
+    <div class="subgroup"><h3>🧃 Sucos / Outros · R$ 6,00</h3></div>
     <div class="grid" id="grid-beb-del"></div>
   </section>
 
@@ -796,27 +794,30 @@ function imgForFlavor(label,sabor){
 
 const BEBIDAS={
   lata:[
-    {id:'b1',nome:'Coca-Cola Lata 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
-    {id:'b2',nome:'Guaraná Antarctica 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
-    {id:'b3',nome:'Fanta Laranja 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🍊'},
-    {id:'b4',nome:'Sprite 350ml',preco:6.90,cls:'bebida',cat:'LATA 350',emoji:'🍋'},
-  ],
-  refri200:[
-    {id:'b5',nome:'Coca-Cola 200ml',preco:5.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
-    {id:'b6',nome:'Guaraná 200ml',preco:5.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
+    {id:'b1',nome:'Coca-Cola Lata 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b1z',nome:'Coca-Cola Zero Lata 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b4',nome:'Sprite 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🍋'},
+    {id:'b4z',nome:'Sprite Zero 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🍋'},
+    {id:'b2',nome:'Guaraná Antarctica 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b2z',nome:'Guaraná Zero 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🥤'},
+    {id:'b3',nome:'Fanta Laranja 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🍊'},
+    {id:'b3u',nome:'Fanta Uva 350ml',preco:7.00,cls:'bebida',cat:'LATA 350',emoji:'🍇'},
   ],
   agua:[
-    {id:'b7',nome:'Água sem gás 500ml',preco:4.00,cls:'agua',cat:'ÁGUA',emoji:'💧'},
+    {id:'b7',nome:'Água sem gás 500ml',preco:5.00,cls:'agua',cat:'ÁGUA',emoji:'💧'},
     {id:'b8',nome:'Água com gás 500ml',preco:5.00,cls:'agua',cat:'ÁGUA',emoji:'💧'},
   ],
-  kapo:[
-    {id:'b9',nome:'Kapo Uva 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🍇'},
-    {id:'b10',nome:'Kapo Maracujá 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🥭'},
-    {id:'b11',nome:'Kapo Morango 200ml',preco:4.50,cls:'suco',cat:'KAPO',emoji:'🍓'},
+  refri200:[
+    {id:'b5',nome:'Coca-Cola 200ml',preco:4.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
+    {id:'b5z',nome:'Coca-Cola Zero 200ml',preco:4.00,cls:'bebida',cat:'200ML',emoji:'🥤'},
+    {id:'b11',nome:'Kapo Morango 200ml',preco:4.00,cls:'suco',cat:'KAPO',emoji:'🍓'},
+    {id:'b10',nome:'Kapo Maracujá 200ml',preco:4.00,cls:'suco',cat:'KAPO',emoji:'🥭'},
+    {id:'b9',nome:'Kapo Uva 200ml',preco:4.00,cls:'suco',cat:'KAPO',emoji:'🍇'},
   ],
   delvalle:[
-    {id:'b12',nome:'Del Valle Uva Lata',preco:6.00,cls:'suco',cat:'DEL VALLE',emoji:'🍇'},
-    {id:'b13',nome:'Del Valle Pêssego Lata',preco:6.00,cls:'suco',cat:'DEL VALLE',emoji:'🍑'},
+    {id:'b14',nome:'Del Valle Limonada',preco:6.00,cls:'suco',cat:'SUCO',emoji:'🍋'},
+    {id:'b15',nome:'Del Valle Laranja 450ml',preco:6.00,cls:'suco',cat:'SUCO',emoji:'🍊'},
+    {id:'b12',nome:'Del Valle Uva 450ml',preco:6.00,cls:'suco',cat:'SUCO',emoji:'🍇'},
   ],
 };
 
@@ -911,9 +912,8 @@ const App=(function(){
     $('grid-mini-salg').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'},{hideDesc:true})).join('');
     $('grid-mini-doce').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',{text:'MINI'},{hideDesc:true})).join('');
     $('grid-beb-lata').innerHTML=BEBIDAS.lata.map(b=>cardHtml(b,'bebida',null,{hideDesc:true})).join('');
-    $('grid-beb-200').innerHTML=BEBIDAS.refri200.map(b=>cardHtml(b,'bebida',null,{hideDesc:true})).join('');
+    $('grid-beb-200').innerHTML=BEBIDAS.refri200.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
     $('grid-beb-agua').innerHTML=BEBIDAS.agua.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
-    $('grid-beb-kapo').innerHTML=BEBIDAS.kapo.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
     $('grid-beb-del').innerHTML=BEBIDAS.delvalle.map(b=>cardHtml(b,b.cls,null,{hideDesc:true})).join('');
     $('grid-figurinhas').innerHTML=cardHtml({...FIGURINHAS,priceLabel:'R$ 6,50',fromLabel:'PIX/Dinheiro a partir de',cat:'⚽ FIFA'},'fig',{text:'⚽ FIFA',cls:'eco'});
 
