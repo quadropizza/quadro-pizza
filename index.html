@@ -63,7 +63,8 @@
   .tab{flex:1;min-width:95px;padding:12px 6px 14px;font-size:12px;font-weight:800;color:#bbb;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap;letter-spacing:.4px;text-transform:uppercase;position:relative}
   .tab.active{color:var(--yellow);border-color:var(--yellow);background:rgba(255,204,0,.08)}
   .tab.active::after{content:'';position:absolute;left:50%;transform:translateX(-50%);top:0;width:30px;height:2px;background:var(--yellow);border-radius:0 0 4px 4px}
-  .tab-emoji{font-size:22px;display:block;margin-bottom:3px}
+  .tab-emoji{font-size:22px;display:block;margin-bottom:3px;line-height:1}
+  .tab-emoji img{height:24px;margin:0 auto 1px;display:block}
 
   main{padding:18px 14px;max-width:760px;margin:0 auto}
   .section-head{margin:6px 0 14px;display:flex;align-items:center;gap:10px}
@@ -411,10 +412,10 @@
 <nav class="tabs" id="tabs">
   <button class="tab active" data-tab="combos"><span class="tab-emoji">🔥</span>Combos</button>
   <button class="tab" data-tab="copa"><span class="tab-emoji">⚽</span>Copa 2026</button>
-  <button class="tab" data-tab="pizza"><span class="tab-emoji">▭</span>Pizza 25cm</button>
-  <button class="tab" data-tab="mini"><span class="tab-emoji">▫</span>Mini</button>
+  <button class="tab" data-tab="pizza"><span class="tab-emoji"><img src="images/emoji-25cm.png" alt=""></span>Pizza 25cm</button>
+  <button class="tab" data-tab="mini"><span class="tab-emoji"><img src="images/emoji-mini.png" alt=""></span>Mini</button>
   <button class="tab" data-tab="bebidas"><span class="tab-emoji">🥤</span>Bebidas</button>
-  <button class="tab" data-tab="figurinhas"><span class="tab-emoji">🃏</span>Figurinhas</button>
+  <button class="tab" data-tab="figurinhas"><span class="tab-emoji"><img src="images/emoji-fifa.png" alt=""></span>Figurinhas</button>
 </nav>
 
 <main>
@@ -449,7 +450,7 @@
 
   <!-- PIZZA 25 -->
   <section id="tab-pizza" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">▭ 25CM</span><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · Retangular, artesanal, na medida certa</small></h2></div>
+    <div class="section-head"><img src="images/emoji-25cm.png" alt="" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))"><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · Retangular, artesanal, na medida certa</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-pizza-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
@@ -458,7 +459,7 @@
 
   <!-- MINI -->
   <section id="tab-mini" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">▫ MINI</span><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal pra você não dividir</small></h2></div>
+    <div class="section-head"><img src="images/emoji-mini.png" alt="" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))"><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal pra você não dividir</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-mini-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
@@ -482,7 +483,7 @@
 
   <!-- FIGURINHAS -->
   <section id="tab-figurinhas" class="tab-content" hidden>
-    <div class="section-head"><span class="seal">⚽ FIFA 2026</span><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
+    <div class="section-head"><img src="images/emoji-fifa.png" alt="" style="height:54px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))"><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
     <div class="fig-pricing">
       <img src="images/combos/valores-figurinha.jpeg" alt="Tabela de preços" onerror="this.style.display='none'">
     </div>
