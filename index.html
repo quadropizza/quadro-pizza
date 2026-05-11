@@ -103,6 +103,8 @@
   .qbox .qb-bottom::after{right:0}
   .qbox .qb-bottom span{position:relative;z-index:1;background:var(--black);padding:0 6px}
   .qbox .qb-name{position:absolute;bottom:6px;left:6px;right:6px;background:rgba(0,0,0,.7);color:#fff;padding:3px 6px;border-radius:5px;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;text-align:center;z-index:2;backdrop-filter:blur(2px)}
+  .qbox.has-img .qb-emoji{display:none}
+  .qbox.has-img .qb-main{background:#fff !important}
 
   .card-tag{position:absolute;top:8px;left:8px;background:var(--yellow);color:var(--black);padding:4px 9px;border-radius:6px;font-size:10px;font-weight:900;letter-spacing:.8px;border:1.5px solid var(--black);box-shadow:0 2px 0 rgba(0,0,0,.85);text-transform:uppercase;z-index:5}
   .card-tag.hot{background:var(--red);color:#fff;animation:pulse-tag 1.6s ease-in-out infinite}
@@ -664,12 +666,13 @@ const App = (function(){
   function qBoxHtml(item, klass, tag){
     const imgSrc = item.img||'';
     const cat = item.cat || (item.id?.startsWith('c')?'COMBO':'QUADRÔ');
-    // Try .webp, then .jpg, then .png, then hide
-    const fallbackChain = imgSrc ? imgSrc.replace(/\.webp$/,'') : '';
-    const imgHtml = imgSrc ? `<img class="qb-img" src="${imgSrc}" alt=""
-      onerror="if(!this.dataset.tried){this.dataset.tried='jpg';this.src='${fallbackChain}.jpg';}
-              else if(this.dataset.tried==='jpg'){this.dataset.tried='png';this.src='${fallbackChain}.png';}
-              else if(this.dataset.tried==='png'){this.dataset.tried='jpeg';this.src='${fallbackChain}.jpeg';}
+    const base = imgSrc ? imgSrc.replace(/\.(webp|jpg|jpeg|png)$/,'') : '';
+    // Try .jpg first (most photos are jpg), then .webp, .png, .jpeg
+    const imgHtml = imgSrc ? `<img class="qb-img" src="${base}.jpg" alt=""
+      onload="this.closest('.qbox').classList.add('has-img')"
+      onerror="if(!this.dataset.tried){this.dataset.tried='webp';this.src='${base}.webp';}
+              else if(this.dataset.tried==='webp'){this.dataset.tried='png';this.src='${base}.png';}
+              else if(this.dataset.tried==='png'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
               else{this.remove();}">` : '';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
