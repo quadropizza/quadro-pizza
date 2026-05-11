@@ -146,12 +146,12 @@
   .fab-badge{background:var(--yellow);color:var(--black);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;border:2px solid var(--black)}
 
   /* FIFA FAB - bolinha lateral */
-  .fab-fifa{position:fixed;right:14px;top:140px;background:linear-gradient(135deg,#FFCC00 0%,#FF8800 100%);color:var(--black);width:72px;height:72px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(255,136,0,.55);z-index:43;border:3px solid var(--black);font-weight:900;animation:fifa-bob 2.4s ease-in-out infinite;cursor:pointer}
+  .fab-fifa{position:fixed;right:14px;top:140px;background:linear-gradient(135deg,#FFCC00 0%,#FF8800 100%);color:var(--black);width:84px;height:84px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(255,136,0,.55);z-index:43;border:3px solid var(--black);font-weight:900;animation:fifa-bob 2.4s ease-in-out infinite;cursor:pointer;text-align:center}
   .fab-fifa::before{content:'';position:absolute;inset:-4px;border:2px dashed var(--yellow);border-radius:50%;animation:spin 8s linear infinite;opacity:.7}
   @keyframes spin{to{transform:rotate(360deg)}}
   .fab-fifa:hover{transform:scale(1.08)}
-  .fab-fifa .em{font-size:28px;line-height:1}
-  .fab-fifa .lbl{font-size:9px;letter-spacing:.5px;margin-top:1px;text-transform:uppercase;font-weight:900}
+  .fab-fifa .em{font-size:26px;line-height:1}
+  .fab-fifa .lbl{font-size:7.5px;letter-spacing:.3px;margin-top:2px;text-transform:uppercase;font-weight:900;line-height:1.1;padding:0 3px}
   @keyframes fifa-bob{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
 
   /* MODAL */
@@ -190,6 +190,8 @@
   .pick-qty .v{min-width:18px;text-align:center;font-weight:900;font-family:'Anton',sans-serif;font-size:17px}
   .pick-counter{background:var(--cream-2);padding:8px 14px;border-radius:10px;text-align:center;font-size:13px;font-weight:700;margin-bottom:10px;border:2px dashed var(--muted)}
   .pick-counter.ok{background:#e6f6e9;border-color:var(--success);color:var(--success)}
+  .fig-quick{flex:1;padding:10px 4px;background:var(--cream-2);border:2px solid var(--border);border-radius:10px;font-weight:900;font-size:13px;color:var(--black);transition:.15s;font-family:'Anton',sans-serif;letter-spacing:.5px}
+  .fig-quick:hover{background:var(--yellow);border-color:var(--black);transform:translateY(-2px)}
 
   .btn-primary{width:100%;background:var(--red);color:#fff;padding:15px;border-radius:14px;font-weight:900;font-size:15px;text-transform:uppercase;letter-spacing:1px;border:3px solid var(--black);box-shadow:0 4px 0 var(--black);transition:.2s}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--black);background:var(--red-d)}
@@ -507,8 +509,8 @@
   🛒 <span id="cartLabel">Ver carrinho</span>
   <span class="fab-badge" id="cartBadge">0</span>
 </button>
-<button class="fab-fifa" id="fabFifa" onclick="App.openFifa()" title="Comprar figurinhas FIFA">
-  <span class="em">⚽</span><span class="lbl">FIFA</span>
+<button class="fab-fifa" id="fabFifa" onclick="App.openFifa()" title="Figurinhas FIFA com desconto">
+  <span class="em">⚽</span><span class="lbl">FIGURINHAS<br>C/ DESCONTO</span>
 </button>
 
 <div class="combo-push" id="comboPush">
@@ -592,10 +594,10 @@
     <div class="modal-section">
       <h3>2️⃣ Pagamento</h3>
       <div class="options" id="payOpts">
-        <button class="opt selected" data-pay="PIX"><span><strong>💸 PIX</strong><small>Figurinhas com desconto progressivo</small></span><span class="opt-check">✓</span></button>
-        <button class="opt" data-pay="Dinheiro"><span><strong>💵 Dinheiro</strong><small>Figurinhas com mesmo desconto do PIX</small></span><span class="opt-check"></span></button>
-        <button class="opt" data-pay="Débito"><span><strong>💳 Débito</strong><small>Figurinhas R$ 7,00 cada</small></span><span class="opt-check"></span></button>
-        <button class="opt" data-pay="Crédito"><span><strong>💳 Crédito</strong><small>Figurinhas R$ 7,00 cada</small></span><span class="opt-check"></span></button>
+        <button class="opt selected" data-pay="PIX"><span><strong>💸 PIX</strong></span><span class="opt-check">✓</span></button>
+        <button class="opt" data-pay="Dinheiro"><span><strong>💵 Dinheiro</strong></span><span class="opt-check"></span></button>
+        <button class="opt" data-pay="Débito"><span><strong>💳 Débito</strong></span><span class="opt-check"></span></button>
+        <button class="opt" data-pay="Crédito"><span><strong>💳 Crédito</strong></span><span class="opt-check"></span></button>
       </div>
       <div id="pixBox" class="pix-box show">
         <span class="field-label">Chave PIX (CNPJ)</span>
@@ -659,10 +661,10 @@ const MINI_DOCE=[
   {id:'pmd4',sabor:'Choc. Branco',img:'images/mini/choc-branco'},
 ];
 
-const PIZZA25=[...PIZZA25_SALG.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'salg',cat:'25CM'})),
-               ...PIZZA25_DOCE.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'doce',cat:'25CM'}))];
-const PIZZA_MINI=[...MINI_SALG.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'salg',cat:'MINI'})),
-                  ...MINI_DOCE.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'doce',cat:'MINI'}))];
+const PIZZA25=[...PIZZA25_SALG.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'salg',cat:'🍕 25CM'})),
+               ...PIZZA25_DOCE.map(p=>({...p,nome:'Quadrô 25cm '+p.sabor,preco:19.99,tipo:'doce',cat:'🍕 25CM'}))];
+const PIZZA_MINI=[...MINI_SALG.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'salg',cat:'🍕 MINI'})),
+                  ...MINI_DOCE.map(p=>({...p,nome:'Quadrô Mini '+p.sabor,preco:12.90,tipo:'doce',cat:'🍕 MINI'}))];
 
 const PIZZA_SAB=PIZZA25.map(p=>p.sabor);
 const MINI_SAB=PIZZA_MINI.map(p=>p.sabor);
@@ -671,21 +673,22 @@ const REFRI_MINI=['Coca-Cola 200ml','Guaraná 200ml'];
 const KAPO_SAB=['Uva','Maracujá','Morango'];
 
 const COMBOS=[
-  {id:'c1',nome:'⚽ Individual Copa 2026',desc:'Pizza 25cm + Refri Lata + 1 Figurinha FIFA. Combo oficial do torcedor.',preco:26.90,economia:'~R$ 5',img:'images/combos/individual',copa:true,
+  {id:'c1',nome:'⚽ Individual Copa 2026',desc:'Pizza 25cm + Refri Lata + 1 Figurinha FIFA. Combo oficial do torcedor.',preco:26.90,pessoas:1,img:'images/combos/individual',copa:true,
     picks:[{label:'Sabor da Pizza 25cm',type:'one',opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c2',nome:'⚽ Dupla Copa 2026',desc:'2 Pizzas 25cm + Refri Lata + 2 Figurinhas. Dividir, comer e colecionar.',preco:49.90,economia:'~R$ 8',img:'images/combos/dupla',copa:true,
+  {id:'c2',nome:'⚽ Dupla Copa 2026',desc:'2 Pizzas 25cm + Refri Lata + 2 Figurinhas. Dividir, comer e colecionar.',preco:49.90,pessoas:2,img:'images/combos/dupla',copa:true,
     picks:[{label:'Pizzas 25cm — escolha 2',type:'multi',max:2,opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c3',nome:'🔥 25cm + Mini + Refri',desc:'Salgada + doce de sobremesa + refri 200ml. Refeição completa.',preco:26.90,economia:'~R$ 4',img:'images/combos/25-mini-refri',
+  {id:'c3',nome:'🔥 25cm + Mini + Refri',desc:'Salgada + doce de sobremesa + refri 200ml. Refeição completa.',preco:26.90,pessoas:1,img:'images/combos/25-mini-refri',
     picks:[{label:'Sabor da Pizza 25cm',type:'one',opts:PIZZA_SAB},{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Refrigerante 200ml',type:'one',opts:REFRI_MINI}]},
-  {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'Dois sabores pra dividir + refri lata gelada.',preco:36.90,economia:'~R$ 5',img:'images/combos/2-pizzas-lata',
+  {id:'c4',nome:'👫 2 Pizzas 25cm + Lata',desc:'Dois sabores pra dividir + refri lata gelada.',preco:36.90,pessoas:2,img:'images/combos/2-pizzas-lata',
     picks:[{label:'Pizzas 25cm — escolha 2',type:'multi',max:2,opts:PIZZA_SAB},{label:'Refrigerante Lata',type:'one',opts:REFRI_LATA}]},
-  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini pizza + Coca-Cola 200ml. Lanche rápido entre aulas.',preco:14.90,economia:'~R$ 3',img:'images/combos/mini-coca',
+  {id:'c5',nome:'💥 Mini + Coca Mini',desc:'Mini pizza + Coca-Cola 200ml. Lanche rápido entre aulas.',preco:14.90,pessoas:1,img:'images/combos/mini-coca',
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB}]},
-  {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'Duas mini à sua escolha. Pra dividir ou só pra você.',preco:22.90,economia:'~R$ 3',img:'images/combos/2-minis',
+  {id:'c6',nome:'✌️ 2 Quadrô Mini',desc:'Duas mini à sua escolha. Pra dividir ou só pra você.',preco:22.90,pessoas:2,img:'images/combos/2-minis',
     picks:[{label:'Minis — escolha 2',type:'multi',max:2,opts:MINI_SAB}]},
-  {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Saudosismo da infância.',preco:14.90,economia:'~R$ 3',img:'images/combos/mini-kapo',
+  {id:'c7',nome:'🥤 Mini + Kapo',desc:'Mini pizza + Kapo 200ml. Saudosismo da infância.',preco:14.90,pessoas:1,img:'images/combos/mini-kapo',
     picks:[{label:'Sabor da Mini',type:'one',opts:MINI_SAB},{label:'Sabor do Kapo',type:'one',opts:KAPO_SAB}]},
 ];
+function perPersonLabel(c){return c.pessoas>1?`R$ ${(c.preco/c.pessoas).toFixed(2).replace('.',',')}/pessoa`:'Combo individual';}
 
 const BEBIDAS={
   lata:[
@@ -788,8 +791,8 @@ const App=(function(){
   }
 
   function renderAll(){
-    $('grid-combos').innerHTML=COMBOS.map(c=>cardHtml({...c,economia:'Economiza '+c.economia,cat:'COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
-    $('grid-copa').innerHTML=COMBOS.filter(c=>c.copa).map(c=>cardHtml({...c,economia:'Economiza '+c.economia,cat:'⚽ COPA'},'combo',{text:'⚽ FIFA',cls:'gold'})).join('');
+    $('grid-combos').innerHTML=COMBOS.map(c=>cardHtml({...c,economia:perPersonLabel(c),cat:'🔥 COMBO'},'combo',{text:'COMBO',cls:'hot'})).join('');
+    $('grid-copa').innerHTML=COMBOS.filter(c=>c.copa).map(c=>cardHtml({...c,economia:perPersonLabel(c),cat:'⚽ COPA'},'combo',{text:'⚽ FIFA',cls:'gold'})).join('');
     $('grid-pizza-salg').innerHTML=PIZZA25.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',null,{hideDesc:true})).join('');
     $('grid-pizza-doce').innerHTML=PIZZA25.filter(p=>p.tipo==='doce').map(p=>cardHtml(p,'doce',null,{hideDesc:true})).join('');
     $('grid-mini-salg').innerHTML=PIZZA_MINI.filter(p=>p.tipo==='salg').map(p=>cardHtml(p,'salg',{text:'MINI'},{hideDesc:true})).join('');
@@ -829,6 +832,13 @@ const App=(function(){
     if(item.id==='fig'){
       html+=`<div class="modal-section">
         <h3>Quantidade de pacotes</h3>
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <button class="fig-quick" data-q="1" type="button">+1</button>
+          <button class="fig-quick" data-q="5" type="button">+5</button>
+          <button class="fig-quick" data-q="10" type="button">10</button>
+          <button class="fig-quick" data-q="50" type="button">50</button>
+          <button class="fig-quick" data-q="100" type="button">100</button>
+        </div>
         <input type="number" id="figQty" class="field" min="1" value="1">
         <div style="background:var(--cream-2);padding:14px;border-radius:10px;font-size:12px;line-height:1.7">
           💸 <strong>PIX ou Dinheiro:</strong><br>
@@ -869,6 +879,10 @@ const App=(function(){
       </div></div>`;
 
     body.innerHTML=html;
+
+    body.querySelectorAll('.fig-quick').forEach(b=>{
+      b.addEventListener('click',()=>{$('figQty').value=b.dataset.q;});
+    });
 
     body.querySelectorAll('.opt[data-pick]').forEach(b=>{
       b.addEventListener('click',()=>{
@@ -1001,7 +1015,7 @@ const App=(function(){
     suggestedCombo=sug;
     $('cartUpsell').innerHTML=`<div style="background:linear-gradient(135deg,var(--red) 0%,var(--red-deep) 100%);color:#fff;padding:14px 16px;border-radius:14px;margin:14px 0 6px;border:3px solid var(--yellow)">
       <div style="font-family:'Anton',sans-serif;font-size:16px;margin-bottom:4px">💡 QUE TAL TROCAR POR UM COMBO?</div>
-      <p style="font-size:12px;margin-bottom:10px">${sug.nome} por <strong>${fmt(sug.preco)}</strong> · economiza ${sug.economia}.</p>
+      <p style="font-size:12px;margin-bottom:10px">${sug.nome} por <strong>${fmt(sug.preco)}</strong> · ${perPersonLabel(sug)}.</p>
       <button onclick="App.openComboSuggested()" style="background:var(--yellow);color:var(--black);padding:8px 16px;border-radius:50px;font-weight:900;font-size:11px;text-transform:uppercase;border:2px solid var(--black)">Ver combo</button></div>`;
   }
   function itemQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<=0)cart.splice(idx,1);save();renderCart();}
@@ -1017,9 +1031,9 @@ const App=(function(){
   function maybeShowComboPush(){
     if(cart.length===0||cart.some(i=>i.type==='combo'))return;
     const last=cart[cart.length-1];let push=null;
-    if(last.type==='pizza25'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[0];$('comboPushText').innerHTML=`Adicione refri + figurinha e vira combo por ${fmt(push.preco)} (economiza ${push.economia})!`;}
-    else if(last.type==='mini'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[4];$('comboPushText').innerHTML=`Mini sozinha? 🤔 Com Coca 200ml vira combo por <strong>${fmt(push.preco)}</strong>!`;}
-    else if(cart.filter(i=>i.type==='pizza25').length>=2&&!cart.some(i=>i.type==='bebida')){push=COMBOS[3];$('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong>.`;}
+    if(last.type==='pizza25'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[0];$('comboPushText').innerHTML=`Adicione refri + figurinha e vira combo por <strong>${fmt(push.preco)}</strong>!`;}
+    else if(last.type==='mini'&&!cart.some(i=>i.type==='bebida')){push=COMBOS[4];$('comboPushText').innerHTML=`Mini sozinha? Com Coca 200ml vira combo por <strong>${fmt(push.preco)}</strong>!`;}
+    else if(cart.filter(i=>i.type==='pizza25').length>=2&&!cart.some(i=>i.type==='bebida')){push=COMBOS[3];$('comboPushText').innerHTML=`2 pizzas no carrinho! Adicione refri e vira combo por <strong>${fmt(push.preco)}</strong> (${perPersonLabel(push)}).`;}
     if(!push)return;
     suggestedCombo=push;
     $('comboPushTitle').textContent='💡 ECONOMIZE COM COMBO!';
@@ -1117,9 +1131,9 @@ const App=(function(){
     const data=now.toLocaleDateString('pt-BR');
     const hora=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
 
-    let msg=`🍕 *NOVO PEDIDO QUADRÔ PIZZA* 🎉\n`;
+    let msg=`🍕 *NOVO PEDIDO - QUADRÔ PIZZA* 🎉\n`;
     msg+=`-------------------------------------\n`;
-    msg+=`😀 *Olá, ${name||'Cliente'}!* Recebemos seu pedido! 💛\n\n`;
+    msg+=`😊 *Olá, ${name||'Cliente'}!* Recebemos seu pedido! 💛\n\n`;
     msg+=`📝 *Pedido #${orderId}* | ${data} às ${hora}\n\n`;
     msg+=`🛒 *ITENS:*\n----------------------\n`;
     cart.forEach((it,i)=>{
@@ -1128,7 +1142,7 @@ const App=(function(){
       msg+=`${i+1}. ✅ *${it.nome}*${qtyTxt} -- *${fmt(lp)}*\n`;
       (it.detalhes||[]).forEach(d=>msg+=`   -> ${d}\n`);
     });
-    msg+=`----------------------\n💰 *TOTAL: ${fmt(total)}* 🤩\n\n`;
+    msg+=`----------------------\n💰 *TOTAL: ${fmt(total)}* ⭐\n\n`;
 
     if(delivery==='balcao'){
       msg+=`🏪 *ENTREGA:* Retirar no Balcão (Bloco C2)\n`;
@@ -1140,9 +1154,9 @@ const App=(function(){
     }
     msg+=`💳 *PAGAMENTO:* ${payment}\n`;
     if(payment==='PIX'){
-      msg+=`\n💸 *CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante aqui!_ 🙏\n`;
+      msg+=`\n💰 *CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante aqui!_ 🙏\n`;
     }
-    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! 🍕 Sua pizza fica pronta em ~5 min! 😋💛`;
+    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! 🍕 Sua pizza fica pronta em ~5 min! 💛`;
 
     const order={id:orderId,ts:now.toISOString(),cliente:name||'Cliente',itens:cart,total,delivery,schedule:scheduleVal,sala:salaData,payment};
     const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
@@ -1165,13 +1179,13 @@ const App=(function(){
     const rev={ts:new Date().toISOString(),cliente:name||'Cliente',nota:ratingVal,comentario:comment,orderId:lastOrderId};
     const revs=JSON.parse(localStorage.getItem('qp_reviews')||'[]');
     revs.push(rev);localStorage.setItem('qp_reviews',JSON.stringify(revs));
-    let msg=`⭐ *AVALIAÇÃO QUADRÔ PIZZA* 💛\n`;
+    let msg=`⭐ *AVALIAÇÃO - QUADRÔ PIZZA* 💛\n`;
     msg+=`-------------------------------------\n`;
     msg+=`😊 *Cliente:* ${name||'Cliente'}\n`;
-    msg+=`✨ *Nota:* ${'⭐'.repeat(ratingVal)} (${ratingVal}/5)\n`;
+    msg+=`⭐ *Nota:* ${'⭐'.repeat(ratingVal)} (${ratingVal}/5)\n`;
     if(comment)msg+=`💬 *Comentário:* ${comment}\n`;
     if(lastOrderId)msg+=`📝 *Pedido* #${lastOrderId}\n`;
-    msg+=`\n🙌 Muito obrigado por avaliar! 🤩 Vocês são incríveis! 🍕💛`;
+    msg+=`\n🙌 Muito obrigado por avaliar! Vocês são incríveis! 🍕❤️`;
     window.open(`https://api.whatsapp.com/send?phone=${STORE.whatsapp}&text=${encodeURIComponent(msg)}`,'_blank');
     closeModal('ratingModal');toast('💛 Obrigado pela avaliação!');
   }
