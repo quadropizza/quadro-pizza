@@ -106,8 +106,14 @@
   .qbox.fig .qb-main{background:linear-gradient(135deg,#1E4FBF 0%,#089d4b 100%)}
   .qbox.fig .qb-shape{background:linear-gradient(135deg,#FFCC00,#FF8800);width:52%;height:64%;border-radius:4px}
   .qbox .qb-img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:3}
-  .qbox .qb-bebemoji{font-size:72px;line-height:1;z-index:2;position:relative;filter:drop-shadow(0 6px 12px rgba(0,0,0,.45));animation:bb-bob 3s ease-in-out infinite}
-  @keyframes bb-bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+  /* Card bebida: só emoji, sem caixa Quadrô */
+  .beb-card{height:165px;background:linear-gradient(135deg,#fff 0%,#f7f1de 100%);display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--yellow);position:relative;overflow:hidden}
+  .beb-card.bebida{background:linear-gradient(135deg,#E3F2FD 0%,#90CAF9 100%);border-bottom-color:#1E4FBF}
+  .beb-card.agua{background:linear-gradient(135deg,#E0F7FA 0%,#80DEEA 100%);border-bottom-color:#5BC8E5}
+  .beb-card.suco{background:linear-gradient(135deg,#F3E5F5 0%,#CE93D8 100%);border-bottom-color:#A347E5}
+  .beb-card .beb-emoji{font-size:96px;line-height:1;filter:drop-shadow(0 8px 16px rgba(0,0,0,.35));animation:bb-bob 3s ease-in-out infinite;position:relative;z-index:2}
+  .beb-card .beb-cat{position:absolute;bottom:6px;left:8px;background:rgba(0,0,0,.7);color:var(--yellow);font-family:'Anton',sans-serif;font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:50px;z-index:3}
+  @keyframes bb-bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6px) rotate(2deg)}}
   .qbox.has-img .qb-shape{display:none}
   .qbox.has-img .qb-main{background:#fff !important}
   .qbox.has-img.fig .qb-main{padding:6px}
@@ -856,20 +862,27 @@ const App=(function(){
     const base=item.img||'';
     const cat=item.cat||(item.id?.startsWith('c')?'COMBO':'QUADRÔ');
     const isBeb=(klass||'').match(/bebida|agua|suco/);
+    // Bebidas: card simplificado só com emoji
+    if(isBeb&&item.emoji){
+      return `<div class="beb-card ${klass}">
+        ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
+        <span class="beb-emoji">${item.emoji}</span>
+        <span class="beb-cat">${cat}</span>
+      </div>`;
+    }
     const imgHtml=base?`<img class="qb-img" src="${base}.jpg" alt=""
       onload="this.closest('.qbox').classList.add('has-img')"
       onerror="if(!this.dataset.tried){this.dataset.tried='png';this.src='${base}.png';}
               else if(this.dataset.tried==='png'){this.dataset.tried='webp';this.src='${base}.webp';}
               else if(this.dataset.tried==='webp'){this.dataset.tried='jpeg';this.src='${base}.jpeg';}
               else{this.remove();}">`:'';
-    const center=isBeb&&item.emoji?`<div class="qb-bebemoji">${item.emoji}</div>`:`<div class="qb-shape"></div>`;
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
       ${catupiry?`<span class="badge-cat"><span class="b-top">SABOR</span><span class="b-main">CATUPIRY</span><span class="b-bot">ORIGINAL</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
-        ${center}
+        <div class="qb-shape"></div>
       </div>
       <div class="qb-bottom"><span>${cat}</span></div>
     </div>`;
