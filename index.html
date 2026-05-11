@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#E50019">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Quadrô Pizza — Cardápio Digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -661,11 +664,18 @@ const App = (function(){
   function qBoxHtml(item, klass, tag){
     const imgSrc = item.img||'';
     const cat = item.cat || (item.id?.startsWith('c')?'COMBO':'QUADRÔ');
+    // Try .webp, then .jpg, then .png, then hide
+    const fallbackChain = imgSrc ? imgSrc.replace(/\.webp$/,'') : '';
+    const imgHtml = imgSrc ? `<img class="qb-img" src="${imgSrc}" alt=""
+      onerror="if(!this.dataset.tried){this.dataset.tried='jpg';this.src='${fallbackChain}.jpg';}
+              else if(this.dataset.tried==='jpg'){this.dataset.tried='png';this.src='${fallbackChain}.png';}
+              else if(this.dataset.tried==='png'){this.dataset.tried='jpeg';this.src='${fallbackChain}.jpeg';}
+              else{this.remove();}">` : '';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
-        ${imgSrc?`<img class="qb-img" src="${imgSrc}" alt="" onerror="this.remove()">`:''}
+        ${imgHtml}
         <span class="qb-emoji">${item.emoji||(item.id==='fig'?'⚽':'🍕')}</span>
       </div>
       <div class="qb-bottom"><span>${cat}</span></div>
@@ -1075,31 +1085,31 @@ const App = (function(){
     const hora=now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
 
     let msg=`🍕 *NOVO PEDIDO - QUADRÔ PIZZA* 🎉\n`;
-    msg+=`━━━━━━━━━━━━━━━━━━━━━\n`;
-    msg+=`😄 *Olá, ${name||'Cliente'}!* Recebemos seu pedido com muito carinho:\n\n`;
-    msg+=`🧾 *Pedido #${orderId}* · ${data} às ${hora}\n\n`;
-    msg+=`🛒 *ITENS:*\n━━━━━━━━━━━━━━━\n`;
+    msg+=`-------------------------------------\n`;
+    msg+=`😀 *Olá, ${name||'Cliente'}!* Recebemos seu pedido com muito carinho! 💛\n\n`;
+    msg+=`📝 *Pedido #${orderId}* | ${data} às ${hora}\n\n`;
+    msg+=`🛒 *ITENS:*\n----------------------\n`;
     cart.forEach((it,i)=>{
       const lp = it.fig ? priceOf(it,payment) : it.preco*it.qty;
       const qtyTxt = it.fig ? '' : (it.qty>1?` (x${it.qty})`:'');
-      msg+=`${i+1}. ✅ *${it.nome}*${qtyTxt} — *${fmt(lp)}*\n`;
-      (it.detalhes||[]).forEach(d=>msg+=`   ↳ ${d}\n`);
+      msg+=`${i+1}. ✅ *${it.nome}*${qtyTxt} -- *${fmt(lp)}*\n`;
+      (it.detalhes||[]).forEach(d=>msg+=`   -> ${d}\n`);
     });
-    msg+=`━━━━━━━━━━━━━━━\n💰 *TOTAL: ${fmt(total)}* 🤑\n\n`;
+    msg+=`----------------------\n💰 *TOTAL: ${fmt(total)}* 🤩\n\n`;
 
     if(delivery==='balcao'){
       msg+=`🏪 *ENTREGA:* Retirar no Balcão (Bloco C2)\n`;
-      msg+=`⏰ *QUANDO:* ${scheduleVal==='now'?'Agora (~5 minutos) ⚡':'Às '+scheduleVal+' 🕒'}\n`;
+      msg+=`⏰ *QUANDO:* ${scheduleVal==='now'?'Agora (~5 minutos) ⚡':'Às '+scheduleVal}\n`;
     } else {
       msg+=`🎒 *ENTREGA:* Na Sala\n`;
-      msg+=`📍 *ONDE:* ${salaData.ano} ${salaData.curso?'· '+salaData.curso:''} · Bloco ${salaData.bloco} · Sala ${salaData.sala}\n`;
-      msg+=`⏰ *QUANDO:* Intervalo das ${scheduleVal} 🕒\n`;
+      msg+=`📍 *ONDE:* ${salaData.ano} ${salaData.curso?'- '+salaData.curso:''} - Bloco ${salaData.bloco} - Sala ${salaData.sala}\n`;
+      msg+=`⏰ *QUANDO:* Intervalo das ${scheduleVal}\n`;
     }
     msg+=`💳 *PAGAMENTO:* ${payment}\n`;
     if(payment==='PIX'){
       msg+=`\n💸 *CHAVE PIX (CNPJ):*\n${STORE.pix}\n_Envie o comprovante aqui, por favor!_ 🙏\n`;
     }
-    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! Sua pizza estará pronta em ~5 min! 🍕💛`;
+    msg+=`\n🔥 Obrigado, ${name||'Cliente'}! 🍕 Sua pizza estará pronta em ~5 min! 😋💛`;
 
     const order={id:orderId,ts:now.toISOString(),cliente:name||'Cliente',itens:cart,total,delivery,schedule:scheduleVal,sala:salaData,payment};
     const orders=JSON.parse(localStorage.getItem('qp_orders')||'[]');
@@ -1136,12 +1146,12 @@ const App = (function(){
     revs.push(rev); localStorage.setItem('qp_reviews',JSON.stringify(revs));
 
     let msg=`⭐ *AVALIAÇÃO QUADRÔ PIZZA* 💛\n`;
-    msg+=`━━━━━━━━━━━━━━━━━━━━━\n`;
+    msg+=`-------------------------------------\n`;
     msg+=`😊 *Cliente:* ${name||'Cliente'}\n`;
     msg+=`✨ *Nota:* ${'⭐'.repeat(ratingVal)} (${ratingVal}/5)\n`;
     if(comment) msg+=`💬 *Comentário:* ${comment}\n`;
-    if(lastOrderId) msg+=`🧾 *Pedido* #${lastOrderId}\n`;
-    msg+=`\n🙌 Obrigado por avaliar! Vocês são incríveis! 🍕❤️`;
+    if(lastOrderId) msg+=`📝 *Pedido* #${lastOrderId}\n`;
+    msg+=`\n🙌 Muito obrigado por avaliar! 🤩 Vocês são incríveis! 🍕💛`;
 
     window.open(`https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`,'_blank');
     closeModal('ratingModal');
