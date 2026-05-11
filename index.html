@@ -124,12 +124,17 @@
   .card-tag.gold{background:linear-gradient(135deg,#FFCC00,#D4A017);color:var(--black)}
   @keyframes pulse-tag{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-  /* Selo Catupiry Original */
-  .badge-cat{position:absolute;top:8px;right:8px;width:56px;height:56px;border-radius:50%;background:#cc0000;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;border:3px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.4);transform:rotate(12deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:3px}
-  .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px dashed #fff;pointer-events:none}
-  .badge-cat .b-top{font-size:7.5px;letter-spacing:1px;line-height:1;color:#fff;font-weight:900;margin-bottom:1px}
-  .badge-cat .b-main{font-size:13px;letter-spacing:.3px;line-height:1;color:#fff;font-weight:900;background:#fff;color:#cc0000;padding:1px 4px;border-radius:3px;width:100%}
-  .badge-cat .b-bot{font-size:6.5px;letter-spacing:1.5px;line-height:1;color:#fff;font-weight:900;margin-top:2px}
+  /* Selo Catupiry Original — replica visual do logo real */
+  .badge-cat{position:absolute;top:8px;right:8px;width:64px;height:64px;border-radius:50%;
+    background:radial-gradient(circle,#d50000 0%,#990000 100%);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
+    border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 -3px 8px rgba(0,0,0,.3);
+    transform:rotate(-8deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:4px;cursor:default}
+  .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);pointer-events:none}
+  .badge-cat::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:90%;height:50%;background:radial-gradient(ellipse at top,rgba(255,255,255,.25),transparent 70%);border-radius:50%;pointer-events:none}
+  .badge-cat .b-top{font-size:7px;letter-spacing:1.5px;line-height:1;color:#FFD700;font-weight:900;margin-bottom:2px;text-shadow:0 1px 1px rgba(0,0,0,.5);position:relative;z-index:2}
+  .badge-cat .b-main{font-family:'Brush Script MT','Lucida Handwriting',cursive;font-size:18px;line-height:.9;color:#fff;font-weight:900;font-style:italic;text-shadow:0 2px 3px rgba(0,0,0,.6);position:relative;z-index:2;transform:rotate(-3deg)}
+  .badge-cat .b-bot{font-size:6.5px;letter-spacing:2px;line-height:1;color:#FFD700;font-weight:900;margin-top:2px;text-shadow:0 1px 1px rgba(0,0,0,.5);position:relative;z-index:2}
 
   .card-body{padding:12px 13px 13px;flex:1;display:flex;flex-direction:column}
   .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:6px;color:var(--black)}
@@ -440,10 +445,10 @@
 <nav class="tabs" id="tabs">
   <button class="tab active" data-tab="combos"><span class="tab-emoji">🔥</span>Combos</button>
   <button class="tab" data-tab="copa"><span class="tab-emoji">⚽</span>Copa 2026</button>
-  <button class="tab" data-tab="pizza"><span class="tab-emoji"><img src="images/emoji-25cm.png" alt=""></span>Pizza 25cm</button>
-  <button class="tab" data-tab="mini"><span class="tab-emoji"><img src="images/emoji-mini.png" alt=""></span>Mini</button>
+  <button class="tab" data-tab="pizza"><span class="tab-emoji"><img src="images/emoji-25cm.png" alt="🍕" loading="eager" onerror="this.outerHTML='🍕'"></span>Pizza 25cm</button>
+  <button class="tab" data-tab="mini"><span class="tab-emoji"><img src="images/emoji-mini.png" alt="🍕" loading="eager" onerror="this.outerHTML='🍕'"></span>Mini</button>
   <button class="tab" data-tab="bebidas"><span class="tab-emoji">🥤</span>Bebidas</button>
-  <button class="tab" data-tab="figurinhas"><span class="tab-emoji"><img src="images/emoji-fifa.png" alt=""></span>Figurinhas</button>
+  <button class="tab" data-tab="figurinhas"><span class="tab-emoji"><img src="images/emoji-fifa.png" alt="⚽" loading="eager" onerror="this.outerHTML='⚽'"></span>Figurinhas</button>
 </nav>
 
 <main>
@@ -479,7 +484,7 @@
 
   <!-- PIZZA 25 -->
   <section id="tab-pizza" class="tab-content" hidden>
-    <div class="section-head"><img src="images/emoji-25cm.png" alt="" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))"><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · Retangular, artesanal, na medida certa</small></h2></div>
+    <div class="section-head"><img src="images/emoji-25cm.png" alt="" loading="eager" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))" onerror="this.style.display='none'"><h2 class="section-title">Quadrô 25cm<small>R$ 19,99 · Retangular, artesanal, na medida certa</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-pizza-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
@@ -488,7 +493,7 @@
 
   <!-- MINI -->
   <section id="tab-mini" class="tab-content" hidden>
-    <div class="section-head"><img src="images/emoji-mini.png" alt="" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))"><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal pra você não dividir</small></h2></div>
+    <div class="section-head"><img src="images/emoji-mini.png" alt="" loading="eager" style="height:48px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))" onerror="this.style.display='none'"><h2 class="section-title">Quadrô Mini<small>R$ 12,90 · Versão pessoal pra você não dividir</small></h2></div>
     <div class="subgroup"><h3>🧀 Salgadas</h3></div>
     <div class="grid" id="grid-mini-salg"></div>
     <div class="subgroup"><h3>🍫 Doces</h3></div>
@@ -512,7 +517,7 @@
 
   <!-- FIGURINHAS -->
   <section id="tab-figurinhas" class="tab-content" hidden>
-    <div class="section-head"><img src="images/emoji-fifa.png" alt="" style="height:54px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))"><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
+    <div class="section-head"><img src="images/emoji-fifa.png" alt="" loading="eager" style="height:54px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))" onerror="this.style.display='none'"><h2 class="section-title">Figurinhas Panini<small>Pacote oficial · 7 cromos · Copa do Mundo 2026</small></h2></div>
     <div class="grid" id="grid-figurinhas"></div>
   </section>
 </main>
