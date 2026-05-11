@@ -133,16 +133,15 @@
   .card-tag.gold{background:linear-gradient(135deg,#FFCC00,#D4A017);color:var(--black)}
   @keyframes pulse-tag{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 
-  /* Selo CATUPIRY ORIGINAL — replica visual do logo real */
-  .badge-cat{position:absolute;top:8px;right:8px;width:68px;height:68px;border-radius:50%;
+  /* Selo "Catupiry Original" — texto único em fonte cursiva */
+  .badge-cat{position:absolute;top:8px;right:8px;width:72px;height:72px;border-radius:50%;
     background:radial-gradient(circle,#d50000 0%,#7a0000 100%);
-    display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;
+    display:flex;align-items:center;justify-content:center;text-align:center;
     border:3px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.5),inset 0 -3px 10px rgba(0,0,0,.4);
-    transform:rotate(-8deg);z-index:6;font-family:'Anton',sans-serif;overflow:hidden;padding:5px;cursor:default}
+    transform:rotate(-8deg);z-index:6;overflow:hidden;padding:6px;cursor:default}
   .badge-cat::before{content:'';position:absolute;inset:3px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);pointer-events:none}
   .badge-cat::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:90%;height:50%;background:radial-gradient(ellipse at top,rgba(255,255,255,.28),transparent 70%);border-radius:50%;pointer-events:none}
-  .badge-cat .b-main{font-family:'Brush Script MT','Lucida Handwriting',cursive;font-size:18px;line-height:.85;color:#fff;font-weight:900;font-style:italic;text-shadow:0 2px 3px rgba(0,0,0,.7);position:relative;z-index:2;transform:rotate(-3deg);margin-top:4px}
-  .badge-cat .b-bot{font-size:8px;letter-spacing:2px;line-height:1;color:#FFD700;font-weight:900;margin-top:5px;text-shadow:0 1px 2px rgba(0,0,0,.7);position:relative;z-index:2;background:rgba(0,0,0,.25);padding:2px 5px;border-radius:3px}
+  .badge-cat .b-main{font-family:'Brush Script MT','Lucida Handwriting',cursive;font-size:16px;line-height:.95;color:#fff;font-weight:900;font-style:italic;text-shadow:0 2px 3px rgba(0,0,0,.7);position:relative;z-index:2;transform:rotate(-3deg)}
 
   .card-body{padding:12px 13px 13px;flex:1;display:flex;flex-direction:column}
   .card h3{font-size:14px;font-weight:800;line-height:1.25;margin-bottom:6px;color:var(--black)}
@@ -877,7 +876,7 @@ const App=(function(){
               else{this.remove();}">`:'';
     return `<div class="qbox ${klass}">
       ${tag?`<span class="card-tag ${tag.cls||''}">${tag.text}</span>`:''}
-      ${catupiry?`<span class="badge-cat" title="Catupiry Original"><span class="b-main">Catupiry</span><span class="b-bot">ORIGINAL</span></span>`:''}
+      ${catupiry?`<span class="badge-cat" title="Catupiry Original"><span class="b-main">Catupiry<br>Original</span></span>`:''}
       <div class="qb-top"><span class="qb-logo">QUADRÔ</span></div>
       <div class="qb-main">
         ${imgHtml}
