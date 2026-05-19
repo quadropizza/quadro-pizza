@@ -8,8 +8,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <title>Quadrô Pizza · Cardápio Digital</title>
-<!-- v17 · cache buster -->
-<meta name="version" content="v17">
+<!-- v21 · cache buster · CAU: Nome do Aluno + Turma · intervalos 09h30/14h50/15h30/15h50 -->
+<meta name="version" content="v21">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -648,7 +648,7 @@
           <span><strong>🏪 Retirar no Balcão</strong><small>Bloco C2 · agora ou agendar</small></span><span class="opt-check">✓</span>
         </button>
         <button class="opt" data-delivery="sala">
-          <span><strong>🎒 Entrega na Sala (CAU)</strong><small>Exclusivo CAU 1°–5° · 08h50 ou 15h00</small></span><span class="opt-check"></span>
+          <span><strong>🎒 Entrega na Sala (CAU)</strong><small>Exclusivo CAU 1°–5° · 09h30, 14h50, 15h30 ou 15h50</small></span><span class="opt-check"></span>
         </button>
       </div>
       <div id="scheduleBox" style="margin-top:14px">
@@ -656,8 +656,12 @@
         <select id="scheduleSelect" class="field"></select>
 
         <div id="salaFields" style="display:none">
-          <div class="sala-info">📍 <strong>Preencha exatamente onde a gente entrega:</strong> Ano, Bloco e Sala</div>
-          <div class="sala-grid">
+          <div class="sala-info">📍 <strong>Entrega exclusiva CAU:</strong> Nome do Aluno, Turma, Ano, Bloco e Sala</div>
+          <label class="field-label">Nome do Aluno</label>
+          <input type="text" id="salaAluno" class="field" placeholder="Ex: João Pedro" maxlength="60">
+          <label class="field-label" style="margin-top:10px">Turma</label>
+          <input type="text" id="salaTurma" class="field" placeholder="Ex: 3°A" maxlength="10">
+          <div class="sala-grid" style="margin-top:10px">
             <div>
               <label class="field-label">Ano</label>
               <input type="text" id="salaAno" class="field" placeholder="3°" maxlength="4">
@@ -671,8 +675,6 @@
               <input type="text" id="salaSala" class="field" placeholder="203" maxlength="8">
             </div>
           </div>
-          <label class="field-label">Curso (opcional)</label>
-          <input type="text" id="salaCurso" class="field" placeholder="Ex: Arquitetura, Direito, Eng Civil…">
         </div>
       </div>
     </div>
@@ -830,7 +832,7 @@ const App=(function(){
   let name=localStorage.getItem('qp_name')||'';
   let pending=null;
   let delivery='balcao',payment='PIX',scheduleVal='now';
-  let salaData={ano:'',bloco:'',sala:'',curso:''};
+  let salaData={aluno:'',turma:'',ano:'',bloco:'',sala:''};
   let ratingVal=0; let lastOrderId=null;
   let suggestedCombo=null,comboPushTimer=null,reorderPushTimer=null;
 
@@ -1224,7 +1226,7 @@ const App=(function(){
         renderCart();
       };
     });
-    ['salaAno','salaBloco','salaSala','salaCurso'].forEach(id=>{
+    ['salaAluno','salaTurma','salaAno','salaBloco','salaSala'].forEach(id=>{
       $(id).oninput=e=>{const key=id.replace('sala','').toLowerCase();salaData[key]=e.target.value;};
     });
     updateScheduleBox();
@@ -1238,7 +1240,7 @@ const App=(function(){
       sel.innerHTML=opts.join('');
     } else {
       salaFs.style.display='block';
-      sel.innerHTML='<option value="08:50">Intervalo das 08h50</option><option value="15:00">Intervalo das 15h00</option>';
+      sel.innerHTML='<option value="09:30">Intervalo das 09h30</option><option value="14:50">Intervalo das 14h50</option><option value="15:30">Intervalo das 15h30</option><option value="15:50">Intervalo das 15h50</option>';
     }
     scheduleVal=sel.value;
     sel.onchange=()=>scheduleVal=sel.value;
@@ -1254,7 +1256,7 @@ const App=(function(){
 
   function sendWhatsApp(){
     if(delivery==='sala'){
-      if(!salaData.ano||!salaData.bloco||!salaData.sala){toast('Preencha Ano, Bloco e Sala 😊');return;}
+      if(!salaData.aluno||!salaData.turma||!salaData.ano||!salaData.bloco||!salaData.sala){toast('Preencha Nome do Aluno, Turma, Ano, Bloco e Sala 😊');return;}
     }
     const orderId=String(Date.now()).slice(-6);
     const total=cartTotal();
@@ -1279,8 +1281,10 @@ const App=(function(){
       msg+=`🏪 *ENTREGA:* Retirar no Balcão (Bloco C2)\n`;
       msg+=`⏰ *QUANDO:* ${scheduleVal==='now'?'Agora (~5 min) ⚡':'Às '+scheduleVal}\n`;
     } else {
-      msg+=`🎒 *ENTREGA:* Na Sala\n`;
-      msg+=`📍 *ONDE:* ${salaData.ano}${salaData.curso?' '+salaData.curso:''} - Bloco ${salaData.bloco} - Sala ${salaData.sala}\n`;
+      msg+=`🎒 *ENTREGA:* Na Sala (CAU)\n`;
+      msg+=`🧒 *ALUNO:* ${salaData.aluno}\n`;
+      msg+=`🏷️ *TURMA:* ${salaData.turma}\n`;
+      msg+=`📍 *ONDE:* ${salaData.ano} - Bloco ${salaData.bloco} - Sala ${salaData.sala}\n`;
       msg+=`⏰ *QUANDO:* Intervalo das ${scheduleVal}\n`;
     }
     msg+=`💳 *PAGAMENTO:* ${payment}\n`;

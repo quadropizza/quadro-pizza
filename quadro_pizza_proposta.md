@@ -61,7 +61,7 @@ O proprietário acessa um painel protegido por senha para ver o resumo da semana
 2. Clica em **Finalizar Pedido**
 3. Escolhe entrega:
    - **Retirar no Balcão** — Bloco C2, agora ou horário agendado (08h–22h)
-   - **Entrega na Sala** — exclusivo alunos CAU 1° ao 5° ano, apenas nos intervalos **08h50** ou **15h00**
+   - **Entrega na Sala** — exclusivo alunos CAU 1° ao 5° ano, apenas nos intervalos **09h30**, **14h50**, **15h30** ou **15h50**
 4. Escolhe pagamento: PIX · Débito · Crédito · Dinheiro
    - PIX: chave CNPJ `60.723.998/0001-84` com botão copiar
    - Figurinhas aceitam **somente PIX**
